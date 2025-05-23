@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { McpServer } from "@vercel/mcp-adapter";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerEchoTool(server: McpServer) {
   server.tool(

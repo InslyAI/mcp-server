@@ -1,4 +1,4 @@
-import type { McpServer } from "@vercel/mcp-adapter";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { registerEchoTool } from "./echo";
 import { registerCalculatorTool } from "./calculator";
 
