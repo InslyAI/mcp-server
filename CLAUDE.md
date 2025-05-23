@@ -82,9 +82,10 @@ The server supports multiple transport methods through the `[transport]` dynamic
 ## FormFlow Integration
 
 ### Authentication Methods
-- **Dual Support**: Both credential-based and JWT bearer token authentication
+- **Universal Dual Support**: ALL 25 tools support both credential-based and JWT bearer token authentication
 - **Bearer Tokens**: 1-hour validity for enhanced security
 - **Rate Limiting**: 60 requests/minute awareness
+- **Consistent Implementation**: Every FormFlow tool follows the same authentication pattern
 
 ### Tool Categories (25 Total)
 - **Authentication**: Token exchange

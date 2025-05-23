@@ -188,7 +188,7 @@ The server provides comprehensive integration with Insly's FormFlow service for 
 
 ### Authentication
 
-FormFlow tools support **dual authentication methods**:
+**All 25 FormFlow tools** support **dual authentication methods** for maximum flexibility and security:
 
 **Option 1: Direct Credentials** (traditional)
 - **`clientId`** - FormFlow client identifier
