@@ -2,12 +2,12 @@
 
 **AI-powered Model Context Protocol server for insly.com insurance platform**
 
-This is the main MCP (Model Context Protocol) server for insly.ai, providing AI-powered tools and capabilities for insurance operations. Built with Next.js and featuring comprehensive FormFlow integration with 20 specialized tools for document processing, AI-powered data extraction, and automated insurance workflows.
+This is the main MCP (Model Context Protocol) server for insly.ai, providing AI-powered tools and capabilities for insurance operations. Built with Next.js and featuring comprehensive FormFlow integration with 25 specialized tools for document processing, AI-powered data extraction, and automated insurance workflows.
 
 ## 🌟 Features Highlights
 
 - **Professional Landing Page** - Authentic Insly branding with exact colors and real logo from insly.com
-- **Comprehensive Tool Suite** - 20 FormFlow MCP tools covering all insurance workflow needs
+- **Comprehensive Tool Suite** - 25 FormFlow MCP tools covering all insurance workflow needs
 - **Dual Authentication** - Both credential-based and JWT bearer token support for enhanced security
 - **Enterprise Ready** - Production-deployed with professional design and performance optimization
 
@@ -15,7 +15,7 @@ This is the main MCP (Model Context Protocol) server for insly.ai, providing AI-
 
 - **Professional Landing Page** - Authentic Insly branding with exact colors (#FF7D00 orange, #22524A dark green) and real logo
 - **Modular Tool Architecture** - Each MCP tool is implemented in separate files for easy maintenance
-- **Comprehensive FormFlow Integration** - Complete API integration with 20 specialized tools covering all FormFlow endpoints
+- **Comprehensive FormFlow Integration** - Complete API integration with 25 specialized tools covering all FormFlow endpoints
 - **Dual Authentication System** - Both credential-based and JWT bearer token authentication for enhanced security
 - **AI-Powered Document Processing** - Advanced data extraction and metadata generation using AI
 - **Insurance-focused Operations** - Form submissions, templates, webhooks, and AI-driven document analysis
@@ -72,12 +72,12 @@ node scripts/test-mcp-tools.mjs http://localhost:3000
 
 Tools are organized in the `app/tools/` directory:
 
-- `app/tools/formflow/` - **FormFlow integration tools (20 total)**
+- `app/tools/formflow/` - **FormFlow integration tools (25 total)**
   - **Authentication**: `exchange-token.ts` - Exchange credentials for JWT bearer token
   - **Submissions**: `list-submissions.ts`, `create-submission.ts`, `get-submission.ts`, `update-submission.ts`, `get-submission-references.ts`, `get-submission-events.ts`, `get-upload-url.ts`
-  - **Templates**: `list-templates.ts`, `get-template.ts`, `create-template.ts`, `update-template.ts`, `delete-template.ts`
-  - **Files**: `get-file.ts`, `delete-file.ts`
-  - **AI Features**: `ai-extract-data.ts`, `ai-generate-metadata.ts`
+  - **Templates**: `list-templates.ts`, `get-template.ts`, `create-template.ts`, `update-template.ts`, `delete-template.ts`, `get-template-submissions.ts`
+  - **Files**: `get-file.ts`, `delete-file.ts`, `file-view.ts`
+  - **AI Features**: `ai-extract-data.ts`, `ai-generate-metadata.ts`, `start-processing.ts`, `ai-generate-references.ts`, `ai-generate-schema.ts`
   - **Webhooks**: `create-webhook.ts`, `list-webhooks.ts`, `get-webhook.ts`, `update-webhook.ts`, `delete-webhook.ts`
 - `app/tools/index.ts` - Central tool registration
 - `app/lib/formflow-client.ts` - FormFlow API client with dual authentication support
@@ -94,10 +94,6 @@ To add a new tool:
 - **HTTP** - Standard request/response
 
 ## Available MCP Tools
-
-### Core Tools
-- **`echo`** - Echo a message (testing)
-- **`calculator`** - Perform basic mathematical calculations (testing)
 
 ### FormFlow Integration Tools
 
@@ -145,11 +141,17 @@ The server provides comprehensive integration with Insly's FormFlow service for 
 - **`formflow_delete_template`** - Soft delete a template (reversible)
   - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `templateId`
 
+- **`formflow_get_template_submissions`** - Get all submissions for a specific template
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `templateId`
+
 #### File Management
 - **`formflow_get_file`** - Get detailed file information and metadata
   - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `fileId`
 
 - **`formflow_delete_file`** - Permanently delete a file (irreversible)
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `fileId`
+
+- **`formflow_file_view`** - View or download a file by its ID
   - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `fileId`
 
 #### Webhook Management
@@ -170,10 +172,19 @@ The server provides comprehensive integration with Insly's FormFlow service for 
 
 #### AI-Powered Features
 - **`formflow_ai_extract_data`** - Use AI to extract structured data from documents
-  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `submissionId`, `extractionSchema`
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `submissionId`, `schema`
   
 - **`formflow_ai_generate_metadata`** - Generate metadata for submissions using AI
   - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `submissionId`, `fileUrls`
+
+- **`formflow_start_processing`** - Start processing a FormFlow submission with AI workflows
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `submissionId`, `generateTemplate` (boolean)
+
+- **`formflow_ai_generate_references`** - Generate references linking answers to source documents using AI
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `submissionId`
+
+- **`formflow_ai_generate_schema_for_submission`** - Generate schema for submission using AI based on documents
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `submissionId`, `model` (optional)
 
 ### Authentication
 
@@ -208,9 +219,9 @@ The server automatically handles JWT token generation, refresh, and includes rat
 
 ### Page Components
 - **Header**: Sticky navigation with real Insly logo and professional branding
-- **Hero Section**: Gradient background with performance statistics (20 tools, 60 req/min, 24/7 AI)
+- **Hero Section**: Gradient background with performance statistics (25 tools, 60 req/min, 24/7 AI)
 - **Features Grid**: 6 insurance-focused feature cards with icons and descriptions
-- **Tools Showcase**: Categorized display of all 20 FormFlow MCP tools
+- **Tools Showcase**: Categorized display of all 25 FormFlow MCP tools
 - **Endpoints Documentation**: Clear presentation of SSE and HTTP transport options
 - **Professional Footer**: Platform links and comprehensive documentation
 
@@ -224,7 +235,7 @@ The server automatically handles JWT token generation, refresh, and includes rat
 
 ### Performance Optimization
 
-- **Static Generation**: Main page optimized for static generation (2.9 kB)
+- **Static Generation**: Main page optimized for static generation (2.94 kB)
 - **Build Optimization**: Fluid compute enabled with `maxDuration` set to 800 seconds
 - **Transport Support**: Both SSE and HTTP transports with Redis backing
 - **SEO Optimized**: Comprehensive metadata, Open Graph tags, and semantic HTML

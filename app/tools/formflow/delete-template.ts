@@ -2,46 +2,23 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { createFormFlowClient } from "./index";
 
-const DeleteTemplateSchema = z.object({
-  bearerToken: z.string().optional(),
-  clientId: z.string().optional(),
-  clientSecret: z.string().optional(),
-  organizationId: z.string().optional(),
-  templateId: z.number().positive("Template ID must be a positive number"),
-});
 
 export function registerFormFlowDeleteTemplateTool(server: McpServer) {
   server.tool(
     "formflow_delete_template",
     "Soft delete a FormFlow template by marking it as deleted. This operation is reversible and does not permanently remove the template from the system. Existing submissions using this template will continue to work, but new submissions cannot be created with a deleted template. Use with caution as this affects template availability.",
     {
-      bearerToken: {
-        type: "string",
-        description: "JWT bearer token (valid for 1 hour). Use this OR the credential trio below.",
-      },
-      clientId: {
-        type: "string", 
-        description: "FormFlow API client ID. Required if bearerToken is not provided.",
-      },
-      clientSecret: {
-        type: "string",
-        description: "FormFlow API client secret. Required if bearerToken is not provided.",
-      },
-      organizationId: {
-        type: "string",
-        description: "FormFlow organization ID. Required if bearerToken is not provided.",
-      },
-      templateId: {
-        type: "number",
-        description: "Unique numeric identifier of the template to delete.",
-      },
+      bearerToken: z.string().optional().describe("JWT bearer token (valid for 1 hour). Use this OR the credential trio below."),
+      clientId: z.string().optional().describe("FormFlow API client ID. Required if bearerToken is not provided."),
+      clientSecret: z.string().optional().describe("FormFlow API client secret. Required if bearerToken is not provided."),
+      organizationId: z.string().optional().describe("FormFlow organization ID. Required if bearerToken is not provided."),
+      templateId: z.number().describe("Unique numeric identifier of the template to delete."),
     },
-    async (request) => {
+    async ({ bearerToken, clientId, clientSecret, organizationId, templateId }) => {
       try {
-        const params = DeleteTemplateSchema.parse(request.params);
-        const client = createFormFlowClient(params);
+        const client = createFormFlowClient({ bearerToken, clientId, clientSecret, organizationId });
 
-        await client.deleteTemplate(params.templateId);
+        await client.deleteTemplate(templateId);
 
         return {
           content: [
@@ -50,10 +27,10 @@ export function registerFormFlowDeleteTemplateTool(server: McpServer) {
               text: JSON.stringify({
                 isError: false,
                 data: {
-                  templateId: params.templateId,
+                  templateId: templateId,
                   status: "deleted",
                 },
-                message: `Template ID ${params.templateId} has been soft deleted successfully`,
+                message: `Template ID ${templateId} has been soft deleted successfully`,
                 warning: "This template is now unavailable for new submissions. Existing submissions are unaffected.",
                 recovery: "Contact support if you need to restore this template.",
               }, null, 2),

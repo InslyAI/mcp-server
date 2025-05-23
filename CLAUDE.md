@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**insly.ai MCP Server** - Main MCP (Model Context Protocol) server for insly.ai, the AI assistant for insly.com insurance platform. This server provides AI-powered tools and capabilities for insurance operations, featuring comprehensive FormFlow integration with 20 specialized tools for document processing, AI-powered data extraction, and automated insurance workflows.
+**insly.ai MCP Server** - Main MCP (Model Context Protocol) server for insly.ai, the AI assistant for insly.com insurance platform. This server provides AI-powered tools and capabilities for insurance operations, featuring comprehensive FormFlow integration with 25 specialized tools for document processing, AI-powered data extraction, and automated insurance workflows.
 
 ## Commands
 
@@ -26,9 +26,7 @@ This is a Next.js application that implements an MCP server using the `@vercel/m
 - **`app/globals.css`** - Global styles with exact Insly brand colors, custom CSS classes, and Tailwind integration
 - **`app/tools/`** - Modular tool directory where each MCP tool is implemented in separate files
   - `app/tools/index.ts` - Central tool registration
-  - `app/tools/echo.ts` - Echo test tool
-  - `app/tools/calculator.ts` - Calculator test tool
-  - `app/tools/formflow/` - FormFlow integration tools (22 tools total)
+  - `app/tools/formflow/` - FormFlow integration tools (25 tools total)
     - Authentication, submission management, template management, file operations, webhooks, AI features
 - **`app/lib/formflow-client.ts`** - FormFlow API client with dual authentication support (credentials + bearer tokens)
 - **MCP Adapter Configuration** - Uses `createMcpHandler` with Redis support for SSE transport and configurable options like `maxDuration` and `verboseLogs`.
@@ -77,7 +75,7 @@ The server supports multiple transport methods through the `[transport]` dynamic
 - **Header**: Sticky navigation with real Insly logo and gradient branding
 - **Hero Section**: Gradient background with performance statistics
 - **Features Grid**: 6 insurance-focused feature cards
-- **Tools Showcase**: Organized by categories (20 FormFlow tools)
+- **Tools Showcase**: Organized by categories (25 FormFlow tools)
 - **Endpoints**: MCP transport documentation
 - **Footer**: Professional footer with platform links
 
@@ -88,18 +86,18 @@ The server supports multiple transport methods through the `[transport]` dynamic
 - **Bearer Tokens**: 1-hour validity for enhanced security
 - **Rate Limiting**: 60 requests/minute awareness
 
-### Tool Categories (20 Total)
+### Tool Categories (25 Total)
 - **Authentication**: Token exchange
 - **Submissions**: CRUD operations, references, events, file uploads
 - **Templates**: Full lifecycle management
 - **Files**: Metadata and deletion operations
 - **Webhooks**: Event notification management
-- **AI Features**: Document processing and metadata generation
+- **AI Features**: Document processing, metadata generation, workflow processing, reference generation, schema generation
 
 ### Deployment Notes
 
 - **Production Ready**: Deployed for insly.ai with professional branding
 - **SSE Transport**: Requires `REDIS_URL` environment variable
 - **Performance**: Optimized with `maxDuration` set to 800 seconds
-- **Static Generation**: Main page optimized for static generation (2.9 kB)
+- **Static Generation**: Main page optimized for static generation (2.94 kB)
 - **SEO Optimized**: Comprehensive metadata and Open Graph tags

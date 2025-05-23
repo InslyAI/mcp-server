@@ -53,7 +53,7 @@ export default function Home() {
           {/* Stats */}
           <div className="flex flex-col md:flex-row justify-center items-center gap-8 mt-12">
             <div className="text-center">
-              <div className="text-4xl font-bold" style={{ color: 'var(--insly-orange)' }}>20</div>
+              <div className="text-4xl font-bold" style={{ color: 'var(--insly-orange)' }}>25</div>
               <div style={{ color: 'var(--insly-medium-gray)' }}>FormFlow Tools</div>
             </div>
             <div className="text-center">
@@ -233,6 +233,10 @@ export default function Home() {
                   <div className="font-semibold text-orange-600 mb-2">formflow_delete_template</div>
                   <div className="text-sm text-gray-600">Soft delete templates</div>
                 </div>
+                <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <div className="font-semibold text-orange-600 mb-2">formflow_get_template_submissions</div>
+                  <div className="text-sm text-gray-600">Get all submissions for a template</div>
+                </div>
               </div>
             </div>
 
@@ -247,6 +251,18 @@ export default function Home() {
                 <div className="bg-white border border-gray-200 rounded-lg p-4">
                   <div className="font-semibold text-orange-600 mb-2">formflow_ai_generate_metadata</div>
                   <div className="text-sm text-gray-600">Generate AI-driven submission metadata</div>
+                </div>
+                <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <div className="font-semibold text-orange-600 mb-2">formflow_start_processing</div>
+                  <div className="text-sm text-gray-600">Start AI processing workflows for submissions</div>
+                </div>
+                <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <div className="font-semibold text-orange-600 mb-2">formflow_ai_generate_references</div>
+                  <div className="text-sm text-gray-600">Generate document references using AI</div>
+                </div>
+                <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <div className="font-semibold text-orange-600 mb-2">formflow_ai_generate_schema_for_submission</div>
+                  <div className="text-sm text-gray-600">Generate submission schemas with AI</div>
                 </div>
               </div>
             </div>
@@ -289,6 +305,10 @@ export default function Home() {
                 <div className="bg-white border border-gray-200 rounded-lg p-4">
                   <div className="font-semibold text-orange-600 mb-2">formflow_delete_file</div>
                   <div className="text-sm text-gray-600">Delete files permanently</div>
+                </div>
+                <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <div className="font-semibold text-orange-600 mb-2">formflow_file_view</div>
+                  <div className="text-sm text-gray-600">View and download files</div>
                 </div>
               </div>
             </div>

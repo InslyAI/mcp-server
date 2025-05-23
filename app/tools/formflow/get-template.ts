@@ -2,46 +2,22 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { createFormFlowClient } from "./index";
 
-const GetTemplateSchema = z.object({
-  bearerToken: z.string().optional(),
-  clientId: z.string().optional(),
-  clientSecret: z.string().optional(),
-  organizationId: z.string().optional(),
-  templateId: z.number().positive("Template ID must be a positive number"),
-});
-
 export function registerFormFlowGetTemplateTool(server: McpServer) {
   server.tool(
     "formflow_get_template",
     "Retrieve detailed information about a specific FormFlow template by its ID. Returns the complete template definition including schema, extraction strategy, reference strategy, and metadata. This is useful for understanding template structure before creating submissions or for template management workflows.",
     {
-      bearerToken: {
-        type: "string",
-        description: "JWT bearer token (valid for 1 hour). Use this OR the credential trio below.",
-      },
-      clientId: {
-        type: "string", 
-        description: "FormFlow API client ID. Required if bearerToken is not provided.",
-      },
-      clientSecret: {
-        type: "string",
-        description: "FormFlow API client secret. Required if bearerToken is not provided.",
-      },
-      organizationId: {
-        type: "string",
-        description: "FormFlow organization ID. Required if bearerToken is not provided.",
-      },
-      templateId: {
-        type: "number",
-        description: "Unique numeric identifier of the template to retrieve.",
-      },
+      bearerToken: z.string().optional().describe("JWT bearer token (valid for 1 hour). Use this OR the credential trio below."),
+      clientId: z.string().optional().describe("FormFlow API client ID. Required if bearerToken is not provided."),
+      clientSecret: z.string().optional().describe("FormFlow API client secret. Required if bearerToken is not provided."),
+      organizationId: z.string().optional().describe("FormFlow organization ID. Required if bearerToken is not provided."),
+      templateId: z.number().positive().describe("Unique numeric identifier of the template to retrieve."),
     },
-    async (request) => {
+    async ({ bearerToken, clientId, clientSecret, organizationId, templateId }) => {
       try {
-        const params = GetTemplateSchema.parse(request.params);
-        const client = createFormFlowClient(params);
+        const client = createFormFlowClient({ bearerToken, clientId, clientSecret, organizationId });
 
-        const template = await client.getTemplate(params.templateId);
+        const template = await client.getTemplate(templateId);
 
         return {
           content: [

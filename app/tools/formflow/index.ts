@@ -21,6 +21,11 @@ import { registerFormFlowDeleteFileTool } from "./delete-file";
 import { registerFormFlowGetWebhookTool } from "./get-webhook";
 import { registerFormFlowUpdateWebhookTool } from "./update-webhook";
 import { registerFormFlowDeleteWebhookTool } from "./delete-webhook";
+import { registerFormFlowStartProcessingTool } from "./start-processing";
+import { registerFormFlowAIGenerateReferencesTool } from "./ai-generate-references";
+import { registerFormFlowAIGenerateSchemaForSubmissionTool } from "./ai-generate-schema";
+import { registerFormFlowGetTemplateSubmissionsTool } from "./get-template-submissions";
+import { registerFormFlowFileViewTool } from "./file-view";
 import type { FormFlowCredentials } from "../../lib/formflow-client";
 import { FormFlowClient } from "../../lib/formflow-client";
 
@@ -50,6 +55,11 @@ export function registerFormFlowTools(server: McpServer) {
   registerFormFlowGetWebhookTool(server);
   registerFormFlowUpdateWebhookTool(server);
   registerFormFlowDeleteWebhookTool(server);
+  registerFormFlowStartProcessingTool(server);
+  registerFormFlowAIGenerateReferencesTool(server);
+  registerFormFlowAIGenerateSchemaForSubmissionTool(server);
+  registerFormFlowGetTemplateSubmissionsTool(server);
+  registerFormFlowFileViewTool(server);
 }
 
 /**

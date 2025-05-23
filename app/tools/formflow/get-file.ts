@@ -2,46 +2,23 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { createFormFlowClient } from "./index";
 
-const GetFileSchema = z.object({
-  bearerToken: z.string().optional(),
-  clientId: z.string().optional(),
-  clientSecret: z.string().optional(),
-  organizationId: z.string().optional(),
-  fileId: z.string().min(1, "File ID is required"),
-});
 
 export function registerFormFlowGetFileTool(server: McpServer) {
   server.tool(
     "formflow_get_file",
     "Retrieve detailed information about a specific file by its ID. Returns file metadata including name, type, size, upload timestamp, and public URL. This is useful for file management, verification, and generating download links for processed documents.",
     {
-      bearerToken: {
-        type: "string",
-        description: "JWT bearer token (valid for 1 hour). Use this OR the credential trio below.",
-      },
-      clientId: {
-        type: "string", 
-        description: "FormFlow API client ID. Required if bearerToken is not provided.",
-      },
-      clientSecret: {
-        type: "string",
-        description: "FormFlow API client secret. Required if bearerToken is not provided.",
-      },
-      organizationId: {
-        type: "string",
-        description: "FormFlow organization ID. Required if bearerToken is not provided.",
-      },
-      fileId: {
-        type: "string",
-        description: "Unique identifier of the file to retrieve information for.",
-      },
+      bearerToken: z.string().optional().describe("JWT bearer token (valid for 1 hour). Use this OR the credential trio below."),
+      clientId: z.string().optional().describe("FormFlow API client ID. Required if bearerToken is not provided."),
+      clientSecret: z.string().optional().describe("FormFlow API client secret. Required if bearerToken is not provided."),
+      organizationId: z.string().optional().describe("FormFlow organization ID. Required if bearerToken is not provided."),
+      fileId: z.string().describe("Unique identifier of the file to retrieve information for."),
     },
-    async (request) => {
+    async ({ bearerToken, clientId, clientSecret, organizationId, fileId }) => {
       try {
-        const params = GetFileSchema.parse(request.params);
-        const client = createFormFlowClient(params);
+        const client = createFormFlowClient({ bearerToken, clientId, clientSecret, organizationId });
 
-        const file = await client.getFile(params.fileId);
+        const file = await client.getFile(fileId);
 
         return {
           content: [

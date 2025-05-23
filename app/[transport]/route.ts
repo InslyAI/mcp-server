@@ -74,6 +74,21 @@ const handler = createMcpHandler(
         formflow_delete_webhook: {
           description: "Delete FormFlow webhook subscription",
         },
+        formflow_start_processing: {
+          description: "Start processing a FormFlow submission with AI workflows",
+        },
+        formflow_ai_generate_references: {
+          description: "Generate references linking answers to source documents using AI",
+        },
+        formflow_ai_generate_schema_for_submission: {
+          description: "Generate schema for submission using AI based on documents",
+        },
+        formflow_get_template_submissions: {
+          description: "Get all submissions for a specific template",
+        },
+        formflow_file_view: {
+          description: "View or download a file by its ID",
+        },
       },
     },
   },
