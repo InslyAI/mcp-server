@@ -1,4 +1,4 @@
-# CLAUDE.md
+Please commit and push. # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
@@ -30,6 +30,7 @@ This is a Next.js application that implements an MCP server using the `@vercel/m
 ### Tool Development
 
 When adding new MCP tools:
+
 1. Create new tool file in `app/tools/[toolname].ts`
 2. Export a `register[ToolName]Tool(server)` function
 3. Add tool registration to `app/tools/index.ts`
@@ -45,6 +46,7 @@ When adding new MCP tools:
 ### Transport Support
 
 The server supports multiple transport methods through the `[transport]` dynamic route:
+
 - SSE (Server-Sent Events) - requires Redis for production deployment
 - HTTP - standard request/response
 
