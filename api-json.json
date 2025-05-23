@@ -1,1 +1,1550 @@
-{"openapi":"3.0.0","paths":{"/api":{"get":{"operationId":"AppController_getHello","parameters":[],"responses":{"200":{"description":""}},"tags":["App"]}},"/api/metadata/{organizationId}":{"get":{"operationId":"MetadataController_getTenantMetadata","parameters":[{"name":"organizationId","required":true,"in":"path","description":"Organization ID","schema":{"type":"string"}}],"responses":{"200":{"description":"Returns metadata about submissions and templates for the tenant","content":{"application/json":{"schema":{"type":"object","properties":{"tenant":{"type":"object","properties":{"hasSubmissions":{"type":"boolean"},"hasTemplates":{"type":"boolean"}}}}}}}}},"summary":"Get tenant metadata","tags":["Metadata"]}},"/api/heartbeat":{"get":{"operationId":"HeartbeatController_getHeartbeat","parameters":[],"responses":{"200":{"description":"A succesful response returns the environment name."}},"summary":"Check service health","tags":["Health checks"]}},"/api/privateHeartbeat":{"get":{"operationId":"HeartbeatController_getPrivateHeartbeat","parameters":[],"responses":{"200":{"description":"A succesful response returns the environment name and authentication status."},"401":{"description":"Unauthorized."}},"security":[{"access-token":[]}],"summary":"Check service health and authentication","tags":["Health checks"]}},"/api/submission":{"get":{"operationId":"SubmissionController_getAllSubmissions","parameters":[{"name":"page","required":false,"in":"query","description":"Page number (default: 1)","schema":{"type":"number"}},{"name":"perPage","required":false,"in":"query","description":"Items per page (default: 10)","schema":{"type":"number"}},{"name":"sort","required":false,"in":"query","description":"Sort field (default: createdAt)","schema":{"enum":["createdAt","updatedAt"],"type":"string"}},{"name":"sortDir","required":false,"in":"query","description":"Sort direction (default: desc)","schema":{"enum":["asc","desc"],"type":"string"}},{"name":"status","required":false,"in":"query","description":"Comma-separated list of statuses to filter by","schema":{"type":"string"}}],"responses":{"200":{"description":"Returns a paginated list of submissions"}},"security":[{"access-token":[]}],"summary":"Get submissions list","tags":["Submission"]},"post":{"operationId":"SubmissionController_createSubmission","parameters":[],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateSubmissionDto"}}}},"responses":{"201":{"description":"The submission has been successfully created","content":{"application/json":{"schema":{"$ref":"#/components/schemas/SubmissionDto"}}}}},"security":[{"access-token":[]}],"summary":"Create a new submission","tags":["Submission"]}},"/api/submission/{id}":{"get":{"operationId":"SubmissionController_getSubmissionById","parameters":[{"name":"id","required":true,"in":"path","schema":{"type":"string"}}],"responses":{"200":{"description":""}},"security":[{"access-token":[]}],"summary":"Get submission","tags":["Submission"]},"patch":{"operationId":"SubmissionController_updateSubmission","parameters":[{"name":"id","required":true,"in":"path","description":"Submission ID","schema":{"type":"string"}}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UpdateSubmissionDto"}}}},"responses":{"200":{"description":"The submission has been successfully updated","content":{"application/json":{"schema":{"$ref":"#/components/schemas/UpdateSubmissionDto"}}}}},"security":[{"access-token":[]}],"summary":"Update submission","tags":["Submission"]}},"/api/submission/{id}/references":{"get":{"operationId":"SubmissionController_getSubmissionReferences","parameters":[{"name":"id","required":true,"in":"path","schema":{"type":"string"}}],"responses":{"200":{"description":"Returns references for a specific submission"}},"security":[{"access-token":[]}],"summary":"Get references for submission","tags":["Submission"]}},"/api/submission/{id}/events":{"get":{"operationId":"SubmissionController_getSubmissionEvents","parameters":[{"name":"id","required":true,"in":"path","description":"Submission ID to retrieve events for","schema":{"type":"string"}}],"responses":{"200":{"description":"Returns all events and their current status for the specified submission","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/Event"}}}}},"404":{"description":"Submission with ID 123e4567-e89b-12d3-a456-426614174001 not found"}},"security":[{"access-token":[]}],"summary":"Get all events for a submission","tags":["Submission"]}},"/api/submission/{id}/upload":{"post":{"operationId":"SubmissionController_getUploadUrl","parameters":[{"name":"id","required":true,"in":"path","description":"Submission ID","schema":{"type":"string"}}],"requestBody":{"required":true,"description":"Upload file details","content":{"application/json":{"schema":{"$ref":"#/components/schemas/UploadRequestDto"}}}},"responses":{"201":{"description":""}},"security":[{"access-token":[]}],"summary":"Get temporary S3 URL for client-side upload","tags":["Submission"]}},"/api/template":{"get":{"operationId":"TemplateController_getAllTemplates","parameters":[{"name":"page","required":false,"in":"query","description":"Page number (default: 1)","schema":{"type":"number"}},{"name":"perPage","required":false,"in":"query","description":"Items per page (default: 100)","schema":{"type":"number"}}],"responses":{"200":{"description":"Returns a paginated list of templates"}},"security":[{"access-token":[]}],"tags":["Template"]},"post":{"operationId":"TemplateController_createTemplate","parameters":[],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateTemplateDto"}}}},"responses":{"201":{"description":"Creates a new template"}},"security":[{"access-token":[]}],"tags":["Template"]}},"/api/template/{id}":{"get":{"operationId":"TemplateController_getTemplateById","parameters":[{"name":"id","required":true,"in":"path","schema":{"type":"number"}}],"responses":{"200":{"description":""}},"security":[{"access-token":[]}],"tags":["Template"]},"put":{"operationId":"TemplateController_updateTemplate","parameters":[{"name":"id","required":true,"in":"path","schema":{"type":"number"}}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UpdateTemplateDto"}}}},"responses":{"200":{"description":"Updates an existing template"}},"security":[{"access-token":[]}],"tags":["Template"]},"patch":{"operationId":"TemplateController_patchTemplate","parameters":[{"name":"id","required":true,"in":"path","description":"Template ID","schema":{"type":"number"}}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UpdateTemplateDto"}}}},"responses":{"200":{"description":"The template has been successfully updated","content":{"application/json":{"schema":{"$ref":"#/components/schemas/UpdateTemplateDto"}}}}},"security":[{"access-token":[]}],"summary":"Update template","tags":["Template"]},"delete":{"operationId":"TemplateController_deleteTemplate","parameters":[{"name":"id","required":true,"in":"path","schema":{"type":"number"}}],"responses":{"204":{"description":"Soft deletes an existing template"}},"security":[{"access-token":[]}],"tags":["Template"]}},"/api/template/{id}/submissions":{"get":{"operationId":"TemplateController_getTemplateSubmissions","parameters":[{"name":"id","required":true,"in":"path","schema":{"type":"number"}},{"name":"page","required":false,"in":"query","description":"Page number (default: 1)","schema":{"type":"number"}},{"name":"perPage","required":false,"in":"query","description":"Items per page (default: 10)","schema":{"type":"number"}}],"responses":{"200":{"description":"Returns a paginated list of submissions for the specified template"}},"security":[{"access-token":[]}],"tags":["Template"]}},"/api/file/{id}":{"delete":{"operationId":"FileController_deleteFile","parameters":[{"name":"id","required":true,"in":"path","description":"File ID","schema":{"type":"string"}}],"responses":{"204":{"description":"The file has been successfully deleted"},"404":{"description":"File not found"}},"security":[{"access-token":[]}],"summary":"Delete a file","tags":["File"]},"get":{"operationId":"FileController_getFileById","parameters":[{"name":"id","required":true,"in":"path","description":"File ID","schema":{"type":"string"}}],"responses":{"200":{"description":"Returns the file details","content":{"application/json":{"schema":{"$ref":"#/components/schemas/FileDto"}}}},"404":{"description":"File not found"}},"security":[{"access-token":[]}],"summary":"Get file by ID","tags":["File"]}},"/api/file/{id}/view":{"get":{"operationId":"FileController_viewFile","parameters":[{"name":"id","required":true,"in":"path","description":"File ID","schema":{"type":"string"}}],"responses":{"302":{"description":"Redirects to file download"},"404":{"description":"File not found"}},"security":[{"access-token":[]}],"summary":"View/download file directly","tags":["File"]}},"/api/ai/hello":{"get":{"operationId":"AiController_getHello","parameters":[{"name":"model","required":false,"in":"query","description":"Foundational LLM model to use","schema":{"enum":["claude","gpt4","gemini25","claudeThinking","claudeHaiku","gemini20flash"],"type":"string"}}],"responses":{"200":{"description":"Returns the AI response."}},"security":[{"access-token":[]}],"summary":"Check LLM functionality: prompt an AI to say hi.","tags":["AI"]}},"/api/ai/strategies":{"get":{"operationId":"AiController_getExtractionStrategies","parameters":[],"responses":{"200":{"description":"Returns the available extraction strategies."}},"security":[{"access-token":[]}],"summary":"Get the available extraction strategies for templates.","tags":["AI"]}},"/api/ai/generateSubmissionMetadata":{"post":{"operationId":"AiController_generateSubmissionMetadata","parameters":[],"requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"submissionId":{"type":"string","description":"ID of the submission."},"model":{"type":"string","enum":["claude","gpt4","gemini25","claudeThinking","claudeHaiku","gemini20flash"],"description":"Foundational LLM model to use (optional)"}},"required":["fileUrls","prompt"]}}}},"responses":{"200":{"description":"Returns metadata for the specified files."}},"security":[{"access-token":[]}],"summary":"Run sequential AI processes on a submission to generate various data, including the main data extraction.","tags":["AI"]}},"/api/ai/generateReferencesForAnswers":{"post":{"operationId":"AiController_generateReferencesForAnswers","parameters":[],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/GenerateSubmissionReferencesRequest"}}}},"responses":{"201":{"description":""}},"security":[{"access-token":[]}],"summary":"Generate references for answers in a single submission.","tags":["AI"]}},"/api/ai/generateSchemaForSubmission":{"post":{"operationId":"AiController_generateSchemaForSubmission","parameters":[],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/GenerateSchemaRequest"}}}},"responses":{"201":{"description":""}},"security":[{"access-token":[]}],"summary":"Generate a schema from the files in a submission.","tags":["AI"]}},"/api/ai/extractWithGemini":{"post":{"operationId":"AiController_extractWithGemini","parameters":[],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/GeminiExtractionRequest"}}}},"responses":{"201":{"description":""}},"security":[{"access-token":[]}],"summary":"Extract data from a submission using the Gemini model with the 3-step process","tags":["AI"]}},"/api/ai/atomic-extract":{"post":{"operationId":"AiController_atomicExtract","parameters":[],"requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"submissionId":{"type":"string","description":"ID of the submission to extract files from"},"schema":{"type":"object","description":"Schema to use for the extraction"}},"required":["schema"]}}}},"responses":{"201":{"description":""}},"security":[{"access-token":[]}],"summary":"Extract data from a submission using the Atomic extraction strategy","tags":["AI"]}},"/api/processing":{"post":{"description":"Use this endpoint to start processing a new submission. Provide the submission data in the request body.","operationId":"ProcessingController_startProcessing","parameters":[],"requestBody":{"required":true,"description":"The submission data to be processed.","content":{"application/json":{"schema":{"$ref":"#/components/schemas/SubmissionEntryDTO"}}}},"responses":{"200":{"description":"Returns a message indicating that the processing service has started.","content":{"application/json":{"schema":{"$ref":"#/components/schemas/SubmissionResponseDto"}}}}},"security":[{"access-token":[]}],"summary":"Start processing","tags":["Processing"]}},"/api/token":{"post":{"operationId":"ApiTokenController_getToken","parameters":[],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/ApiTokenRequestDto"}}}},"responses":{"201":{"description":""}},"tags":["ApiToken"]}},"/api/webhook/subscription":{"post":{"operationId":"WebhookController_createSubscription","parameters":[],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/WebhookSubscriberCreateDto"}}}},"responses":{"201":{"description":"The webhook subscription has been created","content":{"application/json":{"schema":{"$ref":"#/components/schemas/WebhookSubscriber"}}}},"400":{"description":"Bad request - URL and event are required"},"500":{"description":"Internal server error"}},"security":[{"access-token":[]}],"summary":"Create webhook subscription","tags":["Webhooks"]}},"/api/webhook/subscriptions":{"get":{"operationId":"WebhookController_getAllSubscriptions","parameters":[],"responses":{"200":{"description":"List of webhook subscriptions","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/WebhookSubscriber"}}}}},"500":{"description":"Internal server error"}},"security":[{"access-token":[]}],"summary":"Get all webhook subscriptions","tags":["Webhooks"]}},"/api/webhook/subscription/{id}":{"get":{"operationId":"WebhookController_getSubscriptionById","parameters":[{"name":"id","required":true,"in":"path","description":"Subscription ID","schema":{"type":"string"}}],"responses":{"200":{"description":"The webhook subscription details","content":{"application/json":{"schema":{"$ref":"#/components/schemas/WebhookSubscriber"}}}},"404":{"description":"Subscription not found"},"500":{"description":"Internal server error"}},"security":[{"access-token":[]}],"summary":"Get webhook subscription by ID","tags":["Webhooks"]},"put":{"operationId":"WebhookController_updateSubscription","parameters":[{"name":"id","required":true,"in":"path","description":"Subscription ID","schema":{"type":"string"}}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/WebhookSubscriberUpdateDto"}}}},"responses":{"200":{"description":"The updated webhook subscription","content":{"application/json":{"schema":{"$ref":"#/components/schemas/WebhookSubscriber"}}}},"404":{"description":"Subscription not found"},"500":{"description":"Internal server error"}},"security":[{"access-token":[]}],"summary":"Update webhook subscription","tags":["Webhooks"]},"delete":{"operationId":"WebhookController_deleteSubscription","parameters":[{"name":"id","required":true,"in":"path","description":"Subscription ID","schema":{"type":"string"}}],"responses":{"200":{"description":"Subscription successfully deleted","content":{"application/json":{"schema":{"$ref":"#/components/schemas/WebhookSubscriberDeleteResponseDto"}}}},"404":{"description":"Subscription not found"},"500":{"description":"Internal server error"}},"security":[{"access-token":[]}],"summary":"Delete webhook subscription","tags":["Webhooks"]}}},"info":{"title":"FormFlow BE","description":"FormFlow breakaway backend API for serverful operations","version":"0.1","contact":{}},"tags":[],"servers":[],"components":{"securitySchemes":{"access-token":{"scheme":"bearer","bearerFormat":"JWT","type":"http","name":"JWT","description":"Enter JWT token","in":"header"}},"schemas":{"Event":{"type":"object","properties":{"id":{"type":"string","description":"Unique identifier for the event","example":"123e4567-e89b-12d3-a456-426614174000"},"submissionId":{"type":"string","description":"Related submission ID","example":"123e4567-e89b-12d3-a456-426614174001","nullable":true},"type":{"type":"string","description":"Type of event","enum":["upload","email","conversion","extraction","export","discard","reference","generate-schema"],"example":"upload"},"state":{"type":"string","description":"Current state of the event","enum":["pending","succeed","fail"],"example":"succeed"},"createdAt":{"format":"date-time","type":"string","description":"Timestamp when the event was created","example":"2023-01-01T12:00:00.000Z"},"updatedAt":{"format":"date-time","type":"string","description":"Timestamp when the event was last updated","example":"2023-01-01T12:30:00.000Z"}},"required":["id","submissionId","type","state","createdAt","updatedAt"]},"CreateSubmissionDto":{"type":"object","properties":{"name":{"type":"string","description":"Submission name"},"templateId":{"type":"number","description":"ID of the associated template"}},"required":["name","templateId"]},"Strategy":{"type":"object","properties":{"id":{"type":"string","description":"Unique identifier for the strategy"},"identifier":{"type":"string","description":"Identifier of the strategy type","enum":["extraction-claude-3-7","extraction-gemini-2-5-loose","extraction-claude-3-7-thinking","extraction-atomic"]},"type":{"type":"string","description":"Type of the strategy","default":"extraction"},"displayName":{"type":"string","description":"Display name of the strategy"},"description":{"type":"string","description":"Description of the strategy"},"createdAt":{"format":"date-time","type":"string","description":"Timestamp when the strategy was created"},"updatedAt":{"format":"date-time","type":"string","description":"Timestamp when the strategy was last updated"}},"required":["id","identifier","type","displayName","createdAt","updatedAt"]},"Template":{"type":"object","properties":{"id":{"type":"number","description":"The ID of the template"},"templateId":{"type":"string","description":"The UUID of the template"},"name":{"type":"string","description":"The name of the template"},"description":{"type":"string","description":"The description of the template"},"version":{"type":"number","description":"The version of the template"},"schema":{"type":"object","description":"The schema of the template"},"vendorSchemaName":{"type":"string","description":"The vendor schema name"},"vendorSchemaVersion":{"type":"number","description":"The vendor schema version"},"vendorSchema":{"type":"object","description":"The vendor schema"},"aiGenerated":{"type":"boolean","description":"Whether the template was generated using AI"},"emailAlias":{"type":"string","description":"The email alias"},"extractionStrategyId":{"type":"string","description":"The uuid of extraction strategy template uses."},"extractionStrategy":{"description":"Associated extraction strategy","allOf":[{"$ref":"#/components/schemas/Strategy"}]},"referenceStrategy":{"description":"Associated reference strategy","allOf":[{"$ref":"#/components/schemas/Strategy"}]},"state":{"type":"string","description":"The state of the template","enum":["draft","published"],"default":"published"}},"required":["id","templateId","name","version","aiGenerated","extractionStrategyId","extractionStrategy","referenceStrategy","state"]},"SubmissionStatus":{"type":"string","enum":["created","processing","processing-failed","processed","in-review","completed","exported","export-failed","discarded","preparing","queued"]},"SubmissionDto":{"type":"object","properties":{"id":{"type":"string","description":"Unique identifier for the submission"},"submissionNumber":{"type":"number","description":"Submission sequence number"},"name":{"type":"string","description":"Submission name"},"template":{"description":"Associated template","allOf":[{"$ref":"#/components/schemas/Template"}]},"templateId":{"type":"number","description":"ID of the associated template"},"uploaderUserId":{"type":"string","description":"ID of the user who uploaded the submission"},"userId":{"type":"string","description":"ID of the user associated with the submission"},"files":{"description":"Files attached to the submission","type":"array","items":{"type":"string"}},"status":{"description":"Current status of the submission","example":"created","allOf":[{"$ref":"#/components/schemas/SubmissionStatus"}]},"emailSender":{"type":"string","description":"Email address of the sender"},"emailBody":{"type":"string","description":"Email body or additional context"},"payload":{"type":"object","description":"Submission payload data"},"manualPayload":{"type":"object","description":"Manual payload data"},"metaPayload":{"type":"object","description":"Metadata payload"},"OBEExtraction":{"type":"string","description":"ID of the old backend extraction event"},"NBEExtraction":{"type":"string","description":"ID of the new backend extraction event"},"createdAt":{"format":"date-time","type":"string","description":"Timestamp when the submission was created"},"updatedAt":{"format":"date-time","type":"string","description":"Timestamp when the submission was last updated"}},"required":["id","submissionNumber","name","template","templateId","files","status","createdAt","updatedAt"]},"UploadRequestDto":{"type":"object","properties":{}},"UpdateSubmissionDto":{"type":"object","properties":{"id":{"type":"string","description":"Unique identifier for the submission"},"submissionNumber":{"type":"number","description":"Submission sequence number"},"name":{"type":"string","description":"Submission name"},"templateId":{"type":"number","description":"ID of the associated template"},"uploaderUserId":{"type":"string","description":"ID of the user who uploaded the submission"},"userId":{"type":"string","description":"ID of the user associated with the submission"},"status":{"description":"Current status of the submission","example":"created","allOf":[{"$ref":"#/components/schemas/SubmissionStatus"}]},"emailSender":{"type":"string","description":"Email address of the sender"},"emailBody":{"type":"string","description":"Email body or additional context"},"payload":{"type":"object","description":"Submission payload data"},"manualPayload":{"type":"object","description":"Manual payload data"},"metaPayload":{"type":"object","description":"Metadata payload"},"createdAt":{"format":"date-time","type":"string","description":"Timestamp when the submission was created"},"updatedAt":{"format":"date-time","type":"string","description":"Timestamp when the submission was last updated"}},"required":["id","submissionNumber","name","templateId","status","createdAt","updatedAt"]},"CreateTemplateDto":{"type":"object","properties":{"name":{"type":"string","description":"The name of the template"},"description":{"type":"string","description":"The description of the template"},"version":{"type":"number","description":"The version of the template"},"schema":{"type":"object","description":"The schema of the template"},"aiGenerated":{"type":"boolean","description":"Wheter the template was generated using AI"},"vendorSchemaName":{"type":"string","description":"The vendor schema name"},"vendorSchemaVersion":{"type":"number","description":"The vendor schema version"},"vendorSchema":{"type":"object","description":"The vendor schema"},"emailAlias":{"type":"string","description":"The email alias"},"state":{"type":"string","description":"The state of the template","enum":["draft","published"],"default":"published"}},"required":["name","version"]},"UpdateTemplateDto":{"type":"object","properties":{"name":{"type":"string","description":"The name of the template"},"description":{"type":"string","description":"The description of the template"},"version":{"type":"number","description":"The version of the template"},"schema":{"type":"object","description":"The schema of the template"},"vendorSchemaName":{"type":"string","description":"The vendor schema name"},"vendorSchemaVersion":{"type":"number","description":"The vendor schema version"},"vendorSchema":{"type":"object","description":"The vendor schema"},"emailAlias":{"type":"string","description":"The email alias"},"extractionStrategyId":{"type":"string","description":"The uuid of extraction strategy template uses."},"state":{"type":"string","description":"The state of the template","enum":["draft","published"],"default":"published"}}},"FileDto":{"type":"object","properties":{"id":{"type":"string","description":"Unique identifier for the file"},"name":{"type":"string","description":"Name of the file"},"fileName":{"type":"string","description":"Original file name"},"fileType":{"type":"string","description":"Type of the file (e.g., MIME type)"},"fileSize":{"type":"number","description":"Size of the file in bytes"},"url":{"type":"string","description":"Public URL of the file"},"createdAt":{"format":"date-time","type":"string","description":"Timestamp when the file was created"},"updatedAt":{"format":"date-time","type":"string","description":"Timestamp when the file was last updated"}},"required":["id","fileName","fileType","fileSize","url","createdAt","updatedAt"]},"GenerateSubmissionReferencesRequest":{"type":"object","properties":{"submissionId":{"type":"string","description":"The ID of the submission"}},"required":["submissionId"]},"GenerateSchemaRequest":{"type":"object","properties":{"submissionId":{"type":"string","description":"The ID of the submission"}},"required":["submissionId"]},"GeminiExtractionRequest":{"type":"object","properties":{"submissionId":{"type":"string","description":"The ID of the submission to extract data from"},"templateId":{"type":"number","description":"The ID of the template containing the schema"}},"required":["submissionId","templateId"]},"SubmissionEntryDTO":{"type":"object","properties":{"submissionId":{"type":"string","description":"The ID of the submission"},"generateTemplate":{"type":"boolean","description":"Whether to generate a template for the submission","default":false}},"required":["submissionId","generateTemplate"]},"SubmissionResponseDto":{"type":"object","properties":{"submissionId":{"type":"string","description":"The ID of the submission","example":"123e4567-e89b-12d3-a456-426614174000"},"message":{"type":"string","description":"Response message","example":"The submission has been queued for processing. You may GET the event statuses using the provided submission ID."},"templateId":{"type":"number","description":"The ID of the template if generated","example":1}},"required":["submissionId","message"]},"ApiTokenRequestDto":{"type":"object","properties":{}},"WebhookSubscriberCreateDto":{"type":"object","properties":{"url":{"type":"string","description":"URL where webhook notifications will be sent","example":"https://example.com/webhook-endpoint"},"event":{"type":"string","description":"Event type that triggers the webhook","example":"form.submitted"}},"required":["url","event"]},"WebhookSubscriber":{"type":"object","properties":{"id":{"type":"string","description":"Unique identifier of the webhook subscriber","example":"123e4567-e89b-12d3-a456-426614174000"},"event":{"type":"string","description":"Event type that triggers the webhook","example":"form.submitted"},"url":{"type":"string","description":"URL where webhook notifications will be sent","example":"https://example.com/webhook-endpoint"},"orgId":{"type":"string","description":"Organization ID associated with this webhook subscription","example":"org_123456","nullable":true},"createdAt":{"format":"date-time","type":"string","description":"Timestamp when the webhook subscription was created","example":"2023-01-01T12:00:00Z"},"updatedAt":{"format":"date-time","type":"string","description":"Timestamp when the webhook subscription was last updated","example":"2023-01-01T13:30:00Z"}},"required":["id","event","url","createdAt","updatedAt"]},"WebhookSubscriberUpdateDto":{"type":"object","properties":{"url":{"type":"string","description":"URL where webhook notifications will be sent","example":"https://example.com/webhook-endpoint"},"event":{"type":"string","description":"Event type that triggers the webhook","example":"form.submitted"}}},"WebhookSubscriberDeleteResponseDto":{"type":"object","properties":{"success":{"type":"boolean","description":"Indicates if the delete operation was successful","example":true}},"required":["success"]}}}}
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": { "200": { "description": "" } },
+        "tags": ["App"]
+      }
+    },
+    "/api/metadata/{organizationId}": {
+      "get": {
+        "operationId": "MetadataController_getTenantMetadata",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "required": true,
+            "in": "path",
+            "description": "Organization ID",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns metadata about submissions and templates for the tenant",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tenant": {
+                      "type": "object",
+                      "properties": {
+                        "hasSubmissions": { "type": "boolean" },
+                        "hasTemplates": { "type": "boolean" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get tenant metadata",
+        "tags": ["Metadata"]
+      }
+    },
+    "/api/heartbeat": {
+      "get": {
+        "operationId": "HeartbeatController_getHeartbeat",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "A succesful response returns the environment name."
+          }
+        },
+        "summary": "Check service health",
+        "tags": ["Health checks"]
+      }
+    },
+    "/api/privateHeartbeat": {
+      "get": {
+        "operationId": "HeartbeatController_getPrivateHeartbeat",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "A succesful response returns the environment name and authentication status."
+          },
+          "401": { "description": "Unauthorized." }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Check service health and authentication",
+        "tags": ["Health checks"]
+      }
+    },
+    "/api/submission": {
+      "get": {
+        "operationId": "SubmissionController_getAllSubmissions",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Page number (default: 1)",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "perPage",
+            "required": false,
+            "in": "query",
+            "description": "Items per page (default: 10)",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "sort",
+            "required": false,
+            "in": "query",
+            "description": "Sort field (default: createdAt)",
+            "schema": { "enum": ["createdAt", "updatedAt"], "type": "string" }
+          },
+          {
+            "name": "sortDir",
+            "required": false,
+            "in": "query",
+            "description": "Sort direction (default: desc)",
+            "schema": { "enum": ["asc", "desc"], "type": "string" }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Comma-separated list of statuses to filter by",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Returns a paginated list of submissions" }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Get submissions list",
+        "tags": ["Submission"]
+      },
+      "post": {
+        "operationId": "SubmissionController_createSubmission",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateSubmissionDto" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The submission has been successfully created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SubmissionDto" }
+              }
+            }
+          }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Create a new submission",
+        "tags": ["Submission"]
+      }
+    },
+    "/api/submission/{id}": {
+      "get": {
+        "operationId": "SubmissionController_getSubmissionById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": { "200": { "description": "" } },
+        "security": [{ "access-token": [] }],
+        "summary": "Get submission",
+        "tags": ["Submission"]
+      },
+      "patch": {
+        "operationId": "SubmissionController_updateSubmission",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Submission ID",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateSubmissionDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The submission has been successfully updated",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UpdateSubmissionDto" }
+              }
+            }
+          }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Update submission",
+        "tags": ["Submission"]
+      }
+    },
+    "/api/submission/{id}/references": {
+      "get": {
+        "operationId": "SubmissionController_getSubmissionReferences",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns references for a specific submission"
+          }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Get references for submission",
+        "tags": ["Submission"]
+      }
+    },
+    "/api/submission/{id}/events": {
+      "get": {
+        "operationId": "SubmissionController_getSubmissionEvents",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Submission ID to retrieve events for",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns all events and their current status for the specified submission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Event" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Submission with ID 123e4567-e89b-12d3-a456-426614174001 not found"
+          }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Get all events for a submission",
+        "tags": ["Submission"]
+      }
+    },
+    "/api/submission/{id}/upload": {
+      "post": {
+        "operationId": "SubmissionController_getUploadUrl",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Submission ID",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Upload file details",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UploadRequestDto" }
+            }
+          }
+        },
+        "responses": { "201": { "description": "" } },
+        "security": [{ "access-token": [] }],
+        "summary": "Get temporary S3 URL for client-side upload",
+        "tags": ["Submission"]
+      }
+    },
+    "/api/template": {
+      "get": {
+        "operationId": "TemplateController_getAllTemplates",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Page number (default: 1)",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "perPage",
+            "required": false,
+            "in": "query",
+            "description": "Items per page (default: 100)",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Returns a paginated list of templates" }
+        },
+        "security": [{ "access-token": [] }],
+        "tags": ["Template"]
+      },
+      "post": {
+        "operationId": "TemplateController_createTemplate",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateTemplateDto" }
+            }
+          }
+        },
+        "responses": { "201": { "description": "Creates a new template" } },
+        "security": [{ "access-token": [] }],
+        "tags": ["Template"]
+      }
+    },
+    "/api/template/{id}": {
+      "get": {
+        "operationId": "TemplateController_getTemplateById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": { "200": { "description": "" } },
+        "security": [{ "access-token": [] }],
+        "tags": ["Template"]
+      },
+      "put": {
+        "operationId": "TemplateController_updateTemplate",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "number" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateTemplateDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Updates an existing template" }
+        },
+        "security": [{ "access-token": [] }],
+        "tags": ["Template"]
+      },
+      "patch": {
+        "operationId": "TemplateController_patchTemplate",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Template ID",
+            "schema": { "type": "number" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateTemplateDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The template has been successfully updated",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UpdateTemplateDto" }
+              }
+            }
+          }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Update template",
+        "tags": ["Template"]
+      },
+      "delete": {
+        "operationId": "TemplateController_deleteTemplate",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Soft deletes an existing template" }
+        },
+        "security": [{ "access-token": [] }],
+        "tags": ["Template"]
+      }
+    },
+    "/api/template/{id}/submissions": {
+      "get": {
+        "operationId": "TemplateController_getTemplateSubmissions",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Page number (default: 1)",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "perPage",
+            "required": false,
+            "in": "query",
+            "description": "Items per page (default: 10)",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a paginated list of submissions for the specified template"
+          }
+        },
+        "security": [{ "access-token": [] }],
+        "tags": ["Template"]
+      }
+    },
+    "/api/file/{id}": {
+      "delete": {
+        "operationId": "FileController_deleteFile",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "File ID",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "204": { "description": "The file has been successfully deleted" },
+          "404": { "description": "File not found" }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Delete a file",
+        "tags": ["File"]
+      },
+      "get": {
+        "operationId": "FileController_getFileById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "File ID",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the file details",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FileDto" }
+              }
+            }
+          },
+          "404": { "description": "File not found" }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Get file by ID",
+        "tags": ["File"]
+      }
+    },
+    "/api/file/{id}/view": {
+      "get": {
+        "operationId": "FileController_viewFile",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "File ID",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "302": { "description": "Redirects to file download" },
+          "404": { "description": "File not found" }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "View/download file directly",
+        "tags": ["File"]
+      }
+    },
+    "/api/ai/hello": {
+      "get": {
+        "operationId": "AiController_getHello",
+        "parameters": [
+          {
+            "name": "model",
+            "required": false,
+            "in": "query",
+            "description": "Foundational LLM model to use",
+            "schema": {
+              "enum": [
+                "claude",
+                "gpt4",
+                "gemini25",
+                "claudeThinking",
+                "claudeHaiku",
+                "gemini20flash"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": { "200": { "description": "Returns the AI response." } },
+        "security": [{ "access-token": [] }],
+        "summary": "Check LLM functionality: prompt an AI to say hi.",
+        "tags": ["AI"]
+      }
+    },
+    "/api/ai/strategies": {
+      "get": {
+        "operationId": "AiController_getExtractionStrategies",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns the available extraction strategies."
+          }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Get the available extraction strategies for templates.",
+        "tags": ["AI"]
+      }
+    },
+    "/api/ai/generateSubmissionMetadata": {
+      "post": {
+        "operationId": "AiController_generateSubmissionMetadata",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "submissionId": {
+                    "type": "string",
+                    "description": "ID of the submission."
+                  },
+                  "model": {
+                    "type": "string",
+                    "enum": [
+                      "claude",
+                      "gpt4",
+                      "gemini25",
+                      "claudeThinking",
+                      "claudeHaiku",
+                      "gemini20flash"
+                    ],
+                    "description": "Foundational LLM model to use (optional)"
+                  }
+                },
+                "required": ["fileUrls", "prompt"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Returns metadata for the specified files." }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Run sequential AI processes on a submission to generate various data, including the main data extraction.",
+        "tags": ["AI"]
+      }
+    },
+    "/api/ai/generateReferencesForAnswers": {
+      "post": {
+        "operationId": "AiController_generateReferencesForAnswers",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateSubmissionReferencesRequest"
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "" } },
+        "security": [{ "access-token": [] }],
+        "summary": "Generate references for answers in a single submission.",
+        "tags": ["AI"]
+      }
+    },
+    "/api/ai/generateSchemaForSubmission": {
+      "post": {
+        "operationId": "AiController_generateSchemaForSubmission",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/GenerateSchemaRequest" }
+            }
+          }
+        },
+        "responses": { "201": { "description": "" } },
+        "security": [{ "access-token": [] }],
+        "summary": "Generate a schema from the files in a submission.",
+        "tags": ["AI"]
+      }
+    },
+    "/api/ai/extractWithGemini": {
+      "post": {
+        "operationId": "AiController_extractWithGemini",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GeminiExtractionRequest"
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "" } },
+        "security": [{ "access-token": [] }],
+        "summary": "Extract data from a submission using the Gemini model with the 3-step process",
+        "tags": ["AI"]
+      }
+    },
+    "/api/ai/atomic-extract": {
+      "post": {
+        "operationId": "AiController_atomicExtract",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "submissionId": {
+                    "type": "string",
+                    "description": "ID of the submission to extract files from"
+                  },
+                  "schema": {
+                    "type": "object",
+                    "description": "Schema to use for the extraction"
+                  }
+                },
+                "required": ["schema"]
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "" } },
+        "security": [{ "access-token": [] }],
+        "summary": "Extract data from a submission using the Atomic extraction strategy",
+        "tags": ["AI"]
+      }
+    },
+    "/api/processing": {
+      "post": {
+        "description": "Use this endpoint to start processing a new submission. Provide the submission data in the request body.",
+        "operationId": "ProcessingController_startProcessing",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "description": "The submission data to be processed.",
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SubmissionEntryDTO" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns a message indicating that the processing service has started.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubmissionResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Start processing",
+        "tags": ["Processing"]
+      }
+    },
+    "/api/token": {
+      "post": {
+        "operationId": "ApiTokenController_getToken",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ApiTokenRequestDto" }
+            }
+          }
+        },
+        "responses": { "201": { "description": "" } },
+        "tags": ["ApiToken"]
+      }
+    },
+    "/api/webhook/subscription": {
+      "post": {
+        "operationId": "WebhookController_createSubscription",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookSubscriberCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The webhook subscription has been created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WebhookSubscriber" }
+              }
+            }
+          },
+          "400": { "description": "Bad request - URL and event are required" },
+          "500": { "description": "Internal server error" }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Create webhook subscription",
+        "tags": ["Webhooks"]
+      }
+    },
+    "/api/webhook/subscriptions": {
+      "get": {
+        "operationId": "WebhookController_getAllSubscriptions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of webhook subscriptions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/WebhookSubscriber" }
+                }
+              }
+            }
+          },
+          "500": { "description": "Internal server error" }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Get all webhook subscriptions",
+        "tags": ["Webhooks"]
+      }
+    },
+    "/api/webhook/subscription/{id}": {
+      "get": {
+        "operationId": "WebhookController_getSubscriptionById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Subscription ID",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The webhook subscription details",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WebhookSubscriber" }
+              }
+            }
+          },
+          "404": { "description": "Subscription not found" },
+          "500": { "description": "Internal server error" }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Get webhook subscription by ID",
+        "tags": ["Webhooks"]
+      },
+      "put": {
+        "operationId": "WebhookController_updateSubscription",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Subscription ID",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookSubscriberUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated webhook subscription",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WebhookSubscriber" }
+              }
+            }
+          },
+          "404": { "description": "Subscription not found" },
+          "500": { "description": "Internal server error" }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Update webhook subscription",
+        "tags": ["Webhooks"]
+      },
+      "delete": {
+        "operationId": "WebhookController_deleteSubscription",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Subscription ID",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subscription successfully deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookSubscriberDeleteResponseDto"
+                }
+              }
+            }
+          },
+          "404": { "description": "Subscription not found" },
+          "500": { "description": "Internal server error" }
+        },
+        "security": [{ "access-token": [] }],
+        "summary": "Delete webhook subscription",
+        "tags": ["Webhooks"]
+      }
+    }
+  },
+  "info": {
+    "title": "FormFlow BE",
+    "description": "FormFlow breakaway backend API for serverful operations",
+    "version": "0.1",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "access-token": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http",
+        "name": "JWT",
+        "description": "Enter JWT token",
+        "in": "header"
+      }
+    },
+    "schemas": {
+      "Event": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the event",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "submissionId": {
+            "type": "string",
+            "description": "Related submission ID",
+            "example": "123e4567-e89b-12d3-a456-426614174001",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of event",
+            "enum": [
+              "upload",
+              "email",
+              "conversion",
+              "extraction",
+              "export",
+              "discard",
+              "reference",
+              "generate-schema"
+            ],
+            "example": "upload"
+          },
+          "state": {
+            "type": "string",
+            "description": "Current state of the event",
+            "enum": ["pending", "succeed", "fail"],
+            "example": "succeed"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Timestamp when the event was created",
+            "example": "2023-01-01T12:00:00.000Z"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Timestamp when the event was last updated",
+            "example": "2023-01-01T12:30:00.000Z"
+          }
+        },
+        "required": [
+          "id",
+          "submissionId",
+          "type",
+          "state",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "CreateSubmissionDto": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "description": "Submission name" },
+          "templateId": {
+            "type": "number",
+            "description": "ID of the associated template"
+          }
+        },
+        "required": ["name", "templateId"]
+      },
+      "Strategy": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the strategy"
+          },
+          "identifier": {
+            "type": "string",
+            "description": "Identifier of the strategy type",
+            "enum": [
+              "extraction-claude-3-7",
+              "extraction-gemini-2-5-loose",
+              "extraction-claude-3-7-thinking",
+              "extraction-atomic"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of the strategy",
+            "default": "extraction"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Display name of the strategy"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the strategy"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Timestamp when the strategy was created"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Timestamp when the strategy was last updated"
+          }
+        },
+        "required": [
+          "id",
+          "identifier",
+          "type",
+          "displayName",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "Template": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "number", "description": "The ID of the template" },
+          "templateId": {
+            "type": "string",
+            "description": "The UUID of the template"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the template"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the template"
+          },
+          "version": {
+            "type": "number",
+            "description": "The version of the template"
+          },
+          "schema": {
+            "type": "object",
+            "description": "The schema of the template"
+          },
+          "vendorSchemaName": {
+            "type": "string",
+            "description": "The vendor schema name"
+          },
+          "vendorSchemaVersion": {
+            "type": "number",
+            "description": "The vendor schema version"
+          },
+          "vendorSchema": {
+            "type": "object",
+            "description": "The vendor schema"
+          },
+          "aiGenerated": {
+            "type": "boolean",
+            "description": "Whether the template was generated using AI"
+          },
+          "emailAlias": { "type": "string", "description": "The email alias" },
+          "extractionStrategyId": {
+            "type": "string",
+            "description": "The uuid of extraction strategy template uses."
+          },
+          "extractionStrategy": {
+            "description": "Associated extraction strategy",
+            "allOf": [{ "$ref": "#/components/schemas/Strategy" }]
+          },
+          "referenceStrategy": {
+            "description": "Associated reference strategy",
+            "allOf": [{ "$ref": "#/components/schemas/Strategy" }]
+          },
+          "state": {
+            "type": "string",
+            "description": "The state of the template",
+            "enum": ["draft", "published"],
+            "default": "published"
+          }
+        },
+        "required": [
+          "id",
+          "templateId",
+          "name",
+          "version",
+          "aiGenerated",
+          "extractionStrategyId",
+          "extractionStrategy",
+          "referenceStrategy",
+          "state"
+        ]
+      },
+      "SubmissionStatus": {
+        "type": "string",
+        "enum": [
+          "created",
+          "processing",
+          "processing-failed",
+          "processed",
+          "in-review",
+          "completed",
+          "exported",
+          "export-failed",
+          "discarded",
+          "preparing",
+          "queued"
+        ]
+      },
+      "SubmissionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the submission"
+          },
+          "submissionNumber": {
+            "type": "number",
+            "description": "Submission sequence number"
+          },
+          "name": { "type": "string", "description": "Submission name" },
+          "template": {
+            "description": "Associated template",
+            "allOf": [{ "$ref": "#/components/schemas/Template" }]
+          },
+          "templateId": {
+            "type": "number",
+            "description": "ID of the associated template"
+          },
+          "uploaderUserId": {
+            "type": "string",
+            "description": "ID of the user who uploaded the submission"
+          },
+          "userId": {
+            "type": "string",
+            "description": "ID of the user associated with the submission"
+          },
+          "files": {
+            "description": "Files attached to the submission",
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "status": {
+            "description": "Current status of the submission",
+            "example": "created",
+            "allOf": [{ "$ref": "#/components/schemas/SubmissionStatus" }]
+          },
+          "emailSender": {
+            "type": "string",
+            "description": "Email address of the sender"
+          },
+          "emailBody": {
+            "type": "string",
+            "description": "Email body or additional context"
+          },
+          "payload": {
+            "type": "object",
+            "description": "Submission payload data"
+          },
+          "manualPayload": {
+            "type": "object",
+            "description": "Manual payload data"
+          },
+          "metaPayload": {
+            "type": "object",
+            "description": "Metadata payload"
+          },
+          "OBEExtraction": {
+            "type": "string",
+            "description": "ID of the old backend extraction event"
+          },
+          "NBEExtraction": {
+            "type": "string",
+            "description": "ID of the new backend extraction event"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Timestamp when the submission was created"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Timestamp when the submission was last updated"
+          }
+        },
+        "required": [
+          "id",
+          "submissionNumber",
+          "name",
+          "template",
+          "templateId",
+          "files",
+          "status",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "UploadRequestDto": { "type": "object", "properties": {} },
+      "UpdateSubmissionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the submission"
+          },
+          "submissionNumber": {
+            "type": "number",
+            "description": "Submission sequence number"
+          },
+          "name": { "type": "string", "description": "Submission name" },
+          "templateId": {
+            "type": "number",
+            "description": "ID of the associated template"
+          },
+          "uploaderUserId": {
+            "type": "string",
+            "description": "ID of the user who uploaded the submission"
+          },
+          "userId": {
+            "type": "string",
+            "description": "ID of the user associated with the submission"
+          },
+          "status": {
+            "description": "Current status of the submission",
+            "example": "created",
+            "allOf": [{ "$ref": "#/components/schemas/SubmissionStatus" }]
+          },
+          "emailSender": {
+            "type": "string",
+            "description": "Email address of the sender"
+          },
+          "emailBody": {
+            "type": "string",
+            "description": "Email body or additional context"
+          },
+          "payload": {
+            "type": "object",
+            "description": "Submission payload data"
+          },
+          "manualPayload": {
+            "type": "object",
+            "description": "Manual payload data"
+          },
+          "metaPayload": {
+            "type": "object",
+            "description": "Metadata payload"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Timestamp when the submission was created"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Timestamp when the submission was last updated"
+          }
+        },
+        "required": [
+          "id",
+          "submissionNumber",
+          "name",
+          "templateId",
+          "status",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "CreateTemplateDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the template"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the template"
+          },
+          "version": {
+            "type": "number",
+            "description": "The version of the template"
+          },
+          "schema": {
+            "type": "object",
+            "description": "The schema of the template"
+          },
+          "aiGenerated": {
+            "type": "boolean",
+            "description": "Wheter the template was generated using AI"
+          },
+          "vendorSchemaName": {
+            "type": "string",
+            "description": "The vendor schema name"
+          },
+          "vendorSchemaVersion": {
+            "type": "number",
+            "description": "The vendor schema version"
+          },
+          "vendorSchema": {
+            "type": "object",
+            "description": "The vendor schema"
+          },
+          "emailAlias": { "type": "string", "description": "The email alias" },
+          "state": {
+            "type": "string",
+            "description": "The state of the template",
+            "enum": ["draft", "published"],
+            "default": "published"
+          }
+        },
+        "required": ["name", "version"]
+      },
+      "UpdateTemplateDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the template"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the template"
+          },
+          "version": {
+            "type": "number",
+            "description": "The version of the template"
+          },
+          "schema": {
+            "type": "object",
+            "description": "The schema of the template"
+          },
+          "vendorSchemaName": {
+            "type": "string",
+            "description": "The vendor schema name"
+          },
+          "vendorSchemaVersion": {
+            "type": "number",
+            "description": "The vendor schema version"
+          },
+          "vendorSchema": {
+            "type": "object",
+            "description": "The vendor schema"
+          },
+          "emailAlias": { "type": "string", "description": "The email alias" },
+          "extractionStrategyId": {
+            "type": "string",
+            "description": "The uuid of extraction strategy template uses."
+          },
+          "state": {
+            "type": "string",
+            "description": "The state of the template",
+            "enum": ["draft", "published"],
+            "default": "published"
+          }
+        }
+      },
+      "FileDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the file"
+          },
+          "name": { "type": "string", "description": "Name of the file" },
+          "fileName": { "type": "string", "description": "Original file name" },
+          "fileType": {
+            "type": "string",
+            "description": "Type of the file (e.g., MIME type)"
+          },
+          "fileSize": {
+            "type": "number",
+            "description": "Size of the file in bytes"
+          },
+          "url": { "type": "string", "description": "Public URL of the file" },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Timestamp when the file was created"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Timestamp when the file was last updated"
+          }
+        },
+        "required": [
+          "id",
+          "fileName",
+          "fileType",
+          "fileSize",
+          "url",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "GenerateSubmissionReferencesRequest": {
+        "type": "object",
+        "properties": {
+          "submissionId": {
+            "type": "string",
+            "description": "The ID of the submission"
+          }
+        },
+        "required": ["submissionId"]
+      },
+      "GenerateSchemaRequest": {
+        "type": "object",
+        "properties": {
+          "submissionId": {
+            "type": "string",
+            "description": "The ID of the submission"
+          }
+        },
+        "required": ["submissionId"]
+      },
+      "GeminiExtractionRequest": {
+        "type": "object",
+        "properties": {
+          "submissionId": {
+            "type": "string",
+            "description": "The ID of the submission to extract data from"
+          },
+          "templateId": {
+            "type": "number",
+            "description": "The ID of the template containing the schema"
+          }
+        },
+        "required": ["submissionId", "templateId"]
+      },
+      "SubmissionEntryDTO": {
+        "type": "object",
+        "properties": {
+          "submissionId": {
+            "type": "string",
+            "description": "The ID of the submission"
+          },
+          "generateTemplate": {
+            "type": "boolean",
+            "description": "Whether to generate a template for the submission",
+            "default": false
+          }
+        },
+        "required": ["submissionId", "generateTemplate"]
+      },
+      "SubmissionResponseDto": {
+        "type": "object",
+        "properties": {
+          "submissionId": {
+            "type": "string",
+            "description": "The ID of the submission",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "message": {
+            "type": "string",
+            "description": "Response message",
+            "example": "The submission has been queued for processing. You may GET the event statuses using the provided submission ID."
+          },
+          "templateId": {
+            "type": "number",
+            "description": "The ID of the template if generated",
+            "example": 1
+          }
+        },
+        "required": ["submissionId", "message"]
+      },
+      "ApiTokenRequestDto": { "type": "object", "properties": {} },
+      "WebhookSubscriberCreateDto": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL where webhook notifications will be sent",
+            "example": "https://example.com/webhook-endpoint"
+          },
+          "event": {
+            "type": "string",
+            "description": "Event type that triggers the webhook",
+            "example": "form.submitted"
+          }
+        },
+        "required": ["url", "event"]
+      },
+      "WebhookSubscriber": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the webhook subscriber",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "event": {
+            "type": "string",
+            "description": "Event type that triggers the webhook",
+            "example": "form.submitted"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL where webhook notifications will be sent",
+            "example": "https://example.com/webhook-endpoint"
+          },
+          "orgId": {
+            "type": "string",
+            "description": "Organization ID associated with this webhook subscription",
+            "example": "org_123456",
+            "nullable": true
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Timestamp when the webhook subscription was created",
+            "example": "2023-01-01T12:00:00Z"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Timestamp when the webhook subscription was last updated",
+            "example": "2023-01-01T13:30:00Z"
+          }
+        },
+        "required": ["id", "event", "url", "createdAt", "updatedAt"]
+      },
+      "WebhookSubscriberUpdateDto": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL where webhook notifications will be sent",
+            "example": "https://example.com/webhook-endpoint"
+          },
+          "event": {
+            "type": "string",
+            "description": "Event type that triggers the webhook",
+            "example": "form.submitted"
+          }
+        }
+      },
+      "WebhookSubscriberDeleteResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicates if the delete operation was successful",
+            "example": true
+          }
+        },
+        "required": ["success"]
+      }
+    }
+  }
+}
