@@ -58,12 +58,28 @@ Tools are organized in the `app/tools/` directory:
 - `app/tools/echo.ts` - Echo test tool
 - `app/tools/calculator.ts` - Calculator test tool  
 - `app/tools/formflow/` - FormFlow integration tools
+  - `exchange-token.ts` - Exchange credentials for JWT bearer token
   - `list-submissions.ts` - List form submissions with filtering
   - `create-submission.ts` - Create new form submissions
   - `get-submission.ts` - Retrieve submission details
+  - `update-submission.ts` - Update submission details and metadata
+  - `get-submission-references.ts` - Get AI-generated references
+  - `get-submission-events.ts` - Get processing lifecycle events
+  - `get-upload-url.ts` - Get S3 upload URLs for files
   - `list-templates.ts` - List available form templates
+  - `get-template.ts` - Get template details by ID
+  - `create-template.ts` - Create new form templates
+  - `update-template.ts` - Update template configuration
+  - `delete-template.ts` - Soft delete templates
+  - `get-file.ts` - Get file metadata
+  - `delete-file.ts` - Delete files permanently
   - `ai-extract-data.ts` - AI-powered document data extraction
   - `ai-generate-metadata.ts` - AI-generated submission metadata
+  - `create-webhook.ts` - Create webhook subscriptions
+  - `list-webhooks.ts` - List webhook subscriptions
+  - `get-webhook.ts` - Get webhook details by ID
+  - `update-webhook.ts` - Update webhook configuration
+  - `delete-webhook.ts` - Delete webhook subscriptions
 - `app/tools/index.ts` - Central tool registration
 
 To add a new tool:
@@ -87,35 +103,91 @@ To add a new tool:
 
 The server provides comprehensive integration with Insly's FormFlow service for document processing and AI-powered form management.
 
+#### Authentication & Token Management
+- **`formflow_exchange_token`** - Exchange credentials for JWT bearer token (1-hour validity)
+  - Parameters: `clientId`, `clientSecret`, `organizationId`
+
 #### Submission Management
 - **`formflow_list_submissions`** - List form submissions with optional filtering and pagination
-  - Parameters: `clientId`, `clientSecret`, `organizationId`, `page`, `perPage`, `sortField`, `sortDirection`, `status`
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `page`, `perPage`, `sortField`, `sortDirection`, `status`
   
 - **`formflow_create_submission`** - Create a new form submission
-  - Parameters: `clientId`, `clientSecret`, `organizationId`, `name`, `templateId`
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `name`, `templateId`
   
 - **`formflow_get_submission`** - Retrieve specific submission details by ID
-  - Parameters: `clientId`, `clientSecret`, `organizationId`, `submissionId`
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `submissionId`
+
+- **`formflow_update_submission`** - Update submission details and metadata
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `submissionId`, plus optional fields to update
+
+- **`formflow_get_submission_references`** - Get AI-generated references linking answers to source documents
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `submissionId`
+
+- **`formflow_get_submission_events`** - Get processing lifecycle events for a submission
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `submissionId`
+
+- **`formflow_get_upload_url`** - Get temporary S3 upload URL for client-side file uploads
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `submissionId`, `fileName`, `contentType`, `fileSize`
 
 #### Template Management
 - **`formflow_list_templates`** - List available form templates with optional pagination
-  - Parameters: `clientId`, `clientSecret`, `organizationId`, `page`, `perPage`
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `page`, `perPage`
+
+- **`formflow_get_template`** - Get detailed template information by ID
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `templateId`
+
+- **`formflow_create_template`** - Create new form template with schema definition
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `name`, `schema`, plus optional fields
+
+- **`formflow_update_template`** - Update existing template configuration
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `templateId`, plus optional fields to update
+
+- **`formflow_delete_template`** - Soft delete a template (reversible)
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `templateId`
+
+#### File Management
+- **`formflow_get_file`** - Get detailed file information and metadata
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `fileId`
+
+- **`formflow_delete_file`** - Permanently delete a file (irreversible)
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `fileId`
+
+#### Webhook Management
+- **`formflow_create_webhook`** - Create webhook subscription for event notifications
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `url`, `event`
+
+- **`formflow_list_webhooks`** - List all webhook subscriptions
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`)
+
+- **`formflow_get_webhook`** - Get webhook subscription details by ID
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `webhookId`
+
+- **`formflow_update_webhook`** - Update webhook subscription configuration
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `webhookId`, plus optional fields to update
+
+- **`formflow_delete_webhook`** - Delete webhook subscription
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `webhookId`
 
 #### AI-Powered Features
 - **`formflow_ai_extract_data`** - Use AI to extract structured data from documents
-  - Parameters: `clientId`, `clientSecret`, `organizationId`, `submissionId`, `extractionSchema`
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `submissionId`, `extractionSchema`
   
 - **`formflow_ai_generate_metadata`** - Generate metadata for submissions using AI
-  - Parameters: `clientId`, `clientSecret`, `organizationId`, `submissionId`, `fileUrls`
+  - Parameters: `bearerToken` OR (`clientId`, `clientSecret`, `organizationId`), `submissionId`, `fileUrls`
 
 ### Authentication
 
-All FormFlow tools require the following credentials:
+FormFlow tools support **dual authentication methods**:
+
+**Option 1: Direct Credentials** (traditional)
 - **`clientId`** - FormFlow client identifier
-- **`clientSecret`** - FormFlow client secret
+- **`clientSecret`** - FormFlow client secret  
 - **`organizationId`** - FormFlow organization identifier
 
-The server automatically handles JWT token generation, refresh, and includes rate limiting awareness (60 requests/minute).
+**Option 2: Bearer Token** (recommended for security)
+- **`bearerToken`** - JWT token obtained from `formflow_exchange_token` (1-hour validity)
+
+The server automatically handles JWT token generation, refresh, and includes rate limiting awareness (60 requests/minute). Bearer tokens provide better security by avoiding credential exposure in each request.
 
 ## Deployment
 
