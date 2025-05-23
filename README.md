@@ -2,16 +2,25 @@
 
 **AI-powered Model Context Protocol server for insly.com insurance platform**
 
-This is the main MCP (Model Context Protocol) server for insly.ai, providing AI-powered tools and capabilities for insurance operations. Built with Next.js and the Vercel MCP Adapter.
+This is the main MCP (Model Context Protocol) server for insly.ai, providing AI-powered tools and capabilities for insurance operations. Built with Next.js and featuring comprehensive FormFlow integration with 22 specialized tools for document processing, AI-powered data extraction, and automated insurance workflows.
+
+## 🌟 Features Highlights
+
+- **Professional Landing Page** - Authentic Insly branding with exact colors and real logo from insly.com
+- **Comprehensive Tool Suite** - 22 FormFlow MCP tools covering all insurance workflow needs
+- **Dual Authentication** - Both credential-based and JWT bearer token support for enhanced security
+- **Enterprise Ready** - Production-deployed with professional design and performance optimization
 
 ## Features
 
+- **Professional Landing Page** - Authentic Insly branding with exact colors (#FF7D00 orange, #22524A dark green) and real logo
 - **Modular Tool Architecture** - Each MCP tool is implemented in separate files for easy maintenance
-- **FormFlow Integration** - Complete API integration with Insly's FormFlow service for document processing
-- **AI-Powered Tools** - Document data extraction and metadata generation using AI
-- **Insurance-focused Operations** - Form submissions, templates, and AI-driven document analysis
-- **Production Ready** - Deployed on Vercel with Redis support for SSE transport
-- **Comprehensive Authentication** - JWT token-based authentication with automatic refresh
+- **Comprehensive FormFlow Integration** - Complete API integration with 22 specialized tools covering all FormFlow endpoints
+- **Dual Authentication System** - Both credential-based and JWT bearer token authentication for enhanced security
+- **AI-Powered Document Processing** - Advanced data extraction and metadata generation using AI
+- **Insurance-focused Operations** - Form submissions, templates, webhooks, and AI-driven document analysis
+- **Enterprise Performance** - Production-ready with Redis support, static generation, and optimized builds
+- **Professional Design** - Responsive design with Tailwind CSS, custom Insly components, and SEO optimization
 
 ## Development
 
@@ -51,36 +60,29 @@ node scripts/test-mcp-tools.mjs http://localhost:3000
 
 ## Architecture
 
-### Tool Development
+### Project Structure
+
+**Main Application Files:**
+- `app/page.tsx` - Professional landing page with authentic Insly branding and comprehensive tool documentation
+- `app/layout.tsx` - Root layout with SEO optimization, Inter font, and Insly metadata
+- `app/globals.css` - Global styles with exact Insly brand colors and custom CSS classes
+- `app/[transport]/route.ts` - MCP server handler with transport support (SSE/HTTP)
+
+**Tool Development:**
 
 Tools are organized in the `app/tools/` directory:
 
 - `app/tools/echo.ts` - Echo test tool
 - `app/tools/calculator.ts` - Calculator test tool  
-- `app/tools/formflow/` - FormFlow integration tools
-  - `exchange-token.ts` - Exchange credentials for JWT bearer token
-  - `list-submissions.ts` - List form submissions with filtering
-  - `create-submission.ts` - Create new form submissions
-  - `get-submission.ts` - Retrieve submission details
-  - `update-submission.ts` - Update submission details and metadata
-  - `get-submission-references.ts` - Get AI-generated references
-  - `get-submission-events.ts` - Get processing lifecycle events
-  - `get-upload-url.ts` - Get S3 upload URLs for files
-  - `list-templates.ts` - List available form templates
-  - `get-template.ts` - Get template details by ID
-  - `create-template.ts` - Create new form templates
-  - `update-template.ts` - Update template configuration
-  - `delete-template.ts` - Soft delete templates
-  - `get-file.ts` - Get file metadata
-  - `delete-file.ts` - Delete files permanently
-  - `ai-extract-data.ts` - AI-powered document data extraction
-  - `ai-generate-metadata.ts` - AI-generated submission metadata
-  - `create-webhook.ts` - Create webhook subscriptions
-  - `list-webhooks.ts` - List webhook subscriptions
-  - `get-webhook.ts` - Get webhook details by ID
-  - `update-webhook.ts` - Update webhook configuration
-  - `delete-webhook.ts` - Delete webhook subscriptions
+- `app/tools/formflow/` - **FormFlow integration tools (22 total)**
+  - **Authentication**: `exchange-token.ts` - Exchange credentials for JWT bearer token
+  - **Submissions**: `list-submissions.ts`, `create-submission.ts`, `get-submission.ts`, `update-submission.ts`, `get-submission-references.ts`, `get-submission-events.ts`, `get-upload-url.ts`
+  - **Templates**: `list-templates.ts`, `get-template.ts`, `create-template.ts`, `update-template.ts`, `delete-template.ts`
+  - **Files**: `get-file.ts`, `delete-file.ts`
+  - **AI Features**: `ai-extract-data.ts`, `ai-generate-metadata.ts`
+  - **Webhooks**: `create-webhook.ts`, `list-webhooks.ts`, `get-webhook.ts`, `update-webhook.ts`, `delete-webhook.ts`
 - `app/tools/index.ts` - Central tool registration
+- `app/lib/formflow-client.ts` - FormFlow API client with dual authentication support
 
 To add a new tool:
 
@@ -189,19 +191,45 @@ FormFlow tools support **dual authentication methods**:
 
 The server automatically handles JWT token generation, refresh, and includes rate limiting awareness (60 requests/minute). Bearer tokens provide better security by avoiding credential exposure in each request.
 
+## Design System
+
+### Insly Brand Colors (Exact from insly.com)
+- **Primary Orange**: `#FF7D00` - Main brand color
+- **Dark Green**: `#22524A` - Secondary brand color  
+- **Button Hover**: `#B14D00` - Darker orange for hover states
+- **Black**: `#121212` - Text and button color
+- **Typography**: Inter font family throughout
+
+### Custom CSS Classes
+- `.insly-gradient` - Orange to dark green gradient backgrounds
+- `.insly-gradient-text` - Gradient text effects for headings
+- `.insly-card` - Feature card styling with hover animations
+- `.insly-button` - Primary button with authentic Insly styling
+- `.insly-nav-link` - Navigation links with hover effects
+- `.insly-footer-link` - Footer link styling
+
+### Page Components
+- **Header**: Sticky navigation with real Insly logo and professional branding
+- **Hero Section**: Gradient background with performance statistics (22 tools, 60 req/min, 24/7 AI)
+- **Features Grid**: 6 insurance-focused feature cards with icons and descriptions
+- **Tools Showcase**: Categorized display of all 22 FormFlow MCP tools
+- **Endpoints Documentation**: Clear presentation of SSE and HTTP transport options
+- **Professional Footer**: Platform links and comprehensive documentation
+
 ## Deployment
 
-Deployed on Vercel at your insly.ai domain.
+**Production Ready** - Deployed for insly.ai with enterprise-grade performance and professional branding.
 
 ### Environment Variables
 
 - `REDIS_URL` - Required for SSE transport in production
 
-### Vercel Configuration
+### Performance Optimization
 
-- Fluid compute enabled for optimal performance
-- `maxDuration` set to 800 seconds
-- Supports both SSE and HTTP transports
+- **Static Generation**: Main page optimized for static generation (2.9 kB)
+- **Build Optimization**: Fluid compute enabled with `maxDuration` set to 800 seconds
+- **Transport Support**: Both SSE and HTTP transports with Redis backing
+- **SEO Optimized**: Comprehensive metadata, Open Graph tags, and semantic HTML
 
 ## About insly.ai
 

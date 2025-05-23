@@ -1,10 +1,10 @@
-Please commit and push. # CLAUDE.md
+# CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
-**insly.ai MCP Server** - Main MCP (Model Context Protocol) server for insly.ai, the AI assistant for insly.com insurance platform. This server provides AI-powered tools and capabilities for insurance operations.
+**insly.ai MCP Server** - Main MCP (Model Context Protocol) server for insly.ai, the AI assistant for insly.com insurance platform. This server provides AI-powered tools and capabilities for insurance operations, featuring comprehensive FormFlow integration with 22 specialized tools for document processing, AI-powered data extraction, and automated insurance workflows.
 
 ## Commands
 
@@ -21,10 +21,16 @@ This is a Next.js application that implements an MCP server using the `@vercel/m
 ### Core Components
 
 - **`app/[transport]/route.ts`** - Main MCP server handler that registers all tools. Uses dynamic routing for different transport methods (SSE, HTTP).
+- **`app/page.tsx`** - Main landing page with authentic Insly branding, comprehensive tool documentation, and professional design
+- **`app/layout.tsx`** - Root layout with SEO optimization, Inter font integration, and Insly metadata
+- **`app/globals.css`** - Global styles with exact Insly brand colors, custom CSS classes, and Tailwind integration
 - **`app/tools/`** - Modular tool directory where each MCP tool is implemented in separate files
   - `app/tools/index.ts` - Central tool registration
   - `app/tools/echo.ts` - Echo test tool
   - `app/tools/calculator.ts` - Calculator test tool
+  - `app/tools/formflow/` - FormFlow integration tools (22 tools total)
+    - Authentication, submission management, template management, file operations, webhooks, AI features
+- **`app/lib/formflow-client.ts`** - FormFlow API client with dual authentication support (credentials + bearer tokens)
 - **MCP Adapter Configuration** - Uses `createMcpHandler` with Redis support for SSE transport and configurable options like `maxDuration` and `verboseLogs`.
 
 ### Tool Development
@@ -50,9 +56,50 @@ The server supports multiple transport methods through the `[transport]` dynamic
 - SSE (Server-Sent Events) - requires Redis for production deployment
 - HTTP - standard request/response
 
-### Vercel Deployment Notes
+## Design System
 
-- Already deployed on Vercel for insly.ai
-- SSE transport requires `REDIS_URL` environment variable
-- Fluid compute should be enabled for efficient execution
-- `maxDuration` set to 800 for optimal performance
+### Insly Brand Colors (Exact)
+- **Primary Orange**: `#FF7D00` - Main brand color from insly.com
+- **Dark Green**: `#22524A` - Secondary brand color
+- **Button Hover**: `#B14D00` - Darker orange for hover states
+- **Black**: `#121212` - Text and button color
+- **Typography**: Inter font family throughout
+
+### Custom CSS Classes
+- `.insly-gradient` - Orange to dark green gradient
+- `.insly-gradient-text` - Gradient text effect
+- `.insly-card` - Feature card styling with hover effects
+- `.insly-button` - Primary button with Insly styling
+- `.insly-nav-link` - Navigation link with hover states
+- `.insly-footer-link` - Footer link styling
+
+### Page Structure
+- **Header**: Sticky navigation with real Insly logo and gradient branding
+- **Hero Section**: Gradient background with performance statistics
+- **Features Grid**: 6 insurance-focused feature cards
+- **Tools Showcase**: Organized by categories (22 FormFlow tools)
+- **Endpoints**: MCP transport documentation
+- **Footer**: Professional footer with platform links
+
+## FormFlow Integration
+
+### Authentication Methods
+- **Dual Support**: Both credential-based and JWT bearer token authentication
+- **Bearer Tokens**: 1-hour validity for enhanced security
+- **Rate Limiting**: 60 requests/minute awareness
+
+### Tool Categories (22 Total)
+- **Authentication**: Token exchange
+- **Submissions**: CRUD operations, references, events, file uploads
+- **Templates**: Full lifecycle management
+- **Files**: Metadata and deletion operations
+- **Webhooks**: Event notification management
+- **AI Features**: Document processing and metadata generation
+
+### Deployment Notes
+
+- **Production Ready**: Deployed for insly.ai with professional branding
+- **SSE Transport**: Requires `REDIS_URL` environment variable
+- **Performance**: Optimized with `maxDuration` set to 800 seconds
+- **Static Generation**: Main page optimized for static generation (2.9 kB)
+- **SEO Optimized**: Comprehensive metadata and Open Graph tags
