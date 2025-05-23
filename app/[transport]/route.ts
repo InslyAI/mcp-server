@@ -8,12 +8,6 @@ const handler = createMcpHandler(
   {
     capabilities: {
       tools: {
-        echo: {
-          description: "Echo a message",
-        },
-        calculator: {
-          description: "Perform basic mathematical calculations",
-        },
         formflow_exchange_token: {
           description: "Exchange FormFlow credentials for a JWT bearer token",
         },

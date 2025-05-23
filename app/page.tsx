@@ -53,7 +53,7 @@ export default function Home() {
           {/* Stats */}
           <div className="flex flex-col md:flex-row justify-center items-center gap-8 mt-12">
             <div className="text-center">
-              <div className="text-4xl font-bold" style={{ color: 'var(--insly-orange)' }}>22</div>
+              <div className="text-4xl font-bold" style={{ color: 'var(--insly-orange)' }}>20</div>
               <div style={{ color: 'var(--insly-medium-gray)' }}>FormFlow Tools</div>
             </div>
             <div className="text-center">
@@ -293,20 +293,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Utility Tools */}
-            <div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">🛠️ Utility Tools</h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <div className="font-semibold text-orange-600 mb-2">calculator</div>
-                  <div className="text-sm text-gray-600">Perform mathematical calculations</div>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <div className="font-semibold text-orange-600 mb-2">echo</div>
-                  <div className="text-sm text-gray-600">Echo test functionality</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
