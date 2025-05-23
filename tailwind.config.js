@@ -6,7 +6,23 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        insly: {
+          orange: '#FF7D00',
+          'dark-green': '#22524A',
+          'button-hover': '#B14D00',
+          black: '#121212',
+          white: '#FFFFFF',
+          'light-gray': '#F8F9FA',
+          'medium-gray': '#6C757D',
+          border: '#E9ECEF',
+        },
+      },
+      fontFamily: {
+        'inter': ['Inter', 'system-ui', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }

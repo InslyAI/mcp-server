@@ -1,3 +1,5 @@
+'use client';
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
@@ -6,21 +8,25 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 insly-gradient rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">AI</span>
+              <img 
+                src="/insly-logo.png" 
+                alt="Insly" 
+                className="h-8 w-auto"
+              />
+              <div className="text-2xl font-bold" style={{ color: 'var(--insly-black)' }}>
+                <span style={{ color: 'var(--insly-orange)' }}>insly</span>.ai
               </div>
-              <div className="text-2xl font-bold text-gray-900">insly.ai</div>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="#features" className="text-gray-600 hover:text-orange-500 font-medium transition-colors">
+              <a href="#features" className="insly-nav-link">
                 Features
               </a>
-              <a href="#tools" className="text-gray-600 hover:text-orange-500 font-medium transition-colors">
+              <a href="#tools" className="insly-nav-link">
                 Tools
               </a>
               <a 
                 href="https://insly.com" 
-                className="text-gray-600 hover:text-orange-500 font-medium transition-colors"
+                className="insly-nav-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -32,14 +38,14 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-gray-50 to-white py-20">
+      <section style={{ background: 'linear-gradient(135deg, var(--insly-light-gray) 0%, white 100%)' }} className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6" style={{ color: 'var(--insly-black)' }}>
             <span className="insly-gradient-text">AI-Powered</span>
             <br />
             Insurance Platform
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl mb-8 max-w-3xl mx-auto" style={{ color: 'var(--insly-medium-gray)' }}>
             Advanced Model Context Protocol server providing intelligent automation and AI-driven tools 
             for insurance operations, document processing, and workflow optimization.
           </p>
@@ -47,16 +53,16 @@ export default function Home() {
           {/* Stats */}
           <div className="flex flex-col md:flex-row justify-center items-center gap-8 mt-12">
             <div className="text-center">
-              <div className="text-4xl font-bold text-orange-500">22</div>
-              <div className="text-gray-600">FormFlow Tools</div>
+              <div className="text-4xl font-bold" style={{ color: 'var(--insly-orange)' }}>22</div>
+              <div style={{ color: 'var(--insly-medium-gray)' }}>FormFlow Tools</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-orange-500">60</div>
-              <div className="text-gray-600">Requests/Min</div>
+              <div className="text-4xl font-bold" style={{ color: 'var(--insly-orange)' }}>60</div>
+              <div style={{ color: 'var(--insly-medium-gray)' }}>Requests/Min</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-orange-500">24/7</div>
-              <div className="text-gray-600">AI Processing</div>
+              <div className="text-4xl font-bold" style={{ color: 'var(--insly-orange)' }}>24/7</div>
+              <div style={{ color: 'var(--insly-medium-gray)' }}>AI Processing</div>
             </div>
           </div>
         </div>
@@ -66,10 +72,10 @@ export default function Home() {
       <section id="features" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold mb-4" style={{ color: 'var(--insly-black)' }}>
               Intelligent Insurance Solutions
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: 'var(--insly-medium-gray)' }}>
               Comprehensive MCP integration with FormFlow for document processing, 
               AI-powered data extraction, and automated insurance workflows.
             </p>
@@ -80,8 +86,8 @@ export default function Home() {
               <div className="w-16 h-16 insly-gradient rounded-xl flex items-center justify-center mb-6">
                 <span className="text-2xl">🤖</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">AI Document Processing</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-4" style={{ color: 'var(--insly-black)' }}>AI Document Processing</h3>
+              <p style={{ color: 'var(--insly-medium-gray)' }}>
                 Advanced AI extraction of structured data from insurance documents with 
                 intelligent form processing and automated metadata generation.
               </p>
@@ -161,9 +167,9 @@ export default function Home() {
             <div>
               <h3 className="text-2xl font-semibold text-gray-900 mb-6">🔑 Authentication & Token Management</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <div className="font-semibold text-orange-600 mb-2">formflow_exchange_token</div>
-                  <div className="text-sm text-gray-600">Exchange credentials for JWT bearer token</div>
+                <div className="bg-white rounded-lg p-4" style={{ border: '1px solid var(--insly-border)' }}>
+                  <div className="font-semibold mb-2" style={{ color: 'var(--insly-orange)' }}>formflow_exchange_token</div>
+                  <div className="text-sm" style={{ color: 'var(--insly-medium-gray)' }}>Exchange credentials for JWT bearer token</div>
                 </div>
               </div>
             </div>
@@ -355,10 +361,14 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 insly-gradient rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">AI</span>
+                <img 
+                  src="/insly-logo.png" 
+                  alt="Insly" 
+                  className="h-8 w-auto brightness-0 invert"
+                />
+                <div className="text-2xl font-bold text-white">
+                  <span style={{ color: 'var(--insly-orange)' }}>insly</span>.ai
                 </div>
-                <div className="text-2xl font-bold">insly.ai</div>
               </div>
               <p className="text-gray-400 mb-4">
                 AI-powered Model Context Protocol server for the insurance industry
@@ -366,12 +376,12 @@ export default function Home() {
             </div>
             
             <div>
-              <h3 className="text-lg font-semibold text-orange-400 mb-4">Platform</h3>
+              <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--insly-orange)' }}>Platform</h3>
               <ul className="space-y-2">
                 <li>
                   <a 
                     href="https://insly.com" 
-                    className="text-gray-400 hover:text-orange-400 transition-colors"
+                    className="insly-footer-link"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -381,7 +391,7 @@ export default function Home() {
                 <li>
                   <a 
                     href="https://develop.formflow-dev.net" 
-                    className="text-gray-400 hover:text-orange-400 transition-colors"
+                    className="insly-footer-link"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -392,15 +402,15 @@ export default function Home() {
             </div>
             
             <div>
-              <h3 className="text-lg font-semibold text-orange-400 mb-4">Documentation</h3>
+              <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--insly-orange)' }}>Documentation</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="#tools" className="text-gray-400 hover:text-orange-400 transition-colors">
+                  <a href="#tools" className="insly-footer-link">
                     Available Tools
                   </a>
                 </li>
                 <li>
-                  <a href="#features" className="text-gray-400 hover:text-orange-400 transition-colors">
+                  <a href="#features" className="insly-footer-link">
                     Features
                   </a>
                 </li>

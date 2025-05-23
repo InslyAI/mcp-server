@@ -1,41 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --insly-orange: 255 125 0;
-    --insly-dark-green: 34 82 74;
-    --insly-black: 18 18 18;
-    --insly-white: 255 255 255;
-    --insly-light-gray: 248 249 250;
-    --insly-medium-gray: 108 117 125;
-    --insly-border: 233 236 239;
+    --insly-orange: #FF7D00;
+    --insly-dark-green: #22524A;
+    --insly-button-hover: #B14D00;
+    --insly-black: #121212;
+    --insly-white: #FFFFFF;
+    --insly-light-gray: #F8F9FA;
+    --insly-medium-gray: #6C757D;
+    --insly-border: #E9ECEF;
   }
   
   html {
-    font-family: var(--font-inter), system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
   }
 }
 
 @layer components {
   .insly-gradient {
-    @apply bg-gradient-to-r from-orange-500 to-emerald-700;
+    background: linear-gradient(135deg, var(--insly-orange), var(--insly-dark-green));
   }
   
   .insly-gradient-text {
-    @apply bg-gradient-to-r from-orange-500 to-emerald-700 bg-clip-text text-transparent;
+    background: linear-gradient(135deg, var(--insly-orange), var(--insly-dark-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   
   .insly-card {
-    @apply bg-white border border-gray-200 rounded-xl p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+    background-color: white;
+    border: 1px solid var(--insly-border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .insly-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   }
   
   .insly-button {
-    @apply bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
+    background-color: var(--insly-black);
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: opacity 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .insly-button:hover {
+    opacity: 0.8;
   }
   
   .insly-button-outline {
-    @apply border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200;
+    border: 3px solid white;
+    background-color: var(--insly-button-hover);
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: opacity 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .insly-button-outline:hover {
+    opacity: 0.8;
+  }
+  
+  .insly-nav-link {
+    color: var(--insly-medium-gray);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .insly-nav-link:hover {
+    color: var(--insly-orange);
+  }
+  
+  .insly-footer-link {
+    color: #9CA3AF;
+    transition: color 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .insly-footer-link:hover {
+    color: var(--insly-orange);
   }
 }
