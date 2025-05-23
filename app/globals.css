@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --insly-orange: 255 125 0;
+    --insly-dark-green: 34 82 74;
+    --insly-black: 18 18 18;
+    --insly-white: 255 255 255;
+    --insly-light-gray: 248 249 250;
+    --insly-medium-gray: 108 117 125;
+    --insly-border: 233 236 239;
+  }
+  
+  html {
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .insly-gradient {
+    @apply bg-gradient-to-r from-orange-500 to-emerald-700;
+  }
+  
+  .insly-gradient-text {
+    @apply bg-gradient-to-r from-orange-500 to-emerald-700 bg-clip-text text-transparent;
+  }
+  
+  .insly-card {
+    @apply bg-white border border-gray-200 rounded-xl p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .insly-button {
+    @apply bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
+  }
+  
+  .insly-button-outline {
+    @apply border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200;
+  }
+}
