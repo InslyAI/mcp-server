@@ -1,25 +1,93 @@
-# Example Next.js MCP Server
+# insly.ai MCP Server
 
-**Uses `@vercel/mcp-adapter`**
+**AI-powered Model Context Protocol server for insly.com insurance platform**
 
+This is the main MCP (Model Context Protocol) server for insly.ai, providing AI-powered tools and capabilities for insurance operations. Built with Next.js and the Vercel MCP Adapter.
 
-## Usage
+## Features
 
-This sample app uses the [Vercel MCP Adapter](https://www.npmjs.com/package/@vercel/mcp-adapter) that allows you to drop in an MCP server on a group of routes in any Next.js project.
+- **Modular Tool Architecture** - Each MCP tool is implemented in separate files for easy maintenance
+- **Insurance-focused AI Tools** - Designed specifically for insly.com insurance platform operations
+- **Production Ready** - Deployed on Vercel with Redis support for SSE transport
+- **Test Tools** - Echo and calculator tools for development and testing
 
-Update `app/[transport]/route.ts` with your tools, prompts, and resources following the [MCP TypeScript SDK documentation](https://github.com/modelcontextprotocol/typescript-sdk/tree/main?tab=readme-ov-file#server).
+## Development
 
-## Notes for running on Vercel
+### Prerequisites
 
-- To use the SSE transport, requires a Redis attached to the project under `process.env.REDIS_URL`
-- Make sure you have [Fluid compute](https://vercel.com/docs/functions/fluid-compute) enabled for efficient execution
-- After enabling Fluid compute, open `app/route.ts` and adjust `maxDuration` to 800 if you using a Vercel Pro or Enterprise account
-- [Deploy the Next.js MCP template](https://vercel.com/templates/next.js/model-context-protocol-mcp-with-next-js)
+- Node.js 18+ 
+- pnpm (recommended) or npm
 
-## Sample Client
+### Setup
 
-`script/test-client.mjs` contains a sample client to try invocations.
+```bash
+# Install dependencies
+pnpm install
 
-```sh
-node scripts/test-client.mjs https://mcp-for-next-js.vercel.app
+# Start development server
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Start production server
+pnpm start
 ```
+
+### Testing
+
+```bash
+# Test with sample client
+node scripts/test-client.mjs http://localhost:3000
+
+# Quick test of all tools
+node scripts/quick-test.mjs http://localhost:3000
+```
+
+## Architecture
+
+### Tool Development
+
+Tools are organized in the `app/tools/` directory:
+
+- `app/tools/echo.ts` - Echo test tool
+- `app/tools/calculator.ts` - Calculator test tool  
+- `app/tools/index.ts` - Central tool registration
+
+To add a new tool:
+
+1. Create `app/tools/[toolname].ts` with a `register[ToolName]Tool(server)` function
+2. Add registration to `app/tools/index.ts`
+3. Update capabilities in `app/[transport]/route.ts`
+
+### Transport Support
+
+- **SSE (Server-Sent Events)** - For real-time communication (requires Redis)
+- **HTTP** - Standard request/response
+
+## Deployment
+
+Deployed on Vercel at your insly.ai domain.
+
+### Environment Variables
+
+- `REDIS_URL` - Required for SSE transport in production
+
+### Vercel Configuration
+
+- Fluid compute enabled for optimal performance
+- `maxDuration` set to 800 seconds
+- Supports both SSE and HTTP transports
+
+## About insly.ai
+
+insly.ai is the AI assistant for [insly.com](https://insly.com), a comprehensive insurance platform that provides:
+
+- Policy management and administration
+- Claims processing and management
+- Underwriting and risk assessment
+- Broker and customer portals
+- Analytics and reporting
+- Payment processing and billing
+
+This MCP server enables AI-powered automation and assistance for these insurance operations.
