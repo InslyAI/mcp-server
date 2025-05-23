@@ -23,7 +23,7 @@ export class FormFlowClient {
 
   constructor(credentials: FormFlowCredentials, baseUrl?: string) {
     this.credentials = credentials;
-    this.baseUrl = baseUrl || 'https://main.formflow-dev.net';
+    this.baseUrl = baseUrl || 'https://develop.formflow-dev.net';
   }
 
   /**
