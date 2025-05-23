@@ -4,6 +4,9 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'insly.ai MCP Server',
   description: 'AI-powered Model Context Protocol server for insly.com insurance platform',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({
