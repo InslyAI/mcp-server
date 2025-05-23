@@ -26,8 +26,8 @@ import { registerFormFlowAIGenerateReferencesTool } from "./ai-generate-referenc
 import { registerFormFlowAIGenerateSchemaForSubmissionTool } from "./ai-generate-schema";
 import { registerFormFlowGetTemplateSubmissionsTool } from "./get-template-submissions";
 import { registerFormFlowFileViewTool } from "./file-view";
-import type { FormFlowCredentials } from "../../lib/formflow-client";
-import { FormFlowClient } from "../../lib/formflow-client";
+import type { FormFlowCredentials } from "./client";
+import { FormFlowClient } from "./client";
 
 /**
  * Register all FormFlow MCP tools

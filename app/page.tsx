@@ -323,38 +323,53 @@ export default function Home() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">MCP Endpoints</h2>
             <p className="text-xl text-gray-600">
-              Connect to our Model Context Protocol server using these endpoints
+              Multiple service endpoints for specialized tool access and service isolation
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div className="insly-card">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
-                  <span className="text-orange-600 font-bold">SSE</span>
+                  <span className="text-orange-600 font-bold text-xs">FF</span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900">Server-Sent Events</h3>
-                  <code className="text-sm text-gray-600">/sse</code>
+                  <h3 className="text-xl font-semibold text-gray-900">FormFlow Service</h3>
+                  <code className="text-sm text-gray-600">/formflow/[sse|mcp]</code>
                 </div>
               </div>
               <p className="text-gray-600">
-                Real-time communication with streaming responses for live updates and notifications.
+                25 FormFlow tools for insurance document processing, AI extraction, and form management.
               </p>
             </div>
 
             <div className="insly-card">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
-                  <span className="text-emerald-600 font-bold">HTTP</span>
+                  <span className="text-emerald-600 font-bold text-xs">LG</span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900">HTTP Transport</h3>
-                  <code className="text-sm text-gray-600">/mcp</code>
+                  <h3 className="text-xl font-semibold text-gray-900">Ledger Service</h3>
+                  <code className="text-sm text-gray-600">/ledger/[sse|mcp]</code>
                 </div>
               </div>
               <p className="text-gray-600">
-                Standard request/response pattern for traditional API integration and compatibility.
+                Financial ledger operations (structure ready, tools pending API schemas).
+              </p>
+            </div>
+
+            <div className="insly-card">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                  <span className="text-gray-600 font-bold text-xs">ALL</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900">Unified Endpoint</h3>
+                  <code className="text-sm text-gray-600">/[sse|mcp]</code>
+                </div>
+              </div>
+              <p className="text-gray-600">
+                All tools from all services in a single connection (legacy support).
               </p>
             </div>
           </div>

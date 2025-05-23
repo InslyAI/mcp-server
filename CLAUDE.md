@@ -47,12 +47,24 @@ When adding new MCP tools:
 - `zod` - Schema validation for tool parameters
 - `redis` - Required for SSE transport when deployed
 
-### Transport Support
+### Transport Support & MCP Endpoints
 
-The server supports multiple transport methods through the `[transport]` dynamic route:
+The server supports multiple transport methods and **separate service endpoints**:
 
+**Transport Methods:**
 - SSE (Server-Sent Events) - requires Redis for production deployment
 - HTTP - standard request/response
+
+**Service Endpoints:**
+- **`/formflow/[transport]`** - FormFlow-only tools (25 tools, production ready)
+- **`/ledger/[transport]`** - Ledger-only tools (structure ready, tools pending API schemas)  
+- **`/[transport]`** - Unified endpoint with all tools (legacy support)
+
+**Architecture Benefits:**
+- Complete service isolation - no shared authentication or code
+- Agents can connect to specific services only
+- Independent tool discovery per service
+- Separate authentication systems per service
 
 ## Design System
 

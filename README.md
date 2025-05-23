@@ -93,6 +93,43 @@ To add a new tool:
 - **SSE (Server-Sent Events)** - For real-time communication (requires Redis)
 - **HTTP** - Standard request/response
 
+## MCP Endpoints
+
+The server provides **multiple MCP endpoints** for service separation and specialized tool access:
+
+### **FormFlow Endpoint** (Production Ready)
+- **SSE**: `/formflow/sse`
+- **HTTP**: `/formflow/mcp`
+- **Tools**: 25 FormFlow-specific tools
+- **Authentication**: Bearer tokens OR FormFlow credentials
+- **Use Case**: Insurance document processing, AI extraction, form management
+
+### **Ledger Endpoint** (Structure Ready)
+- **SSE**: `/ledger/sse` 
+- **HTTP**: `/ledger/mcp`
+- **Tools**: Ready for implementation (pending API schemas)
+- **Authentication**: TBD (completely different from FormFlow)
+- **Use Case**: Financial ledger operations (tools pending schema documentation)
+
+### **Unified Endpoint** (Legacy Support)
+- **SSE**: `/sse`
+- **HTTP**: `/mcp` 
+- **Tools**: All available tools from all services
+- **Use Case**: Single connection for clients that want access to all services
+
+### **Connecting to Specific Services**
+Agents can connect to specific service endpoints to discover only relevant tools:
+```bash
+# FormFlow-only tools
+curl https://your-domain/formflow/mcp
+
+# Ledger-only tools (when implemented)  
+curl https://your-domain/ledger/mcp
+
+# All tools
+curl https://your-domain/mcp
+```
+
 ## Available MCP Tools
 
 ### FormFlow Integration Tools
