@@ -1,68 +1,118 @@
 /**
  * Ledger API Client
- * 
- * Note: This is a placeholder implementation until we receive the actual Ledger API schemas.
- * The entire client will be rewritten based on the real API documentation.
+ * Handles business operations with Insly Ledger service
+ * Requires JWT bearer token from Identifier service + tenant ID
  */
 
-import type { LedgerCredentials, LedgerApiResponse } from "./types";
+// Note: LedgerApiResponse type may be used for future response standardization
 
 export class LedgerClient {
-  private credentials: LedgerCredentials;
+  private bearerToken: string;
+  private tenantId: string;
   private baseUrl: string;
 
-  constructor(credentials: LedgerCredentials, baseUrl?: string) {
-    this.credentials = credentials;
-    // TODO: Replace with actual Ledger API base URL
-    this.baseUrl = baseUrl || 'https://api.ledger.example.com';
+  constructor(bearerToken: string, tenantId: string, baseUrl?: string) {
+    this.bearerToken = bearerToken;
+    this.tenantId = tenantId;
+    // URL pattern based on tenant: https://{{tenant}}.app.beta.insly.training
+    this.baseUrl = baseUrl || `https://${tenantId}.app.beta.insly.training`;
   }
 
   /**
-   * TODO: Implement actual authentication based on Ledger API requirements
-   * This is completely different from FormFlow authentication
-   */
-  private async authenticate(): Promise<string> {
-    // Placeholder implementation
-    throw new Error('Ledger authentication not yet implemented - waiting for API schemas');
-  }
-
-  /**
-   * TODO: Implement actual HTTP client based on Ledger API patterns
+   * Make authenticated API request to Ledger service
+   * Includes both Authorization header and X-Tenant-ID header
    */
   private async makeRequest(endpoint: string, options: RequestInit = {}): Promise<Response> {
-    // Placeholder implementation
-    throw new Error('Ledger API client not yet implemented - waiting for API schemas');
+    const url = `${this.baseUrl}${endpoint}`;
+    
+    const headers = {
+      'Authorization': `Bearer ${this.bearerToken}`,
+      'X-Tenant-ID': this.tenantId,  // CRITICAL: Required for all Ledger API calls
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      ...options.headers,
+    };
+
+    const response = await fetch(url, {
+      ...options,
+      headers,
+    });
+
+    if (!response.ok) {
+      // Try to get error details from response
+      let errorMessage = `Ledger API Error: ${response.status} ${response.statusText}`;
+      try {
+        const errorData = await response.json();
+        if (errorData.errors && Array.isArray(errorData.errors) && errorData.errors.length > 0) {
+          errorMessage = errorData.errors[0].message || errorMessage;
+        }
+      } catch {
+        // Failed to parse error response, use default message
+      }
+      throw new Error(errorMessage);
+    }
+
+    return response;
   }
 
   /**
-   * TODO: Add actual Ledger API methods based on schemas
-   * These will be completely different from FormFlow methods
+   * GET request to Ledger API
    */
-  async get(endpoint: string): Promise<LedgerApiResponse> {
-    throw new Error('Ledger GET method not yet implemented - waiting for API schemas');
+  async get(endpoint: string): Promise<any> {
+    const response = await this.makeRequest(endpoint, { method: 'GET' });
+    return response.json();
   }
 
-  async post(endpoint: string, data: any): Promise<LedgerApiResponse> {
-    throw new Error('Ledger POST method not yet implemented - waiting for API schemas');
+  /**
+   * POST request to Ledger API
+   */
+  async post(endpoint: string, data: any, headers?: Record<string, string>): Promise<any> {
+    const response = await this.makeRequest(endpoint, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers,
+    });
+    return response.json();
   }
 
-  async put(endpoint: string, data: any): Promise<LedgerApiResponse> {
-    throw new Error('Ledger PUT method not yet implemented - waiting for API schemas');
+  /**
+   * PUT request to Ledger API
+   */
+  async put(endpoint: string, data: any, headers?: Record<string, string>): Promise<any> {
+    const response = await this.makeRequest(endpoint, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      headers,
+    });
+    return response.json();
   }
 
-  async delete(endpoint: string): Promise<LedgerApiResponse> {
-    throw new Error('Ledger DELETE method not yet implemented - waiting for API schemas');
+  /**
+   * PATCH request to Ledger API
+   */
+  async patch(endpoint: string, data: any): Promise<any> {
+    const response = await this.makeRequest(endpoint, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    });
+    return response.json();
+  }
+
+  /**
+   * DELETE request to Ledger API
+   */
+  async delete(endpoint: string, data?: any): Promise<any> {
+    const response = await this.makeRequest(endpoint, { 
+      method: 'DELETE',
+      ...(data && { body: JSON.stringify(data) })
+    });
+    return response.json();
   }
 }
 
 /**
- * TODO: Add Ledger-specific client factory based on actual auth requirements
+ * Create Ledger client with bearer token and tenant ID
  */
-export function createLedgerClient(params: {
-  // TODO: Replace with actual Ledger auth parameters
-  apiKey?: string;
-  clientId?: string;
-  [key: string]: any;
-}): LedgerClient {
-  throw new Error('Ledger client factory not yet implemented - waiting for API schemas');
+export function createLedgerClient(bearerToken: string, tenantId: string): LedgerClient {
+  return new LedgerClient(bearerToken, tenantId);
 }

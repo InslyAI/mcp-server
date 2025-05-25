@@ -4,7 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**insly.ai MCP Server** - Main MCP (Model Context Protocol) server for insly.ai, the AI assistant for insly.com insurance platform. This server provides AI-powered tools and capabilities for insurance operations, featuring comprehensive FormFlow integration with 25 specialized tools for document processing, AI-powered data extraction, and automated insurance workflows.
+**insly.ai MCP Server** - Main MCP (Model Context Protocol) server for insly.ai, the AI assistant for insly.com insurance platform. This server provides AI-powered tools and capabilities for insurance operations, featuring:
+
+- **FormFlow integration** (25 tools) - Document processing, AI extraction, form management
+- **Identifier service** (3 tools) - Authentication with Insly platform  
+- **Ledger service** (1/148 tools implemented) - **MASSIVE TASK**: Business operations covering 148 API endpoints
+
+**CRITICAL IMPLEMENTATION STATUS**: Currently implementing a massive expansion from 28 tools to 176+ total tools with complete Ledger API coverage.
 
 ## Commands
 
