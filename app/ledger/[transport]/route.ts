@@ -12,7 +12,9 @@ const handler = createMcpHandler(
   },
   {
     capabilities: {
-      tools: {},
+      tools: {
+        // Populated dynamically by tool registration
+      },
     },
   },
   {
