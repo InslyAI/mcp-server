@@ -3,16 +3,17 @@ export default function MCPEndpoints() {
     <section id="endpoints" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            MCP Server Endpoints
-          </h2>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">MCP Server</h2>
           <p className="text-xl text-gray-600">
-            Multiple service endpoints for specialized tool access and service isolation
+            Model Context Protocol (MCP) service for Insly's applications
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          <a href="#formflow-tools" className="insly-card hover:shadow-lg transition-shadow cursor-pointer">
+          <a
+            href="#formflow-tools"
+            className="insly-card hover:shadow-lg transition-shadow cursor-pointer"
+          >
             <div className="flex items-center mb-4">
               <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
                 <span className="text-orange-600 font-bold text-xs">FF</span>
@@ -35,7 +36,10 @@ export default function MCPEndpoints() {
             </div>
           </a>
 
-          <a href="#identifier-tools" className="insly-card hover:shadow-lg transition-shadow cursor-pointer">
+          <a
+            href="#identifier-tools"
+            className="insly-card hover:shadow-lg transition-shadow cursor-pointer"
+          >
             <div className="flex items-center mb-4">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
                 <span className="text-blue-600 font-bold text-xs">ID</span>
@@ -58,7 +62,10 @@ export default function MCPEndpoints() {
             </div>
           </a>
 
-          <a href="#ledger-tools" className="insly-card hover:shadow-lg transition-shadow cursor-pointer">
+          <a
+            href="#ledger-tools"
+            className="insly-card hover:shadow-lg transition-shadow cursor-pointer"
+          >
             <div className="flex items-center mb-4">
               <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
                 <span className="text-emerald-600 font-bold text-xs">LG</span>
@@ -67,9 +74,7 @@ export default function MCPEndpoints() {
                 <h3 className="text-lg font-semibold text-gray-900">
                   Ledger Service
                 </h3>
-                <code className="text-xs text-gray-600">
-                  /ledger/[sse|mcp]
-                </code>
+                <code className="text-xs text-gray-600">/ledger/[sse|mcp]</code>
               </div>
             </div>
             <p className="text-sm text-gray-600 mb-2">
@@ -81,7 +86,10 @@ export default function MCPEndpoints() {
             </div>
           </a>
 
-          <a href="#tools" className="insly-card hover:shadow-lg transition-shadow cursor-pointer">
+          <a
+            href="#tools"
+            className="insly-card hover:shadow-lg transition-shadow cursor-pointer"
+          >
             <div className="flex items-center mb-4">
               <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
                 <span className="text-gray-600 font-bold text-xs">ALL</span>

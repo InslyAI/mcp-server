@@ -5,12 +5,13 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="col-span-2">
             <div className="flex items-center mb-4">
-              <img src="/insly-logo.png" alt="Insly" className="h-8 w-auto mr-3" />
-              <span className="text-xl font-bold">MCP Server</span>
+              <img
+                src="/insly-logo.png"
+                alt="Insly"
+                className="h-8 w-auto mr-3"
+              />
             </div>
-            <p className="text-gray-400 mb-4">
-              AI-powered insurance operations platform with comprehensive API coverage across FormFlow, Identifier, and Ledger services.
-            </p>
+            <p className="text-gray-400 mb-4">Insly MCP server</p>
             <div className="flex space-x-4">
               <span className="text-sm text-gray-400">190 Total Tools</span>
               <span className="text-sm text-gray-400">•</span>
@@ -37,7 +38,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>&copy; 2024 Insly. Powered by Model Context Protocol (MCP).</p>
+          <p>&copy; 2025 Insly</p>
         </div>
       </div>
     </footer>
