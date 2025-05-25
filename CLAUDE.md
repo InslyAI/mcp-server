@@ -8,9 +8,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - **FormFlow integration** (25 tools) - Document processing, AI extraction, form management
 - **Identifier service** (3 tools) - Authentication with Insly platform  
-- **Ledger service** (1/148 tools implemented) - **MASSIVE TASK**: Business operations covering 148 API endpoints
+- **Ledger service** (70 tools) - Complete business operations covering insurance workflows
 
-**CRITICAL IMPLEMENTATION STATUS**: Currently implementing a massive expansion from 28 tools to 176+ total tools with complete Ledger API coverage.
+**IMPLEMENTATION STATUS**: Production-ready with 98 total tools across three specialized services providing comprehensive insurance platform coverage.
 
 ## Commands
 
@@ -34,6 +34,10 @@ This is a Next.js application that implements an MCP server using the `@vercel/m
   - `app/tools/index.ts` - Central tool registration
   - `app/tools/formflow/` - FormFlow integration tools (25 tools total)
     - Authentication, submission management, template management, file operations, webhooks, AI features
+  - `app/tools/identifier/` - Identifier service tools (3 tools total)
+    - Authentication: client credentials, login, refresh token
+  - `app/tools/ledger/` - Ledger business operations tools (70 tools total)
+    - 15 categories: audit, binders, claims, dashboards, documents, e-proposals, endorsements, high-risk, integrations, notifications, policies, quotes, reports, schemas, users, workflows
 - **`app/lib/formflow-client.ts`** - FormFlow API client with dual authentication support (credentials + bearer tokens)
 - **MCP Adapter Configuration** - Uses `createMcpHandler` with Redis support for SSE transport and configurable options like `maxDuration` and `verboseLogs`.
 
@@ -63,8 +67,9 @@ The server supports multiple transport methods and **separate service endpoints*
 
 **Service Endpoints:**
 - **`/formflow/[transport]`** - FormFlow-only tools (25 tools, production ready)
-- **`/ledger/[transport]`** - Ledger-only tools (structure ready, tools pending API schemas)  
-- **`/[transport]`** - Unified endpoint with all tools (legacy support)
+- **`/identifier/[transport]`** - Identifier-only tools (3 tools, production ready)
+- **`/ledger/[transport]`** - Ledger-only tools (70 tools, production ready)
+- **`/[transport]`** - Unified endpoint with all tools (98 total tools)
 
 **Architecture Benefits:**
 - Complete service isolation - no shared authentication or code
@@ -93,7 +98,7 @@ The server supports multiple transport methods and **separate service endpoints*
 - **Header**: Sticky navigation with real Insly logo and gradient branding
 - **Hero Section**: Gradient background with performance statistics
 - **Features Grid**: 6 insurance-focused feature cards
-- **Tools Showcase**: Organized by categories (25 FormFlow tools)
+- **Tools Showcase**: Organized by categories (98 tools across three services)
 - **Endpoints**: MCP transport documentation
 - **Footer**: Professional footer with platform links
 
@@ -105,13 +110,34 @@ The server supports multiple transport methods and **separate service endpoints*
 - **Rate Limiting**: 60 requests/minute awareness
 - **Consistent Implementation**: Every FormFlow tool follows the same authentication pattern
 
-### Tool Categories (25 Total)
+### FormFlow Tool Categories (25 Total)
 - **Authentication**: Token exchange
 - **Submissions**: CRUD operations, references, events, file uploads
 - **Templates**: Full lifecycle management
 - **Files**: Metadata and deletion operations
 - **Webhooks**: Event notification management
 - **AI Features**: Document processing, metadata generation, workflow processing, reference generation, schema generation
+
+### Identifier Tool Categories (3 Total)
+- **Authentication**: Client credentials, user login, token refresh
+
+### Ledger Tool Categories (70 Total)
+- **Audit** (4): Compliance reporting, audit logs, data access tracking
+- **Binders** (7): Policy binder management and lifecycle operations
+- **Claims** (6): Claims processing, reserves, and management
+- **Dashboards** (5): Business intelligence and renewal analytics
+- **Documents** (5): Policy and quote document generation
+- **E-Proposals** (6): Electronic proposal workflows
+- **Endorsements** (6): Policy change management
+- **High-Risk** (5): Risk assessment and case management
+- **Integrations** (1): API integration management
+- **Notifications** (4): Communication and alert systems
+- **Policies** (6): Policy lifecycle and administration
+- **Quotes** (6): Quote generation and management
+- **Reports** (5): Business reporting and analytics
+- **Schemas** (5): Data structure and validation
+- **Users** (5): User management and permissions
+- **Workflows** (4): Process automation and monitoring
 
 ### Deployment Notes
 

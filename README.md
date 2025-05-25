@@ -2,12 +2,12 @@
 
 **AI-powered Model Context Protocol server for insly.com insurance platform**
 
-This is the main MCP (Model Context Protocol) server for insly.ai, providing AI-powered tools and capabilities for insurance operations. Built with Next.js and featuring comprehensive FormFlow integration with 25 specialized tools for document processing, AI-powered data extraction, and automated insurance workflows.
+This is the main MCP (Model Context Protocol) server for insly.ai, providing AI-powered tools and capabilities for insurance operations. Built with Next.js and featuring comprehensive service integrations with 98 specialized tools across three services: FormFlow (25 tools), Identifier (3 tools), and Ledger (70 tools).
 
 ## 🌟 Features Highlights
 
 - **Professional Landing Page** - Authentic Insly branding with exact colors and real logo from insly.com
-- **Comprehensive Tool Suite** - 25 FormFlow MCP tools covering all insurance workflow needs
+- **Comprehensive Tool Suite** - 98 MCP tools across three services covering all insurance workflow needs
 - **Dual Authentication** - Both credential-based and JWT bearer token support for enhanced security
 - **Enterprise Ready** - Production-deployed with professional design and performance optimization
 
@@ -15,7 +15,7 @@ This is the main MCP (Model Context Protocol) server for insly.ai, providing AI-
 
 - **Professional Landing Page** - Authentic Insly branding with exact colors (#FF7D00 orange, #22524A dark green) and real logo
 - **Modular Tool Architecture** - Each MCP tool is implemented in separate files for easy maintenance
-- **Comprehensive FormFlow Integration** - Complete API integration with 25 specialized tools covering all FormFlow endpoints
+- **Multi-Service Integration** - Complete API integration with 98 specialized tools across FormFlow (25), Identifier (3), and Ledger (70) services
 - **Dual Authentication System** - Both credential-based and JWT bearer token authentication for enhanced security
 - **AI-Powered Document Processing** - Advanced data extraction and metadata generation using AI
 - **Insurance-focused Operations** - Form submissions, templates, webhooks, and AI-driven document analysis
@@ -70,17 +70,15 @@ node scripts/test-mcp-tools.mjs http://localhost:3000
 
 **Tool Development:**
 
-Tools are organized in the `app/tools/` directory:
+Tools are organized in the `app/tools/` directory by service:
 
 - `app/tools/formflow/` - **FormFlow integration tools (25 total)**
-  - **Authentication**: `exchange-token.ts` - Exchange credentials for JWT bearer token
-  - **Submissions**: `list-submissions.ts`, `create-submission.ts`, `get-submission.ts`, `update-submission.ts`, `get-submission-references.ts`, `get-submission-events.ts`, `get-upload-url.ts`
-  - **Templates**: `list-templates.ts`, `get-template.ts`, `create-template.ts`, `update-template.ts`, `delete-template.ts`, `get-template-submissions.ts`
-  - **Files**: `get-file.ts`, `delete-file.ts`, `file-view.ts`
-  - **AI Features**: `ai-extract-data.ts`, `ai-generate-metadata.ts`, `start-processing.ts`, `ai-generate-references.ts`, `ai-generate-schema.ts`
-  - **Webhooks**: `create-webhook.ts`, `list-webhooks.ts`, `get-webhook.ts`, `update-webhook.ts`, `delete-webhook.ts`
-- `app/tools/index.ts` - Central tool registration
-- `app/lib/formflow-client.ts` - FormFlow API client with dual authentication support
+  - Authentication, submissions, templates, files, AI features, webhooks
+- `app/tools/identifier/` - **Identifier service tools (3 total)**
+  - Authentication: `client-credentials.ts`, `login.ts`, `refresh-token.ts`
+- `app/tools/ledger/` - **Ledger business operations tools (70 total)**
+  - 15 categories: audit (4), binders (7), claims (6), dashboards (5), documents (5), e-proposals (6), endorsements (6), high-risk (5), integrations (1), notifications (4), policies (6), quotes (6), reports (5), schemas (5), users (5), workflows (4)
+- `app/tools/index.ts` - Central tool registration for all services
 
 To add a new tool:
 
@@ -104,12 +102,19 @@ The server provides **multiple MCP endpoints** for service separation and specia
 - **Authentication**: Bearer tokens OR FormFlow credentials
 - **Use Case**: Insurance document processing, AI extraction, form management
 
-### **Ledger Endpoint** (Structure Ready)
+### **Identifier Endpoint** (Production Ready)
+- **SSE**: `/identifier/sse`
+- **HTTP**: `/identifier/mcp`
+- **Tools**: 3 Identifier authentication tools
+- **Authentication**: Insly platform credentials
+- **Use Case**: Authentication and identity management for Insly platform
+
+### **Ledger Endpoint** (Production Ready)
 - **SSE**: `/ledger/sse` 
 - **HTTP**: `/ledger/mcp`
-- **Tools**: Ready for implementation (pending API schemas)
-- **Authentication**: TBD (completely different from FormFlow)
-- **Use Case**: Financial ledger operations (tools pending schema documentation)
+- **Tools**: 70 comprehensive business operation tools
+- **Authentication**: Ledger API authentication
+- **Use Case**: Complete insurance business operations - policies, claims, quotes, endorsements, reports
 
 ### **Unified Endpoint** (Legacy Support)
 - **SSE**: `/sse`
@@ -120,19 +125,22 @@ The server provides **multiple MCP endpoints** for service separation and specia
 ### **Connecting to Specific Services**
 Agents can connect to specific service endpoints to discover only relevant tools:
 ```bash
-# FormFlow-only tools
+# FormFlow-only tools (25 tools)
 curl https://your-domain/formflow/mcp
 
-# Ledger-only tools (when implemented)  
+# Identifier-only tools (3 tools)
+curl https://your-domain/identifier/mcp
+
+# Ledger-only tools (70 tools)
 curl https://your-domain/ledger/mcp
 
-# All tools
+# All tools (98 total)
 curl https://your-domain/mcp
 ```
 
-## Available MCP Tools
+## Available MCP Tools (98 Total)
 
-### FormFlow Integration Tools
+### FormFlow Integration Tools (25 tools)
 
 The server provides comprehensive integration with Insly's FormFlow service for document processing and AI-powered form management.
 
@@ -237,6 +245,35 @@ The server provides comprehensive integration with Insly's FormFlow service for 
 
 The server automatically handles JWT token generation, refresh, and includes rate limiting awareness (60 requests/minute). Bearer tokens provide better security by avoiding credential exposure in each request.
 
+### Identifier Service Tools (3 tools)
+
+The Identifier service provides authentication tools for the Insly platform:
+
+- **`identifier_client_credentials`** - Obtain access tokens using client credentials flow
+- **`identifier_login`** - Authenticate users with username/password
+- **`identifier_refresh_token`** - Refresh expired access tokens
+
+### Ledger Service Tools (70 tools)
+
+The Ledger service provides comprehensive insurance business operations across 15 categories:
+
+- **Audit** (4 tools): Compliance reporting, audit logs, data access tracking
+- **Binders** (7 tools): Policy binder management and lifecycle operations
+- **Claims** (6 tools): Claims processing, reserves, and management
+- **Dashboards** (5 tools): Business intelligence and renewal analytics
+- **Documents** (5 tools): Policy and quote document generation
+- **E-Proposals** (6 tools): Electronic proposal workflows
+- **Endorsements** (6 tools): Policy change management
+- **High-Risk** (5 tools): Risk assessment and case management
+- **Integrations** (1 tool): API integration management
+- **Notifications** (4 tools): Communication and alert systems
+- **Policies** (6 tools): Policy lifecycle and administration
+- **Quotes** (6 tools): Quote generation and management
+- **Reports** (5 tools): Business reporting and analytics
+- **Schemas** (5 tools): Data structure and validation
+- **Users** (5 tools): User management and permissions
+- **Workflows** (4 tools): Process automation and monitoring
+
 ## Design System
 
 ### Insly Brand Colors (Exact from insly.com)
@@ -256,9 +293,9 @@ The server automatically handles JWT token generation, refresh, and includes rat
 
 ### Page Components
 - **Header**: Sticky navigation with real Insly logo and professional branding
-- **Hero Section**: Gradient background with performance statistics (25 tools, 60 req/min, 24/7 AI)
+- **Hero Section**: Gradient background with performance statistics (98 tools, 60 req/min, 24/7 AI)
 - **Features Grid**: 6 insurance-focused feature cards with icons and descriptions
-- **Tools Showcase**: Categorized display of all 25 FormFlow MCP tools
+- **Tools Showcase**: Categorized display of all 98 MCP tools across three services
 - **Endpoints Documentation**: Clear presentation of SSE and HTTP transport options
 - **Professional Footer**: Platform links and comprehensive documentation
 
