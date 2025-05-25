@@ -1,8 +1,3 @@
-/**
- * Ledger MCP Endpoint
- * Complete Ledger API coverage with 162 tools
- */
-
 import { createMcpHandler } from "@vercel/mcp-adapter";
 import { registerLedgerTools } from "../../tools/ledger";
 
@@ -12,7 +7,12 @@ const handler = createMcpHandler(
   },
   {
     capabilities: {
-      tools: {},
+      tools: {
+        ledger_login: {
+          description:
+            "Login with username and password to get JWT bearer token for Ledger API access",
+        },
+      },
     },
   },
   {
