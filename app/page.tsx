@@ -34,29 +34,13 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main Content */}
-      <div className="py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-            MCP Tools & Endpoints
-          </h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Model Context Protocol server with 190 specialized tools across FormFlow (25), Identifier (3), and Ledger (162) services
-          </p>
-        </div>
-      </div>
-
       {/* Endpoints Section */}
       <section id="endpoints" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              MCP Endpoints
+              Insly MCP Server
             </h2>
-            <p className="text-xl text-gray-600">
-              Multiple service endpoints for specialized tool access and service
-              isolation
-            </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
@@ -452,7 +436,7 @@ export default function Home() {
               <h2 className="text-3xl font-bold text-gray-900 mb-8">
                 🆔 Identifier Service Tools (3 Total)
               </h2>
-              
+
               <div>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-6">
                   🔐 Authentication & Identity Management
@@ -463,7 +447,8 @@ export default function Home() {
                       identifier_login
                     </div>
                     <div className="text-sm text-gray-600">
-                      Login with username and password to get JWT bearer token for Ledger API access
+                      Login with username and password to get JWT bearer token
+                      for Ledger API access
                     </div>
                   </div>
                   <div className="bg-white border border-blue-200 rounded-lg p-4">
@@ -471,7 +456,8 @@ export default function Home() {
                       identifier_client_credentials
                     </div>
                     <div className="text-sm text-gray-600">
-                      Authenticate with client credentials to get JWT bearer token
+                      Authenticate with client credentials to get JWT bearer
+                      token
                     </div>
                   </div>
                   <div className="bg-white border border-blue-200 rounded-lg p-4">
@@ -491,7 +477,7 @@ export default function Home() {
               <h2 className="text-3xl font-bold text-gray-900 mb-8">
                 📊 Ledger Service Tools (162 Total) - Complete API Coverage
               </h2>
-              
+
               {/* Core Business Operations */}
               <div className="mb-12">
                 <h3 className="text-2xl font-semibold text-gray-900 mb-6">
@@ -503,7 +489,8 @@ export default function Home() {
                       Policies (33 tools)
                     </div>
                     <div className="text-sm text-gray-600">
-                      Complete policy lifecycle, documents, files, calculations, actions, notifications
+                      Complete policy lifecycle, documents, files, calculations,
+                      actions, notifications
                     </div>
                   </div>
                   <div className="bg-white border border-emerald-200 rounded-lg p-4">
@@ -787,7 +774,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
