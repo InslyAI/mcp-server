@@ -39,12 +39,15 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Insly MCP Server
+              MCP Server Endpoints
             </h2>
+            <p className="text-xl text-gray-600">
+              Multiple service endpoints for specialized tool access and service isolation
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            <div className="insly-card">
+            <a href="#formflow-tools" className="insly-card hover:shadow-lg transition-shadow cursor-pointer">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
                   <span className="text-orange-600 font-bold text-xs">FF</span>
@@ -65,9 +68,9 @@ export default function Home() {
               <div className="text-xs text-green-600 font-semibold">
                 ✅ Production Ready
               </div>
-            </div>
+            </a>
 
-            <div className="insly-card">
+            <a href="#identifier-tools" className="insly-card hover:shadow-lg transition-shadow cursor-pointer">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
                   <span className="text-blue-600 font-bold text-xs">ID</span>
@@ -88,9 +91,9 @@ export default function Home() {
               <div className="text-xs text-green-600 font-semibold">
                 ✅ Production Ready
               </div>
-            </div>
+            </a>
 
-            <div className="insly-card">
+            <a href="#ledger-tools" className="insly-card hover:shadow-lg transition-shadow cursor-pointer">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
                   <span className="text-emerald-600 font-bold text-xs">LG</span>
@@ -111,9 +114,9 @@ export default function Home() {
               <div className="text-xs text-green-600 font-semibold">
                 ✅ Production Ready
               </div>
-            </div>
+            </a>
 
-            <div className="insly-card">
+            <a href="#tools" className="insly-card hover:shadow-lg transition-shadow cursor-pointer">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
                   <span className="text-gray-600 font-bold text-xs">ALL</span>
@@ -132,7 +135,7 @@ export default function Home() {
               <div className="text-xs text-green-600 font-semibold">
                 ✅ Production Ready
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </section>
@@ -150,29 +153,56 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Tool Categories */}
-          <div className="space-y-12">
-            {/* Authentication Tools */}
-            <div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-                🔑 Authentication & Token Management
-              </h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div
-                  className="bg-white rounded-lg p-4"
-                  style={{ border: "1px solid var(--insly-border)" }}
-                >
-                  <div
-                    className="font-semibold mb-2"
-                    style={{ color: "var(--insly-orange)" }}
-                  >
-                    formflow_exchange_token
+          {/* FormFlow Service Tools */}
+          <div id="formflow-tools" className="mb-20">
+            <div className="bg-gradient-to-r from-orange-50 to-white rounded-2xl p-8 mb-12">
+              <div className="flex items-center mb-6">
+                <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mr-6">
+                  <span className="text-orange-600 font-bold text-xl">FF</span>
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                    FormFlow Service Tools (25 Total)
+                  </h2>
+                  <p className="text-lg text-gray-600">
+                    Professional document processing and AI-powered form management for insurance operations
+                  </p>
+                </div>
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
+                  <span className="text-gray-700">Endpoint: <code className="text-orange-600 bg-orange-50 px-2 py-1 rounded">/formflow/[sse|mcp]</code></span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                  <span className="text-gray-700">Status: Production Ready</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Tool Categories */}
+            <div className="space-y-12">
+              {/* Authentication Tools */}
+              <div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
+                  <span className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                    🔑
+                  </span>
+                  Authentication & Token Management
+                </h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-orange-100">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="text-lg font-semibold text-orange-600 font-mono">
+                      formflow_exchange_token
+                    </div>
+                    <div className="px-2 py-1 bg-orange-50 text-orange-600 text-xs rounded-full font-medium">
+                      AUTH
+                    </div>
                   </div>
-                  <div
-                    className="text-sm"
-                    style={{ color: "var(--insly-medium-gray)" }}
-                  >
-                    Exchange credentials for JWT bearer token
+                  <div className="text-sm text-gray-600 leading-relaxed">
+                    Exchange credentials for JWT bearer token with enhanced security and 1-hour validity
                   </div>
                 </div>
               </div>
@@ -180,64 +210,102 @@ export default function Home() {
 
             {/* Submission Tools */}
             <div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-                📄 Submission Management
+              <h3 className="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
+                <span className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                  📄
+                </span>
+                Submission Management
               </h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <div className="font-semibold text-orange-600 mb-2">
-                    formflow_list_submissions
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-orange-100">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="text-lg font-semibold text-orange-600 font-mono">
+                      formflow_list_submissions
+                    </div>
+                    <div className="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-full font-medium">
+                      LIST
+                    </div>
                   </div>
-                  <div className="text-sm text-gray-600">
-                    List submissions with filtering and pagination
-                  </div>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <div className="font-semibold text-orange-600 mb-2">
-                    formflow_create_submission
-                  </div>
-                  <div className="text-sm text-gray-600">
-                    Create new form submissions
+                  <div className="text-sm text-gray-600 leading-relaxed">
+                    Retrieve submissions with advanced filtering, pagination, and sorting capabilities
                   </div>
                 </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <div className="font-semibold text-orange-600 mb-2">
-                    formflow_get_submission
+                <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-orange-100">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="text-lg font-semibold text-orange-600 font-mono">
+                      formflow_create_submission
+                    </div>
+                    <div className="px-2 py-1 bg-green-50 text-green-600 text-xs rounded-full font-medium">
+                      CREATE
+                    </div>
                   </div>
-                  <div className="text-sm text-gray-600">
-                    Retrieve submission details by ID
-                  </div>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <div className="font-semibold text-orange-600 mb-2">
-                    formflow_update_submission
-                  </div>
-                  <div className="text-sm text-gray-600">
-                    Update submission details and metadata
+                  <div className="text-sm text-gray-600 leading-relaxed">
+                    Initialize new form submissions with template binding and metadata
                   </div>
                 </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <div className="font-semibold text-orange-600 mb-2">
-                    formflow_get_submission_references
+                <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-orange-100">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="text-lg font-semibold text-orange-600 font-mono">
+                      formflow_get_submission
+                    </div>
+                    <div className="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-full font-medium">
+                      GET
+                    </div>
                   </div>
-                  <div className="text-sm text-gray-600">
-                    Get AI-generated document references
-                  </div>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <div className="font-semibold text-orange-600 mb-2">
-                    formflow_get_submission_events
-                  </div>
-                  <div className="text-sm text-gray-600">
-                    Track processing lifecycle events
+                  <div className="text-sm text-gray-600 leading-relaxed">
+                    Retrieve detailed submission information including status and processing history
                   </div>
                 </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <div className="font-semibold text-orange-600 mb-2">
-                    formflow_get_upload_url
+                <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-orange-100">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="text-lg font-semibold text-orange-600 font-mono">
+                      formflow_update_submission
+                    </div>
+                    <div className="px-2 py-1 bg-yellow-50 text-yellow-600 text-xs rounded-full font-medium">
+                      UPDATE
+                    </div>
                   </div>
-                  <div className="text-sm text-gray-600">
-                    Get S3 upload URLs for files
+                  <div className="text-sm text-gray-600 leading-relaxed">
+                    Modify submission details, metadata, and processing configuration
+                  </div>
+                </div>
+                <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-orange-100">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="text-lg font-semibold text-orange-600 font-mono">
+                      formflow_get_submission_references
+                    </div>
+                    <div className="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded-full font-medium">
+                      AI
+                    </div>
+                  </div>
+                  <div className="text-sm text-gray-600 leading-relaxed">
+                    AI-generated references linking answers to source documents
+                  </div>
+                </div>
+                <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-orange-100">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="text-lg font-semibold text-orange-600 font-mono">
+                      formflow_get_submission_events
+                    </div>
+                    <div className="px-2 py-1 bg-gray-50 text-gray-600 text-xs rounded-full font-medium">
+                      TRACK
+                    </div>
+                  </div>
+                  <div className="text-sm text-gray-600 leading-relaxed">
+                    Monitor processing lifecycle events and workflow status
+                  </div>
+                </div>
+                <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-orange-100">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="text-lg font-semibold text-orange-600 font-mono">
+                      formflow_get_upload_url
+                    </div>
+                    <div className="px-2 py-1 bg-indigo-50 text-indigo-600 text-xs rounded-full font-medium">
+                      UPLOAD
+                    </div>
+                  </div>
+                  <div className="text-sm text-gray-600 leading-relaxed">
+                    Generate secure S3 upload URLs for client-side file transfers
                   </div>
                 </div>
               </div>
@@ -245,8 +313,11 @@ export default function Home() {
 
             {/* Template Tools */}
             <div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-                📋 Template Management
+              <h3 className="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
+                <span className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                  📋
+                </span>
+                Template Management
               </h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="bg-white border border-gray-200 rounded-lg p-4">
@@ -430,9 +501,10 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Identifier Service Tools */}
-            <div className="mt-16">
+          {/* Identifier Service Tools */}
+          <div id="identifier-tools" className="mb-20">
               <h2 className="text-3xl font-bold text-gray-900 mb-8">
                 🆔 Identifier Service Tools (3 Total)
               </h2>
@@ -472,8 +544,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Ledger Service Tools */}
-            <div className="mt-16">
+          {/* Ledger Service Tools */}
+          <div id="ledger-tools" className="mb-20">
               <h2 className="text-3xl font-bold text-gray-900 mb-8">
                 📊 Ledger Service Tools (162 Total) - Complete API Coverage
               </h2>
