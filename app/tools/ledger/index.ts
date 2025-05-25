@@ -19,12 +19,14 @@ import { registerClaimsTools } from "./claims";
 import { registerAuditTools } from "./audit";
 import { registerNotificationTools } from "./notifications";
 import { registerWorkflowTools } from "./workflows";
+import { registerCustomerTools } from "./customers";
+import { registerSchemeTools } from "./schemes";
 
 /**
  * Register all Ledger MCP tools
  * These tools handle business operations with Insly Ledger service
  * 
- * TOTAL IMPLEMENTATION: 84/148 Ledger tools (56.8% complete)
+ * TOTAL IMPLEMENTATION: 108/164 Ledger tools (65.9% complete)
  */
 export function registerLedgerTools(server: McpServer) {
   // Binder management tools (7 tools)
@@ -36,7 +38,7 @@ export function registerLedgerTools(server: McpServer) {
   // Quote management tools (6 tools)
   registerQuoteTools(server);
   
-  // Schema management tools (6 tools)
+  // DEPRECATED: Old schema tools (5 tools) - replaced by comprehensive schemes tools
   registerSchemaTools(server);
   
   // Document management tools (5 tools)
@@ -72,8 +74,14 @@ export function registerLedgerTools(server: McpServer) {
   // Workflow automation tools (4 tools)
   registerWorkflowTools(server);
   
-  // MAJOR MILESTONE: 84/148 tools complete (56.8%)!
-  // Remaining 64 tools can be systematically added as needed
+  // Customer management tools (9 tools)
+  registerCustomerTools(server);
+  
+  // Scheme and schema management tools (15 tools)
+  registerSchemeTools(server);
+  
+  // MAJOR MILESTONE: 108/164 tools complete (65.9%)!
+  // Remaining 56 tools can be systematically added as needed
   // registerEProposalTools(server);     // E-proposal workflow
   // registerHighRiskTools(server);      // High-risk management
   // registerReportTools(server);        // Business reports
