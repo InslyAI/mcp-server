@@ -7,12 +7,7 @@ const handler = createMcpHandler(
   },
   {
     capabilities: {
-      tools: {
-        ledger_login: {
-          description:
-            "Login with username and password to get JWT bearer token for Ledger API access",
-        },
-      },
+      tools: {},
     },
   },
   {

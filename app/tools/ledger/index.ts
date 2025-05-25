@@ -7,7 +7,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { registerBinderTools } from "./binders";
 import { registerPolicyTools } from "./policies";
 import { registerQuoteTools } from "./quotes";
-import { registerSchemaTools } from "./schemas";
+// import { registerSchemaTools } from "./schemas"; // Disabled due to conflicts
 import { registerDocumentTools } from "./documents";
 import { registerDashboardTools } from "./dashboards";
 import { registerEndorsementTools } from "./endorsements";
@@ -41,7 +41,7 @@ import { registerChatSettingsTools } from "./chat-settings";
  * Register all Ledger MCP tools
  * These tools handle business operations with Insly Ledger service
  * 
- * TOTAL IMPLEMENTATION: 164 Ledger tools (Complete API Coverage!)
+ * TOTAL IMPLEMENTATION: 162 Ledger tools (Complete API Coverage!)
  */
 export function registerLedgerTools(server: McpServer) {
   // Binder management tools (7 tools)
@@ -54,7 +54,7 @@ export function registerLedgerTools(server: McpServer) {
   registerQuoteTools(server);
   
   // DEPRECATED: Old schema tools (5 tools) - replaced by comprehensive schemes tools
-  registerSchemaTools(server);
+  // registerSchemaTools(server); // Disabled due to conflicts with schemes tools
   
   // Document management tools (5 tools)
   registerDocumentTools(server);
@@ -131,7 +131,7 @@ export function registerLedgerTools(server: McpServer) {
   // Communication Settings (1 tool)
   registerChatSettingsTools(server);         // Chat configuration
   
-  // 🎯 COMPLETE COVERAGE: 164 Ledger tools implemented!
+  // 🎯 COMPLETE COVERAGE: 162 Ledger tools implemented!
   // ✅ 100% LEDGER API COVERAGE ACHIEVED
   // ✅ ALL CORE BUSINESS OPERATIONS FULLY COVERED
   // ✅ COMPREHENSIVE INSURANCE PLATFORM FUNCTIONALITY
