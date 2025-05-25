@@ -2,12 +2,12 @@
 
 **AI-powered Model Context Protocol server for insly.com insurance platform**
 
-This is the main MCP (Model Context Protocol) server for insly.ai, providing AI-powered tools and capabilities for insurance operations. Built with Next.js and featuring comprehensive service integrations with **193 specialized tools** across three services: FormFlow (25 tools), Identifier (3 tools), and **Ledger (164 tools - COMPLETE API COVERAGE)**.
+This is the main MCP (Model Context Protocol) server for insly.ai, providing AI-powered tools and capabilities for insurance operations. Built with Next.js and featuring comprehensive service integrations with **190 specialized tools** across three services: FormFlow (25 tools), Identifier (3 tools), and **Ledger (162 tools - COMPLETE API COVERAGE)**.
 
 ## 🌟 Features Highlights
 
 - **Professional Landing Page** - Authentic Insly branding with exact colors and real logo from insly.com
-- **Comprehensive Tool Suite** - **193 MCP tools** across three services covering all insurance workflow needs with **100% Ledger API coverage**
+- **Comprehensive Tool Suite** - **190 MCP tools** across three services covering all insurance workflow needs with **100% Ledger API coverage**
 - **Dual Authentication** - Both credential-based and JWT bearer token support for enhanced security
 - **Enterprise Ready** - Production-deployed with professional design and performance optimization
 
@@ -15,7 +15,7 @@ This is the main MCP (Model Context Protocol) server for insly.ai, providing AI-
 
 - **Professional Landing Page** - Authentic Insly branding with exact colors (#FF7D00 orange, #22524A dark green) and real logo
 - **Modular Tool Architecture** - Each MCP tool is implemented in separate files for easy maintenance
-- **Multi-Service Integration** - Complete API integration with **193 specialized tools** across FormFlow (25), Identifier (3), and **Ledger (164) services with 100% API coverage**
+- **Multi-Service Integration** - Complete API integration with **190 specialized tools** across FormFlow (25), Identifier (3), and **Ledger (162) services with 100% API coverage**
 - **Dual Authentication System** - Both credential-based and JWT bearer token authentication for enhanced security
 - **AI-Powered Document Processing** - Advanced data extraction and metadata generation using AI
 - **Insurance-focused Operations** - Form submissions, templates, webhooks, and AI-driven document analysis
@@ -76,7 +76,7 @@ Tools are organized in the `app/tools/` directory by service:
   - Authentication, submissions, templates, files, AI features, webhooks
 - `app/tools/identifier/` - **Identifier service tools (3 total)**
   - Authentication: `client-credentials.ts`, `login.ts`, `refresh-token.ts`
-- `app/tools/ledger/` - **Ledger business operations tools (164 total - COMPLETE API COVERAGE)**
+- `app/tools/ledger/` - **Ledger business operations tools (162 total - COMPLETE API COVERAGE)**
   - 25+ categories: audit (4), binders (7), claims (6), consolidated-invoices (10), dashboards (5), documents (5), e-proposals (6), endorsements (6), high-risk (5), policies (33), quotes (6), reports (5), schemas (5), users (5), workflows (4), search (1), feature-config (4), request-tracking (1), broker-management (3), excel-calculator (2), high-risk-data (1), lookup-services (2), invoice-files (2), chat-settings (1), and more
 - `app/tools/index.ts` - Central tool registration for all services
 
@@ -112,7 +112,7 @@ The server provides **multiple MCP endpoints** for service separation and specia
 ### **Ledger Endpoint** (Production Ready)
 - **SSE**: `/ledger/sse` 
 - **HTTP**: `/ledger/mcp`
-- **Tools**: **164 comprehensive business operation tools (100% API coverage)**
+- **Tools**: **162 comprehensive business operation tools (100% API coverage)**
 - **Authentication**: Ledger API authentication
 - **Use Case**: Complete insurance business operations - policies, claims, quotes, endorsements, reports
 
@@ -131,14 +131,14 @@ curl https://your-domain/formflow/mcp
 # Identifier-only tools (3 tools)
 curl https://your-domain/identifier/mcp
 
-# Ledger-only tools (164 tools - COMPLETE API COVERAGE)
+# Ledger-only tools (162 tools - COMPLETE API COVERAGE)
 curl https://your-domain/ledger/mcp
 
-# All tools (193 total)
+# All tools (190 total)
 curl https://your-domain/mcp
 ```
 
-## Available MCP Tools (193 Total)
+## Available MCP Tools (190 Total)
 
 ### FormFlow Integration Tools (25 tools)
 
@@ -253,7 +253,7 @@ The Identifier service provides authentication tools for the Insly platform:
 - **`identifier_login`** - Authenticate users with username/password
 - **`identifier_refresh_token`** - Refresh expired access tokens
 
-### Ledger Service Tools (164 tools - COMPLETE API COVERAGE)
+### Ledger Service Tools (162 tools - COMPLETE API COVERAGE)
 
 The Ledger service provides **complete insurance business operations** across 25+ categories with **100% API coverage**:
 
@@ -320,15 +320,15 @@ The Ledger service provides **complete insurance business operations** across 25
 
 ### Page Components
 - **Header**: Sticky navigation with real Insly logo and professional branding
-- **Hero Section**: Gradient background with performance statistics (**193 tools**, 60 req/min, 24/7 AI, **100% Ledger API coverage**)
+- **Hero Section**: Gradient background with performance statistics (**190 tools**, 60 req/min, 24/7 AI, **100% Ledger API coverage**)
 - **Features Grid**: 6 insurance-focused feature cards with icons and descriptions
-- **Tools Showcase**: Categorized display of all **193 MCP tools** across three services with **complete Ledger API coverage**
+- **Tools Showcase**: Categorized display of all **190 MCP tools** across three services with **complete Ledger API coverage**
 - **Endpoints Documentation**: Clear presentation of SSE and HTTP transport options
 - **Professional Footer**: Platform links and comprehensive documentation
 
 ## Deployment
 
-**Production Ready** - Deployed for insly.ai with enterprise-grade performance, professional branding, and **complete 100% Ledger API coverage (164/164 endpoints)**.
+**Production Ready** - Deployed for insly.ai with enterprise-grade performance, professional branding, and **complete 100% Ledger API coverage (162/162 endpoints)**.
 
 ### Environment Variables
 
@@ -366,9 +366,9 @@ The MCP server enables seamless integration of these FormFlow capabilities into 
 
 ### Complete Ledger API Coverage
 
-This MCP server now provides **complete 100% coverage** of the Insly Ledger API with **164 specialized tools** covering every aspect of insurance business operations:
+This MCP server now provides **complete 100% coverage** of the Insly Ledger API with **162 specialized tools** covering every aspect of insurance business operations:
 
-- **All 164 Ledger API endpoints implemented**
+- **All 162 Ledger API endpoints implemented**
 - **Complete policy lifecycle management**
 - **Full financial operations coverage**
 - **Comprehensive administrative tools**
