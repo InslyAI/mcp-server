@@ -30,7 +30,7 @@ import { registerReinsuranceTools } from "./reinsurance";
  * Register all Ledger MCP tools
  * These tools handle business operations with Insly Ledger service
  * 
- * TOTAL IMPLEMENTATION: 135/164 Ledger tools (82.3% COMPLETE!)
+ * TOTAL IMPLEMENTATION: 140/164 Ledger tools (85.4% COMPLETE!)
  */
 export function registerLedgerTools(server: McpServer) {
   // Binder management tools (7 tools)
@@ -84,16 +84,16 @@ export function registerLedgerTools(server: McpServer) {
   // Scheme and schema management tools (15 tools)
   registerSchemeTools(server);
   
-  // Financial Operations - HIGH PRIORITY (13 tools)
+  // Financial Operations - HIGH PRIORITY (18 tools)
   registerBrokerPaymentTools(server);        // Broker payments (7 tools)
-  registerConsolidatedInvoiceTools(server);  // Consolidated invoices (5 tools)
+  registerConsolidatedInvoiceTools(server);  // Consolidated invoices (10 tools)
   registerDebtPolicyTools(server);           // Debt policies (1 tool)
   
   // Business Intelligence (1 tool)
   registerReinsuranceTools(server);          // Reinsurance management (1 tool)
   
-  // 🎯 SIGNIFICANT PROGRESS: 135/164 tools (82.3%)!
-  // ✅ POLICY TOOLS DRAMATICALLY EXPANDED (17 new tools added)
+  // 🎯 EXCELLENT PROGRESS: 140/164 tools (85.4%)!
+  // ✅ FINANCIAL OPERATIONS COMPLETED (policies + invoices expanded)
   // registerEProposalTools(server);     // E-proposal workflow
   // registerHighRiskTools(server);      // High-risk management
   // registerReportTools(server);        // Business reports
