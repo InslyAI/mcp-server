@@ -63,10 +63,18 @@ node scripts/test-mcp-tools.mjs http://localhost:3000
 ### Project Structure
 
 **Main Application Files:**
-- `app/page.tsx` - Professional landing page with authentic Insly branding and comprehensive tool documentation
+- `app/page.tsx` - Main application layout importing modular components (44 lines)
 - `app/layout.tsx` - Root layout with SEO optimization, Inter font, and Insly metadata
 - `app/globals.css` - Global styles with exact Insly brand colors and custom CSS classes
 - `app/[transport]/route.ts` - MCP server handler with transport support (SSE/HTTP)
+
+**Component Architecture:**
+- `app/components/Header.tsx` - Navigation header with Insly branding
+- `app/components/Footer.tsx` - Professional footer with service information
+- `app/components/MCPEndpoints.tsx` - MCP server endpoints overview section
+- `app/components/FormFlowTools.tsx` - Complete FormFlow service tools documentation
+- `app/components/IdentifierTools.tsx` - Identifier service authentication tools
+- `app/components/LedgerTools.tsx` - Comprehensive Ledger service tools overview
 
 **Tool Development:**
 
@@ -318,13 +326,20 @@ The Ledger service provides **complete insurance business operations** across 25
 - `.insly-nav-link` - Navigation links with hover effects
 - `.insly-footer-link` - Footer link styling
 
-### Page Components
-- **Header**: Sticky navigation with real Insly logo and professional branding
-- **Hero Section**: Gradient background with performance statistics (**190 tools**, 60 req/min, 24/7 AI, **100% Ledger API coverage**)
-- **Features Grid**: 6 insurance-focused feature cards with icons and descriptions
-- **Tools Showcase**: Categorized display of all **190 MCP tools** across three services with **complete Ledger API coverage**
-- **Endpoints Documentation**: Clear presentation of SSE and HTTP transport options
-- **Professional Footer**: Platform links and comprehensive documentation
+### Component-Based Architecture
+
+The application follows React best practices with modular components:
+
+- **Header Component**: Sticky navigation with Insly branding and platform links
+- **MCP Endpoints Section**: Service endpoint overview with clickable navigation cards
+- **Tool Documentation Components**: Modular sections for each service (FormFlow, Identifier, Ledger)
+- **Footer Component**: Professional footer with service statistics and platform information
+
+**Benefits:**
+- **Maintainable**: Each component has single responsibility
+- **Reusable**: Components can be easily modified or replaced
+- **Performance**: Smaller bundle sizes and better rendering efficiency
+- **Developer Experience**: Easier to work with individual sections
 
 ## Deployment
 

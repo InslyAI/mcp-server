@@ -27,9 +27,16 @@ This is a Next.js application that implements an MCP server using the `@vercel/m
 ### Core Components
 
 - **`app/[transport]/route.ts`** - Main MCP server handler that registers all tools. Uses dynamic routing for different transport methods (SSE, HTTP).
-- **`app/page.tsx`** - Main landing page with authentic Insly branding, comprehensive tool documentation, and professional design
+- **`app/page.tsx`** - Main application layout importing modular components (44 lines)
 - **`app/layout.tsx`** - Root layout with SEO optimization, Inter font integration, and Insly metadata
 - **`app/globals.css`** - Global styles with exact Insly brand colors, custom CSS classes, and Tailwind integration
+- **`app/components/`** - Modular React components following best practices:
+  - `Header.tsx` - Navigation header with Insly branding
+  - `Footer.tsx` - Professional footer with service information
+  - `MCPEndpoints.tsx` - MCP server endpoints overview section
+  - `FormFlowTools.tsx` - Complete FormFlow service tools documentation
+  - `IdentifierTools.tsx` - Identifier service authentication tools
+  - `LedgerTools.tsx` - Comprehensive Ledger service tools overview
 - **`app/tools/`** - Modular tool directory where each MCP tool is implemented in separate files
   - `app/tools/index.ts` - Central tool registration
   - `app/tools/formflow/` - FormFlow integration tools (25 tools total)
@@ -94,13 +101,33 @@ The server supports multiple transport methods and **separate service endpoints*
 - `.insly-nav-link` - Navigation link with hover states
 - `.insly-footer-link` - Footer link styling
 
-### Page Structure
-- **Header**: Sticky navigation with real Insly logo and gradient branding
-- **Hero Section**: Gradient background with performance statistics
-- **Features Grid**: 6 insurance-focused feature cards
-- **Tools Showcase**: Organized by categories (**190 tools** across three services with **complete Ledger API coverage**)
-- **Endpoints**: MCP transport documentation
-- **Footer**: Professional footer with platform links
+### Component-Based Architecture
+
+The application follows React best practices with modular, reusable components:
+
+- **Header Component**: Sticky navigation with real Insly logo and platform links
+- **MCP Endpoints Section**: Service endpoint overview with clickable navigation cards  
+- **Tool Documentation Components**: Modular sections for each service (FormFlow, Identifier, Ledger)
+- **Footer Component**: Professional footer with service statistics and platform information
+
+**Benefits:**
+- **Maintainable**: Each component has single responsibility
+- **Reusable**: Components can be easily modified or replaced  
+- **Performance**: Smaller bundle sizes and better rendering efficiency
+- **Developer Experience**: Easier to work with individual sections
+
+**Component Structure:**
+```
+app/
+├── page.tsx (44 lines - main layout)
+└── components/
+    ├── Header.tsx
+    ├── Footer.tsx  
+    ├── MCPEndpoints.tsx
+    ├── FormFlowTools.tsx
+    ├── IdentifierTools.tsx
+    └── LedgerTools.tsx
+```
 
 ## FormFlow Integration
 
@@ -172,7 +199,8 @@ The server supports multiple transport methods and **separate service endpoints*
 ### Deployment Notes
 
 - **Production Ready**: Deployed for insly.ai with professional branding and **complete 100% Ledger API coverage**
+- **Component Architecture**: Refactored to modular React components following best practices
 - **SSE Transport**: Requires `REDIS_URL` environment variable
-- **Performance**: Optimized with `maxDuration` set to 800 seconds
-- **Static Generation**: Main page optimized for static generation (2.94 kB)
+- **Performance**: Optimized with `maxDuration` set to 800 seconds and modular component loading
+- **Maintainability**: Main page reduced from ~1700 lines to 44 lines with component extraction
 - **SEO Optimized**: Comprehensive metadata and Open Graph tags
