@@ -15,11 +15,11 @@ export default function Home() {
               />
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="#features" className="insly-nav-link">
-                Features
-              </a>
               <a href="#tools" className="insly-nav-link">
                 Tools
+              </a>
+              <a href="#endpoints" className="insly-nav-link">
+                Endpoints
               </a>
               <a
                 href="https://insly.com"
@@ -34,181 +34,120 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section
-        style={{
-          background:
-            "linear-gradient(135deg, var(--insly-light-gray) 0%, white 100%)",
-        }}
-        className="py-20"
-      >
+      {/* Main Content */}
+      <div className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1
-            className="text-5xl md:text-6xl font-bold mb-6"
-            style={{ color: "var(--insly-black)" }}
-          >
-            <span className="insly-gradient-text">AI-Powered</span>
-            <br />
-            Insurance Platform
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+            MCP Tools & Endpoints
           </h1>
-          <p
-            className="text-xl mb-8 max-w-3xl mx-auto"
-            style={{ color: "var(--insly-medium-gray)" }}
-          >
-            Advanced Model Context Protocol server providing intelligent
-            automation and AI-driven tools for insurance operations, document
-            processing, and workflow optimization.
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Model Context Protocol server with 190 specialized tools across FormFlow (25), Identifier (3), and Ledger (162) services
           </p>
-
-          {/* Stats */}
-          <div className="flex flex-col md:flex-row justify-center items-center gap-8 mt-12">
-            <div className="text-center">
-              <div
-                className="text-4xl font-bold"
-                style={{ color: "var(--insly-orange)" }}
-              >
-                190
-              </div>
-              <div style={{ color: "var(--insly-medium-gray)" }}>MCP Tools</div>
-            </div>
-            <div className="text-center">
-              <div
-                className="text-4xl font-bold"
-                style={{ color: "var(--insly-orange)" }}
-              >
-                162
-              </div>
-              <div style={{ color: "var(--insly-medium-gray)" }}>
-                Ledger Tools
-              </div>
-            </div>
-            <div className="text-center">
-              <div
-                className="text-4xl font-bold"
-                style={{ color: "var(--insly-orange)" }}
-              >
-                100%
-              </div>
-              <div style={{ color: "var(--insly-medium-gray)" }}>
-                API Coverage
-              </div>
-            </div>
-            <div className="text-center">
-              <div
-                className="text-4xl font-bold"
-                style={{ color: "var(--insly-orange)" }}
-              >
-                24/7
-              </div>
-              <div style={{ color: "var(--insly-medium-gray)" }}>
-                AI Processing
-              </div>
-            </div>
-          </div>
         </div>
-      </section>
+      </div>
 
-      {/* Features Section */}
-      <section id="features" className="py-20 bg-white">
+      {/* Endpoints Section */}
+      <section id="endpoints" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2
-              className="text-4xl font-bold mb-4"
-              style={{ color: "var(--insly-black)" }}
-            >
-              Intelligent Insurance Solutions
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              MCP Endpoints
             </h2>
-            <p
-              className="text-xl max-w-3xl mx-auto"
-              style={{ color: "var(--insly-medium-gray)" }}
-            >
-              Comprehensive MCP integration with FormFlow, Identifier, and
-              Ledger services providing complete insurance platform coverage
-              with 190 specialized tools and 100% API coverage.
+            <p className="text-xl text-gray-600">
+              Multiple service endpoints for specialized tool access and service
+              isolation
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             <div className="insly-card">
-              <div className="w-16 h-16 insly-gradient rounded-xl flex items-center justify-center mb-6">
-                <span className="text-2xl">🤖</span>
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                  <span className="text-orange-600 font-bold text-xs">FF</span>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    FormFlow Service
+                  </h3>
+                  <code className="text-xs text-gray-600">
+                    /formflow/[sse|mcp]
+                  </code>
+                </div>
               </div>
-              <h3
-                className="text-xl font-semibold mb-4"
-                style={{ color: "var(--insly-black)" }}
-              >
-                AI Document Processing
-              </h3>
-              <p style={{ color: "var(--insly-medium-gray)" }}>
-                Advanced AI extraction of structured data from insurance
-                documents with intelligent form processing and automated
-                metadata generation.
+              <p className="text-sm text-gray-600 mb-2">
+                <strong>25 tools</strong> for insurance document processing, AI
+                extraction, and form management.
               </p>
+              <div className="text-xs text-green-600 font-semibold">
+                ✅ Production Ready
+              </div>
             </div>
 
             <div className="insly-card">
-              <div className="w-16 h-16 insly-gradient rounded-xl flex items-center justify-center mb-6">
-                <span className="text-2xl">📋</span>
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                  <span className="text-blue-600 font-bold text-xs">ID</span>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Identifier Service
+                  </h3>
+                  <code className="text-xs text-gray-600">
+                    /identifier/[sse|mcp]
+                  </code>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Form Management
-              </h3>
-              <p className="text-gray-600">
-                Complete submission lifecycle management with template creation,
-                updates, and real-time processing event tracking.
+              <p className="text-sm text-gray-600 mb-2">
+                <strong>3 tools</strong> for authentication and identity
+                management with the Insly platform.
               </p>
+              <div className="text-xs text-green-600 font-semibold">
+                ✅ Production Ready
+              </div>
             </div>
 
             <div className="insly-card">
-              <div className="w-16 h-16 insly-gradient rounded-xl flex items-center justify-center mb-6">
-                <span className="text-2xl">🔐</span>
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
+                  <span className="text-emerald-600 font-bold text-xs">LG</span>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Ledger Service
+                  </h3>
+                  <code className="text-xs text-gray-600">
+                    /ledger/[sse|mcp]
+                  </code>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Secure Authentication
-              </h3>
-              <p className="text-gray-600">
-                Dual authentication support with JWT bearer tokens and
-                credential-based access for enhanced security and flexibility.
+              <p className="text-sm text-gray-600 mb-2">
+                <strong>162 tools</strong> providing complete insurance business
+                operations with 100% API coverage.
               </p>
+              <div className="text-xs text-green-600 font-semibold">
+                ✅ Production Ready
+              </div>
             </div>
 
             <div className="insly-card">
-              <div className="w-16 h-16 insly-gradient rounded-xl flex items-center justify-center mb-6">
-                <span className="text-2xl">🔗</span>
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                  <span className="text-gray-600 font-bold text-xs">ALL</span>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Unified Endpoint
+                  </h3>
+                  <code className="text-xs text-gray-600">/[sse|mcp]</code>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Webhook Integration
-              </h3>
-              <p className="text-gray-600">
-                Real-time event notifications with comprehensive webhook
-                management for seamless system integrations.
+              <p className="text-sm text-gray-600 mb-2">
+                <strong>190 tools</strong> from all services in a single
+                connection for comprehensive access.
               </p>
-            </div>
-
-            <div className="insly-card">
-              <div className="w-16 h-16 insly-gradient rounded-xl flex items-center justify-center mb-6">
-                <span className="text-2xl">☁️</span>
+              <div className="text-xs text-green-600 font-semibold">
+                ✅ Production Ready
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Cloud Storage
-              </h3>
-              <p className="text-gray-600">
-                Secure S3 file management with temporary upload URLs and
-                comprehensive file lifecycle operations.
-              </p>
-            </div>
-
-            <div className="insly-card">
-              <div className="w-16 h-16 insly-gradient rounded-xl flex items-center justify-center mb-6">
-                <span className="text-2xl">⚡</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                High Performance
-              </h3>
-              <p className="text-gray-600">
-                Optimized for insurance operations with rate limiting awareness
-                and enterprise-grade reliability.
-              </p>
             </div>
           </div>
         </div>
@@ -507,113 +446,348 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Endpoints Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              MCP Endpoints
-            </h2>
-            <p className="text-xl text-gray-600">
-              Multiple service endpoints for specialized tool access and service
-              isolation
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            <div className="insly-card">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
-                  <span className="text-orange-600 font-bold text-xs">FF</span>
+            {/* Identifier Service Tools */}
+            <div className="mt-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                🆔 Identifier Service Tools (3 Total)
+              </h2>
+              
+              <div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                  🔐 Authentication & Identity Management
+                </h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="bg-white border border-blue-200 rounded-lg p-4">
+                    <div className="font-semibold text-blue-600 mb-2">
+                      identifier_login
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Login with username and password to get JWT bearer token for Ledger API access
+                    </div>
+                  </div>
+                  <div className="bg-white border border-blue-200 rounded-lg p-4">
+                    <div className="font-semibold text-blue-600 mb-2">
+                      identifier_client_credentials
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Authenticate with client credentials to get JWT bearer token
+                    </div>
+                  </div>
+                  <div className="bg-white border border-blue-200 rounded-lg p-4">
+                    <div className="font-semibold text-blue-600 mb-2">
+                      identifier_refresh_token
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Refresh expired JWT bearer token using refresh token
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    FormFlow Service
-                  </h3>
-                  <code className="text-xs text-gray-600">
-                    /formflow/[sse|mcp]
-                  </code>
-                </div>
-              </div>
-              <p className="text-sm text-gray-600 mb-2">
-                <strong>25 tools</strong> for insurance document processing, AI
-                extraction, and form management.
-              </p>
-              <div className="text-xs text-green-600 font-semibold">
-                ✅ Production Ready
               </div>
             </div>
 
-            <div className="insly-card">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                  <span className="text-blue-600 font-bold text-xs">ID</span>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    Identifier Service
-                  </h3>
-                  <code className="text-xs text-gray-600">
-                    /identifier/[sse|mcp]
-                  </code>
+            {/* Ledger Service Tools */}
+            <div className="mt-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                📊 Ledger Service Tools (162 Total) - Complete API Coverage
+              </h2>
+              
+              {/* Core Business Operations */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                  🏢 Core Business Operations
+                </h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Policies (33 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Complete policy lifecycle, documents, files, calculations, actions, notifications
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Claims (6 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Claims processing, reserves, and management
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Quotes (6 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Quote generation and management
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Binders (7 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Policy binder management and lifecycle operations
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Endorsements (6 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Policy change management
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      E-Proposals (6 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Electronic proposal workflows
+                    </div>
+                  </div>
                 </div>
               </div>
-              <p className="text-sm text-gray-600 mb-2">
-                <strong>3 tools</strong> for authentication and identity
-                management with the Insly platform.
-              </p>
-              <div className="text-xs text-green-600 font-semibold">
-                ✅ Production Ready
+
+              {/* Financial Operations */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                  💰 Financial Operations
+                </h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Consolidated Invoices (10 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Full invoice management, documents, credit notes
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Broker Payments (7 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Payment processing and management
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Debt Policies (1 tool)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Debt policy management
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Reinsurance (1 tool)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Reinsurance operations
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Administrative & Configuration */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                  ⚙️ Administrative & Configuration
+                </h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Feature Configuration (4 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Product, tenant, and feature management
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Broker Management (3 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Broker consolidation and administration
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Users (5 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      User management and permissions
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Chat Settings (1 tool)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Communication configuration
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Request Tracking (1 tool)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Async operation monitoring
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Risk & Compliance */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                  🛡️ Risk & Compliance
+                </h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      High-Risk Cases (5 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Risk assessment and case management
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      High-Risk Data (1 tool)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Bulk high-risk data operations
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Audit (4 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Compliance reporting, audit logs, data access tracking
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Documents & Files */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                  📄 Documents & Files
+                </h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Documents (5 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Policy and quote document generation
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Invoice Files (2 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Invoice file management and validation
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Excel Calculator (2 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Calculator upload and management
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Business Intelligence */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                  📊 Business Intelligence
+                </h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Reports (5 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Business reporting and analytics
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Dashboards (5 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Business intelligence and renewal analytics
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Search (1 tool)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Universal multi-search across all entities
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Integrations & Services */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                  🔗 Integrations & Services
+                </h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Lookup Services (2 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Ireland address and postcode lookup
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Notifications (4 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Communication and alert systems
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Workflows (4 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Process automation and monitoring
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Customers (9 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Customer management and CRM operations
+                    </div>
+                  </div>
+                  <div className="bg-white border border-emerald-200 rounded-lg p-4">
+                    <div className="font-semibold text-emerald-600 mb-2">
+                      Schemes (15 tools)
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Schema and data structure management
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="insly-card">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
-                  <span className="text-emerald-600 font-bold text-xs">LG</span>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    Ledger Service
-                  </h3>
-                  <code className="text-xs text-gray-600">
-                    /ledger/[sse|mcp]
-                  </code>
-                </div>
-              </div>
-              <p className="text-sm text-gray-600 mb-2">
-                <strong>162 tools</strong> providing complete insurance business
-                operations with 100% API coverage.
-              </p>
-              <div className="text-xs text-green-600 font-semibold">
-                ✅ Production Ready
-              </div>
-            </div>
-
-            <div className="insly-card">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
-                  <span className="text-gray-600 font-bold text-xs">ALL</span>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    Unified Endpoint
-                  </h3>
-                  <code className="text-xs text-gray-600">/[sse|mcp]</code>
-                </div>
-              </div>
-              <p className="text-sm text-gray-600 mb-2">
-                <strong>190 tools</strong> from all services in a single
-                connection for comprehensive access.
-              </p>
-              <div className="text-xs text-green-600 font-semibold">
-                ✅ Production Ready
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -684,8 +858,8 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href="#features" className="insly-footer-link">
-                    Features
+                  <a href="#endpoints" className="insly-footer-link">
+                    Endpoints
                   </a>
                 </li>
               </ul>
