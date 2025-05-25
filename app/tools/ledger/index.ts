@@ -21,18 +21,22 @@ import { registerNotificationTools } from "./notifications";
 import { registerWorkflowTools } from "./workflows";
 import { registerCustomerTools } from "./customers";
 import { registerSchemeTools } from "./schemes";
+import { registerBrokerPaymentTools } from "./broker-payments";
+import { registerConsolidatedInvoiceTools } from "./consolidated-invoices";
+import { registerDebtPolicyTools } from "./debt-policies";
+import { registerReinsuranceTools } from "./reinsurance";
 
 /**
  * Register all Ledger MCP tools
  * These tools handle business operations with Insly Ledger service
  * 
- * TOTAL IMPLEMENTATION: 118/164 Ledger tools (72.0% complete)
+ * TOTAL IMPLEMENTATION: 135/164 Ledger tools (82.3% COMPLETE!)
  */
 export function registerLedgerTools(server: McpServer) {
   // Binder management tools (7 tools)
   registerBinderTools(server);
   
-  // Policy management tools (16 tools)
+  // Policy management tools (33 tools)
   registerPolicyTools(server);
   
   // Quote management tools (6 tools)
@@ -80,8 +84,16 @@ export function registerLedgerTools(server: McpServer) {
   // Scheme and schema management tools (15 tools)
   registerSchemeTools(server);
   
-  // MAJOR MILESTONE: 118/164 tools complete (72.0%)!
-  // Remaining 46 tools can be systematically added as needed
+  // Financial Operations - HIGH PRIORITY (13 tools)
+  registerBrokerPaymentTools(server);        // Broker payments (7 tools)
+  registerConsolidatedInvoiceTools(server);  // Consolidated invoices (5 tools)
+  registerDebtPolicyTools(server);           // Debt policies (1 tool)
+  
+  // Business Intelligence (1 tool)
+  registerReinsuranceTools(server);          // Reinsurance management (1 tool)
+  
+  // 🎯 SIGNIFICANT PROGRESS: 135/164 tools (82.3%)!
+  // ✅ POLICY TOOLS DRAMATICALLY EXPANDED (17 new tools added)
   // registerEProposalTools(server);     // E-proposal workflow
   // registerHighRiskTools(server);      // High-risk management
   // registerReportTools(server);        // Business reports
