@@ -216,6 +216,45 @@ export default function LedgerTools() {
               Set and manage financial reserves for claim settlement amounts
             </div>
           </div>
+          <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-green-100">
+            <div className="flex items-start justify-between mb-3">
+              <div className="text-lg font-semibold text-green-600 font-mono">
+                ledger_get_claim
+              </div>
+              <div className="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-full font-medium">
+                READ
+              </div>
+            </div>
+            <div className="text-sm text-gray-600 leading-relaxed">
+              Retrieve detailed claim information including status, amounts, and documentation
+            </div>
+          </div>
+          <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-green-100">
+            <div className="flex items-start justify-between mb-3">
+              <div className="text-lg font-semibold text-green-600 font-mono">
+                ledger_list_claims
+              </div>
+              <div className="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-full font-medium">
+                LIST
+              </div>
+            </div>
+            <div className="text-sm text-gray-600 leading-relaxed">
+              Browse claims with filtering by status, date range, and policy information
+            </div>
+          </div>
+          <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-green-100">
+            <div className="flex items-start justify-between mb-3">
+              <div className="text-lg font-semibold text-green-600 font-mono">
+                ledger_update_claim
+              </div>
+              <div className="px-2 py-1 bg-yellow-50 text-yellow-600 text-xs rounded-full font-medium">
+                UPDATE
+              </div>
+            </div>
+            <div className="text-sm text-gray-600 leading-relaxed">
+              Update claim details, status changes, and settlement information
+            </div>
+          </div>
         </div>
       </div>
 
@@ -245,7 +284,7 @@ export default function LedgerTools() {
             Electronic proposal workflows
           </div>
           <div className="bg-white rounded-lg p-3 shadow-sm">
-            <strong>Customers (8)</strong><br/>
+            <strong>Customers (9)</strong><br/>
             Customer management & profiles
           </div>
           <div className="bg-white rounded-lg p-3 shadow-sm">
@@ -297,8 +336,20 @@ export default function LedgerTools() {
             Payment processing
           </div>
           <div className="bg-white rounded-lg p-3 shadow-sm">
-            <strong>Search & More (30+)</strong><br/>
-            Search, lookup, integrations
+            <strong>Schemes (14)</strong><br/>
+            Schema & UI management
+          </div>
+          <div className="bg-white rounded-lg p-3 shadow-sm">
+            <strong>Excel Calculator (2)</strong><br/>
+            Calculator upload & management
+          </div>
+          <div className="bg-white rounded-lg p-3 shadow-sm">
+            <strong>Lookup Services (1)</strong><br/>
+            Address & postcode lookup
+          </div>
+          <div className="bg-white rounded-lg p-3 shadow-sm">
+            <strong>Other Services (8)</strong><br/>
+            Search, integrations, reinsurance
           </div>
         </div>
         <div className="mt-6 pt-6 border-t border-green-200">
