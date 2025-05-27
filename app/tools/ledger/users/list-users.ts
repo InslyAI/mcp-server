@@ -70,57 +70,30 @@ export function registerListUsersTool(server: McpServer) {
         if (sortOrder) queryParams.append('sort_order', sortOrder);
         
         const response = await client.get(
-          `/users?${queryParams.toString()}`
+          `/api/v1/ledger/users/simple-list?${queryParams.toString()}`
         );
 
+        // Handle different response structures
+        const userData = Array.isArray(response) ? response : (response.data || response);
+        
         return {
           content: [
             {
               type: "text" as const,
               text: JSON.stringify({
                 success: true,
-                users: response.data.map((user: any) => ({
-                  id: user.id,
-                  employeeId: user.employeeId,
+                users: Array.isArray(userData) ? userData.map((user: any) => ({
+                  // Map based on simple-list API structure
+                  id: user.value || user.id,
+                  name: user.label || user.name || user.fullName,
                   email: user.email,
-                  firstName: user.firstName,
-                  lastName: user.lastName,
-                  fullName: user.fullName,
-                  status: user.status,
-                  roles: user.roles,
-                  primaryRole: user.primaryRole,
-                  department: user.department,
-                  title: user.title,
-                  location: user.location,
-                  phoneNumber: user.phoneNumber,
-                  createdAt: user.createdAt,
-                  lastLogin: user.lastLogin,
-                  isOnline: user.isOnline,
-                  avatar: user.avatar,
-                  ...(includePermissions && { permissions: user.permissions }),
-                  ...(includeLastActivity && { lastActivity: user.lastActivity })
-                })),
-                pagination: {
-                  currentPage: response.pagination.currentPage,
-                  totalPages: response.pagination.totalPages,
-                  totalItems: response.pagination.totalItems,
-                  itemsPerPage: response.pagination.itemsPerPage,
-                  hasNext: response.pagination.hasNext,
-                  hasPrevious: response.pagination.hasPrevious
-                },
-                filters: {
-                  status,
-                  role,
-                  department,
-                  location,
-                  search,
-                  includePermissions,
-                  includeLastActivity,
-                  createdFrom,
-                  createdTo,
-                  lastLoginFrom,
-                  lastLoginTo
-                }
+                  sub: user.sub,
+                  group: user.group,
+                  // Include any other available fields
+                  ...user
+                })) : [],
+                totalCount: Array.isArray(userData) ? userData.length : 0,
+                rawResponse: response // For debugging
               }, null, 2)
             }
           ]
