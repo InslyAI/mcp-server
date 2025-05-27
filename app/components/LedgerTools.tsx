@@ -114,6 +114,50 @@ export default function LedgerTools() {
               Perform premium calculations with risk assessment and pricing algorithms
             </div>
           </div>
+          <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-green-100">
+            <div className="flex items-start justify-between mb-3">
+              <div className="text-lg font-semibold text-green-600 font-mono">
+                ledger_issue_policy
+              </div>
+              <div className="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded-full font-medium">
+                ACTION
+              </div>
+            </div>
+            <div className="text-sm text-gray-600 leading-relaxed">
+              Issue finalized policies and activate coverage for policyholders
+            </div>
+          </div>
+          <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-green-100">
+            <div className="flex items-start justify-between mb-3">
+              <div className="text-lg font-semibold text-green-600 font-mono">
+                ledger_renew_policy
+              </div>
+              <div className="px-2 py-1 bg-orange-50 text-orange-600 text-xs rounded-full font-medium">
+                RENEW
+              </div>
+            </div>
+            <div className="text-sm text-gray-600 leading-relaxed">
+              Process policy renewals with updated terms and premium calculations
+            </div>
+          </div>
+          <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-green-100">
+            <div className="flex items-start justify-between mb-3">
+              <div className="text-lg font-semibold text-green-600 font-mono">
+                ledger_terminate_policy
+              </div>
+              <div className="px-2 py-1 bg-red-50 text-red-600 text-xs rounded-full font-medium">
+                TERMINATE
+              </div>
+            </div>
+            <div className="text-sm text-gray-600 leading-relaxed">
+              Terminate policies with proper cancellation procedures and refund calculations
+            </div>
+          </div>
+        </div>
+        <div className="mt-6 p-4 bg-green-50 rounded-lg">
+          <p className="text-sm text-green-700">
+            <strong>Plus 24 additional tools:</strong> Policy documents, files, events, calculations, referrals, MTA creation, e-proposals, external policies, broker events, installments, history, links, imports, and more specialized operations.
+          </p>
         </div>
       </div>
 
@@ -163,6 +207,45 @@ export default function LedgerTools() {
             </div>
             <div className="text-sm text-gray-600 leading-relaxed">
               Perform quote calculations with risk assessment and pricing algorithms
+            </div>
+          </div>
+          <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-green-100">
+            <div className="flex items-start justify-between mb-3">
+              <div className="text-lg font-semibold text-green-600 font-mono">
+                ledger_copy_quote
+              </div>
+              <div className="px-2 py-1 bg-teal-50 text-teal-600 text-xs rounded-full font-medium">
+                COPY
+              </div>
+            </div>
+            <div className="text-sm text-gray-600 leading-relaxed">
+              Duplicate existing quotes with modified parameters and coverage options
+            </div>
+          </div>
+          <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-green-100">
+            <div className="flex items-start justify-between mb-3">
+              <div className="text-lg font-semibold text-green-600 font-mono">
+                ledger_issue_quote
+              </div>
+              <div className="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded-full font-medium">
+                ISSUE
+              </div>
+            </div>
+            <div className="text-sm text-gray-600 leading-relaxed">
+              Issue finalized quotes for customer review and acceptance
+            </div>
+          </div>
+          <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-green-100">
+            <div className="flex items-start justify-between mb-3">
+              <div className="text-lg font-semibold text-green-600 font-mono">
+                ledger_update_quote
+              </div>
+              <div className="px-2 py-1 bg-yellow-50 text-yellow-600 text-xs rounded-full font-medium">
+                UPDATE
+              </div>
+            </div>
+            <div className="text-sm text-gray-600 leading-relaxed">
+              Modify quote details, coverage amounts, and pricing parameters
             </div>
           </div>
         </div>
