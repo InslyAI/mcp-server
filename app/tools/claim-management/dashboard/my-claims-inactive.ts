@@ -1,30 +1,22 @@
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from 'zod';
 import { createClaimManagementClient } from '../client';
 
-const MyClaimsInactiveSchema = z.object({
-  bearerToken: z.string().describe('JWT bearer token from identifier_login'),
-  tenantId: z.string().describe('Tenant identifier for the organization'),
-  page: z.number().optional().describe('Page number for pagination (default: 1)'),
-  limit: z.number().optional().describe('Number of claims per page (default: 25)'),
-  inactiveDays: z.number().optional().describe('Number of days without activity to consider inactive (default: 30)'),
-  sortBy: z.string().optional().describe('Field to sort by (e.g., "last_activity", "created_at")'),
-  sortOrder: z.enum(['asc', 'desc']).optional().describe('Sort order (default: desc)'),
-});
-
-export function registerMyClaimsInactiveToolClaimManagement(server: any) {
-  server.setRequestHandler('tools/list', async () => ({
-    tools: [{
-      name: 'claim_management_dashboard_my_claims_inactive',
-      description: 'Get dashboard view of claims assigned to the current user that have been inactive for a specified period.',
-      inputSchema: MyClaimsInactiveSchema,
-    }]
-  }));
-
-  server.setRequestHandler('tools/call', async (request: any) => {
-    if (request.params.name === 'claim_management_dashboard_my_claims_inactive') {
+export function registerMyClaimsInactiveToolClaimManagement(server: McpServer) {
+  server.tool(
+    'claim_management_dashboard_my_claims_inactive',
+    'Get dashboard view of claims assigned to the current user that have been inactive for a specified period.',
+    {
+      bearerToken: z.string().min(1).describe('JWT bearer token from identifier_login'),
+      tenantId: z.string().describe('Tenant identifier for the organization'),
+      page: z.number().optional().describe('Page number for pagination (default: 1)'),
+      limit: z.number().optional().describe('Number of claims per page (default: 25)'),
+      inactiveDays: z.number().optional().describe('Number of days without activity to consider inactive (default: 30)'),
+      sortBy: z.string().optional().describe('Field to sort by (e.g., "last_activity", "created_at")'),
+      sortOrder: z.enum(['asc', 'desc']).optional().describe('Sort order (default: desc)'),
+    },
+    async ({ bearerToken, tenantId, page, limit, inactiveDays, sortBy, sortOrder }) => {
       try {
-        const { bearerToken, tenantId, page, limit, inactiveDays, sortBy, sortOrder } = MyClaimsInactiveSchema.parse(request.params.arguments);
-        
         const client = createClaimManagementClient(bearerToken, tenantId);
         
         // Build query parameters
@@ -40,19 +32,18 @@ export function registerMyClaimsInactiveToolClaimManagement(server: any) {
         
         return {
           content: [{
-            type: 'text',
+            type: 'text' as const,
             text: JSON.stringify(result, null, 2)
           }]
         };
       } catch (error) {
         return {
           content: [{
-            type: 'text',
+            type: 'text' as const,
             text: `Error getting inactive claims dashboard: ${error instanceof Error ? error.message : 'Unknown error'}`
-          }],
-          isError: true
+          }]
         };
       }
     }
-  });
+  );
 }

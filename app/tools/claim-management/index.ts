@@ -15,11 +15,10 @@ import { registerEntitiesTools } from './entities/index';
  * - Entity Lists (2 tools)
  */
 export function registerClaimManagementTools(server: McpServer) {
-  // TODO: Convert remaining tools to new MCP API format
   registerAccessManagementTools(server);
-  // registerBasicClaimsTools(server);
-  // registerDashboardTools(server);  
-  // registerEntitiesTools(server);
+  registerBasicClaimsTools(server);
+  registerDashboardTools(server);  
+  registerEntitiesTools(server);
 }
 
 // Export client for use in tools

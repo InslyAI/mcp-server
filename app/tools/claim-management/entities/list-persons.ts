@@ -1,29 +1,21 @@
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from 'zod';
 import { createClaimManagementClient } from '../client';
 
-const ListPersonsSchema = z.object({
-  bearerToken: z.string().describe('JWT bearer token from identifier_login'),
-  tenantId: z.string().describe('Tenant identifier for the organization'),
-  page: z.number().optional().describe('Page number for pagination (default: 1)'),
-  limit: z.number().optional().describe('Number of persons per page (default: 25)'),
-  personType: z.string().optional().describe('Filter by person type (e.g., "claimant", "witness", "adjuster", "expert")'),
-  search: z.string().optional().describe('Search term for person name, email, or identification'),
-});
-
-export function registerListPersonsToolClaimManagement(server: any) {
-  server.setRequestHandler('tools/list', async () => ({
-    tools: [{
-      name: 'claim_management_persons_list',
-      description: 'List all persons involved in claims (claimants, witnesses, adjusters, experts) across the system for reference.',
-      inputSchema: ListPersonsSchema,
-    }]
-  }));
-
-  server.setRequestHandler('tools/call', async (request: any) => {
-    if (request.params.name === 'claim_management_persons_list') {
+export function registerListPersonsToolClaimManagement(server: McpServer) {
+  server.tool(
+    'claim_management_persons_list',
+    'List all persons involved in claims (claimants, witnesses, adjusters, experts) across the system for reference.',
+    {
+      bearerToken: z.string().min(1).describe('JWT bearer token from identifier_login'),
+      tenantId: z.string().describe('Tenant identifier for the organization'),
+      page: z.number().optional().describe('Page number for pagination (default: 1)'),
+      limit: z.number().optional().describe('Number of persons per page (default: 25)'),
+      personType: z.string().optional().describe('Filter by person type (e.g., "claimant", "witness", "adjuster", "expert")'),
+      search: z.string().optional().describe('Search term for person name, email, or identification'),
+    },
+    async ({ bearerToken, tenantId, page, limit, personType, search }) => {
       try {
-        const { bearerToken, tenantId, page, limit, personType, search } = ListPersonsSchema.parse(request.params.arguments);
-        
         const client = createClaimManagementClient(bearerToken, tenantId);
         
         // Build query parameters
@@ -38,19 +30,18 @@ export function registerListPersonsToolClaimManagement(server: any) {
         
         return {
           content: [{
-            type: 'text',
+            type: 'text' as const,
             text: JSON.stringify(result, null, 2)
           }]
         };
       } catch (error) {
         return {
           content: [{
-            type: 'text',
+            type: 'text' as const,
             text: `Error listing persons: ${error instanceof Error ? error.message : 'Unknown error'}`
-          }],
-          isError: true
+          }]
         };
       }
     }
-  });
+  );
 }

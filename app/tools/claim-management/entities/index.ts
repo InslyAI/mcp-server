@@ -1,7 +1,8 @@
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { registerListObjectsToolClaimManagement } from './list-objects';
 import { registerListPersonsToolClaimManagement } from './list-persons';
 
-export function registerEntitiesTools(server: any) {
+export function registerEntitiesTools(server: McpServer) {
   registerListObjectsToolClaimManagement(server);
   registerListPersonsToolClaimManagement(server);
 }

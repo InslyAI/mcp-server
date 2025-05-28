@@ -105,8 +105,8 @@ export default function MCPEndpoints() {
               <strong>11 tools</strong> for complete claim lifecycle management 
               from FNOL to settlement (Phase 1).
             </p>
-            <div className="text-xs text-yellow-600 font-semibold">
-              🚧 In Development
+            <div className="text-xs text-green-600 font-semibold">
+              ✅ Production Ready
             </div>
           </a>
 
