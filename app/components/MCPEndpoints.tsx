@@ -9,7 +9,7 @@ export default function MCPEndpoints() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
           <a
             href="#formflow-tools"
             className="insly-card hover:shadow-lg transition-shadow cursor-pointer"
@@ -87,6 +87,30 @@ export default function MCPEndpoints() {
           </a>
 
           <a
+            href="#claim-management-tools"
+            className="insly-card hover:shadow-lg transition-shadow cursor-pointer"
+          >
+            <div className="flex items-center mb-4">
+              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                <span className="text-purple-600 font-bold text-xs">CM</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Claim Management
+                </h3>
+                <code className="text-xs text-gray-600">/claim-management/[sse|mcp]</code>
+              </div>
+            </div>
+            <p className="text-sm text-gray-600 mb-2">
+              <strong>11 tools</strong> for complete claim lifecycle management 
+              from FNOL to settlement (Phase 1).
+            </p>
+            <div className="text-xs text-yellow-600 font-semibold">
+              🚧 In Development
+            </div>
+          </a>
+
+          <a
             href="#tools"
             className="insly-card hover:shadow-lg transition-shadow cursor-pointer"
           >
@@ -102,7 +126,7 @@ export default function MCPEndpoints() {
               </div>
             </div>
             <p className="text-sm text-gray-600 mb-2">
-              <strong>165 tools</strong> from all services in a single
+              <strong>176 tools</strong> from all services in a single
               connection for comprehensive access.
             </p>
             <div className="text-xs text-green-600 font-semibold">
