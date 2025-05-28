@@ -9,7 +9,7 @@ import { createLedgerClient } from "../client";
 
 export function registerGetInvoiceDocumentsTool(server: McpServer) {
   server.tool(
-    "ledger_consolidated_invoices_get",
+    "ledger_consolidated_invoices_documents_get",
     "Get documents associated with a consolidated invoice including PDFs and supporting files",
     {
       bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),

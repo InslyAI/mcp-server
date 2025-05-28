@@ -9,7 +9,7 @@ import { createLedgerClient } from "../client";
 
 export function registerListPaymentsByPayerTool(server: McpServer) {
   server.tool(
-    "ledger_broker_payments_list",
+    "ledger_broker_payments_by_payer_list",
     "Get broker payments filtered by a specific payer (broker or insurer)",
     {
       bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),

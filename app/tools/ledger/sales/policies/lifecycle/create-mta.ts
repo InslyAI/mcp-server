@@ -9,7 +9,7 @@ import { createLedgerClient } from "../../../client";
 
 export function registerCreateMtaTool(server: McpServer) {
   server.tool(
-    "ledger_sales_policies_lifecycle_create",
+    "ledger_sales_policies_lifecycle_mta_create",
     "Create a Mid-Term Adjustment (MTA) for making changes to an existing policy during the policy term",
     {
       bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),

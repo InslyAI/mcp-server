@@ -9,7 +9,7 @@ import { createLedgerClient } from "../client";
 
 export function registerGetPaymentSuggestionTool(server: McpServer) {
   server.tool(
-    "ledger_broker_payments_get",
+    "ledger_broker_payments_suggestion_get",
     "Get payment suggestions and recommendations for broker payments",
     {
       bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),

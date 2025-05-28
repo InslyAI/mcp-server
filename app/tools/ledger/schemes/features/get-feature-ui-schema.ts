@@ -9,7 +9,7 @@ import { createLedgerClient } from "../../client";
 
 export function registerGetFeatureUiSchemaTool(server: McpServer) {
   server.tool(
-    "ledger_schemes_features_get",
+    "ledger_schemes_features_ui_get",
     "Get UI schema for rendering a specific product feature interface",
     {
       bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),

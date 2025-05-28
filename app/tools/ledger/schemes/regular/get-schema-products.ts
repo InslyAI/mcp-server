@@ -9,7 +9,7 @@ import { createLedgerClient } from "../../client";
 
 export function registerGetSchemaProductsTool(server: McpServer) {
   server.tool(
-    "ledger_schemes_regular_get",
+    "ledger_schemes_regular_products_get",
     "Get available products for a specific schema version",
     {
       bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),

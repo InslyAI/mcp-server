@@ -9,7 +9,7 @@ import { createLedgerClient } from "../../client";
 
 export function registerGetProductFeaturesTool(server: McpServer) {
   server.tool(
-    "ledger_sales_features_get",
+    "ledger_sales_features_product_get",
     "Retrieve feature configuration settings for a specific insurance product schema definitions for validation and integration",
     {
       bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),

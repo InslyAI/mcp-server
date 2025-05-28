@@ -9,7 +9,7 @@ import { createLedgerClient } from "../client";
 
 export function registerGetLastRequestedPeriodTool(server: McpServer) {
   server.tool(
-    "ledger_broker_payments_get",
+    "ledger_broker_payments_period_get",
     "Get information about the last requested payment period for broker payments",
     {
       bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),

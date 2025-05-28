@@ -9,7 +9,7 @@ import { createLedgerClient } from "../../client";
 
 export function registerGetRenewalSchemaTool(server: McpServer) {
   server.tool(
-    "ledger_schemes_regular_get",
+    "ledger_schemes_regular_renewal_get",
     "Retrieve JSON schema definitions for policy renewal products - use with React JSON Schema Form to create renewal payloads validation and form configuration",
     {
       bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),

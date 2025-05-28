@@ -9,7 +9,7 @@ import { createLedgerClient } from "../../../client";
 
 export function registerManagePolicyPackagesTool(server: McpServer) {
   server.tool(
-    "ledger_sales_policies_calculations_manage",
+    "ledger_sales_policies_calculations_packages_manage",
     "Manage policy packages and perform aggregated calculations",
     {
       bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),

@@ -9,7 +9,7 @@ import { createLedgerClient } from "../client";
 
 export function registerCreateCreditNoteTool(server: McpServer) {
   server.tool(
-    "ledger_consolidated_invoices_create",
+    "ledger_consolidated_invoices_credit_note_create",
     "Create a credit note for a consolidated invoice to handle refunds or adjustments",
     {
       bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
