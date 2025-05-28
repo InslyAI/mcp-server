@@ -42,7 +42,7 @@ export function registerStoreClaimToolClaimManagement(server: McpServer) {
     async ({ bearerToken, tenantId, ...claimData }: any) => {
       try {
         const client = createClaimManagementClient(bearerToken, tenantId);
-        const result = await client.post('/api/v1/claim-management/claims', claimData);
+        const result = await client.post('/api/v1/claim-management/fnol', claimData);
         
         return {
           content: [{
