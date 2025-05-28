@@ -5,39 +5,18 @@ import { createClaimManagementClient } from '../client';
 export function registerStoreClaimToolClaimManagement(server: McpServer) {
   server.tool(
     'claim_management_fnol_store_claim',
-    'Store/create a new claim (typically used by FNOL process)',
+    'Create FNOL (First Notice of Loss) claim using the proper FNOL API structure',
     {
       bearerToken: z.string().min(1).describe('JWT bearer token from identifier_login'),
       tenantId: z.string().describe('Tenant identifier for the organization'),
-      claimNumber: z.string().optional().describe('Claim number (auto-generated if not provided)'),
-      productType: z.string().describe('Insurance product type'),
-      policyNumber: z.string().optional().describe('Related policy number'),
-      claimantName: z.string().describe('Name of the claimant'),
-      claimantEmail: z.string().optional().describe('Email of the claimant'),
-      claimantPhone: z.string().optional().describe('Phone number of the claimant'),
-      incidentDate: z.string().describe('Date of incident (ISO 8601 format)'),
-      incidentLocation: z.string().describe('Location where incident occurred'),
-      incidentDescription: z.string().describe('Description of the incident'),
-      estimatedAmount: z.number().optional().describe('Estimated claim amount'),
-      priority: z.enum(['low', 'medium', 'high', 'urgent']).optional().describe('Claim priority level'),
-      assignedTo: z.string().optional().describe('User ID of assigned adjuster'),
-      status: z.string().optional().describe('Initial claim status'),
-      vehicleData: z.object({
-        registration: z.string().optional(),
-        make: z.string().optional(),
-        model: z.string().optional(),
-        year: z.number().optional(),
-        vin: z.string().optional()
-      }).optional().describe('Vehicle information (for motor claims)'),
-      thirdPartyData: z.object({
-        involved: z.boolean().optional(),
-        name: z.string().optional(),
-        contactInfo: z.string().optional(),
-        insuranceCompany: z.string().optional()
-      }).optional().describe('Third party information'),
-      emergencyServices: z.boolean().optional().describe('Whether emergency services were called'),
-      attachments: z.array(z.string()).optional().describe('List of document/attachment references'),
-      customFields: z.record(z.any()).optional().describe('Additional custom fields specific to the product')
+      productGroup: z.string().describe('Product group (e.g., "motor", "property")'),
+      products: z.array(z.string()).describe('Array of product codes (e.g., ["mtpl", "casco"])'),
+      data: z.record(z.any()).describe('FNOL data with dotted field names (e.g., "claim.data.policyNo", "objects.0.data.name")'),
+      schema: z.object({
+        name: z.string().describe('Schema name (e.g., "motor-claim")'),
+        type: z.string().describe('Schema type (e.g., "fnol")'),
+        version: z.number().describe('Schema version (e.g., 1)')
+      }).describe('Schema definition for the FNOL')
     },
     async ({ bearerToken, tenantId, ...claimData }: any) => {
       try {
