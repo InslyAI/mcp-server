@@ -2,7 +2,7 @@ export default function MCPEndpoints() {
   return (
     <section id="endpoints" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 max-w-7xl mx-auto">
           <a
             href="/formflow"
             className="insly-card hover:shadow-lg transition-shadow cursor-pointer"
@@ -93,9 +93,32 @@ export default function MCPEndpoints() {
               </div>
             </div>
             <p className="text-sm text-gray-600 mb-2">
-              <strong>92 tools</strong> for complete claim lifecycle management
-              including FNOL, tasks, objects, persons, and financial operations
-              (Phase 4).
+              <strong>66 tools</strong> for complete claim lifecycle management
+              including FNOL, tasks, objects, persons, and financial operations.
+            </p>
+            <div className="text-xs text-green-600 font-semibold">
+              ✅ Production Ready
+            </div>
+          </a>
+
+          <a
+            href="/site-service"
+            className="insly-card hover:shadow-lg transition-shadow cursor-pointer"
+          >
+            <div className="flex items-center mb-4">
+              <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                <span className="text-yellow-600 font-bold text-xs">SS</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900">Site Service</h3>
+                <code className="text-xs text-gray-600">
+                  /site-service/[sse|mcp]
+                </code>
+              </div>
+            </div>
+            <p className="text-sm text-gray-600 mb-2">
+              <strong>32 tools</strong> for tenant configuration management,
+              features, products, schemes, and static documents.
             </p>
             <div className="text-xs text-green-600 font-semibold">
               ✅ Production Ready
@@ -118,7 +141,7 @@ export default function MCPEndpoints() {
               </div>
             </div>
             <p className="text-sm text-gray-600 mb-2">
-              <strong>257 tools</strong> from all services in a single
+              <strong>263 tools</strong> from all services in a single
               connection for comprehensive access.
             </p>
             <div className="text-xs text-green-600 font-semibold">

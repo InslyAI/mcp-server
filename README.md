@@ -2,12 +2,12 @@
 
 **AI-powered Model Context Protocol server for insly.com insurance platform**
 
-This is the main MCP (Model Context Protocol) server for insly.ai, providing AI-powered tools and capabilities for insurance operations. Built with Next.js and featuring comprehensive service integrations with **257 specialized tools** across four services: FormFlow (27 tools), Identifier (3 tools), Ledger (135 tools), and **Claim Management (92 tools - COMPLETE API COVERAGE)**.
+This is the main MCP (Model Context Protocol) server for insly.ai, providing AI-powered tools and capabilities for insurance operations. Built with Next.js and featuring comprehensive service integrations with **263 specialized tools** across five services: FormFlow (27 tools), Identifier (3 tools), Ledger (135 tools), Claim Management (66 tools), and **Site Service (32 tools - COMPLETE TENANT CONFIGURATION)**.
 
 ## 🌟 Features Highlights
 
 - **Professional Landing Page** - Authentic Insly branding with detailed service subpages and responsive design
-- **Comprehensive Tool Suite** - **257 MCP tools** across four services covering all insurance workflow needs
+- **Comprehensive Tool Suite** - **263 MCP tools** across five services covering all insurance workflow needs
 - **Service-Specific Subpages** - Dedicated pages for each service with structured tool documentation
 - **Dual Authentication** - Both credential-based and JWT bearer token support for enhanced security
 - **Enterprise Ready** - Production-deployed with professional design and performance optimization
@@ -17,11 +17,12 @@ This is the main MCP (Model Context Protocol) server for insly.ai, providing AI-
 - **Professional Landing Page** - Authentic Insly branding with exact colors (#FF7D00 orange, #22524A dark green) and real logo
 - **Service-Specific Subpages** - Dedicated documentation pages for each service with comprehensive tool listings
 - **Modular Tool Architecture** - Each MCP tool is implemented in separate files for easy maintenance
-- **Multi-Service Integration** - Complete API integration with **257 specialized tools** across four services:
+- **Multi-Service Integration** - Complete API integration with **263 specialized tools** across five services:
   - **FormFlow (27 tools)** - Document processing and AI extraction
   - **Identifier (3 tools)** - Authentication and identity management
   - **Ledger (135 tools)** - Complete insurance business operations
-  - **Claim Management (92 tools)** - Full claim lifecycle management
+  - **Claim Management (66 tools)** - Full claim lifecycle management
+  - **Site Service (32 tools)** - Complete tenant configuration management
 - **Dual Authentication System** - Both credential-based and JWT bearer token authentication for enhanced security
 - **AI-Powered Document Processing** - Advanced data extraction and metadata generation using AI
 - **Insurance-focused Operations** - Form submissions, templates, webhooks, and AI-driven document analysis
