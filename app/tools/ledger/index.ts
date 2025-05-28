@@ -30,7 +30,7 @@ import { registerSearchTools } from "./search";
 import { registerRequestTrackingTools } from "./requests";
 import { registerBrokerManagementTools } from "./brokers";
 import { registerExcelCalculatorTools } from "./excel-calculator";
-import { registerInvoiceFilesTools } from "./invoice-files";
+import { registerInvoiceFilesTools } from "./invoices";
 import { registerChatSettingsTools } from "./chat";
 
 /**
