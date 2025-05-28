@@ -2,7 +2,7 @@ export default function MCPEndpoints() {
   return (
     <section id="endpoints" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           <a
             href="/formflow"
             className="insly-card hover:shadow-lg transition-shadow cursor-pointer"
@@ -93,7 +93,7 @@ export default function MCPEndpoints() {
               </div>
             </div>
             <p className="text-sm text-gray-600 mb-2">
-              <strong>66 tools</strong> for complete claim lifecycle management
+              <strong>92 tools</strong> for complete claim lifecycle management
               including FNOL, tasks, objects, persons, and financial operations.
             </p>
             <div className="text-xs text-green-600 font-semibold">
@@ -141,7 +141,7 @@ export default function MCPEndpoints() {
               </div>
             </div>
             <p className="text-sm text-gray-600 mb-2">
-              <strong>263 tools</strong> from all services in a single
+              <strong>289 tools</strong> from all services in a single
               connection for comprehensive access.
             </p>
             <div className="text-xs text-green-600 font-semibold">
