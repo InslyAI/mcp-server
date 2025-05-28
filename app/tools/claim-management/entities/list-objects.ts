@@ -4,7 +4,7 @@ import { createClaimManagementClient } from '../client';
 
 export function registerListObjectsToolClaimManagement(server: McpServer) {
   server.tool(
-    'claim_management_objects_list',
+    'claim_management_entities_objects_list',
     'List all claim objects (vehicles, properties, equipment) across the system for reference and selection.',
     {
       bearerToken: z.string().min(1).describe('JWT bearer token from identifier_login'),

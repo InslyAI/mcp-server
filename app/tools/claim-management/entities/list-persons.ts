@@ -4,7 +4,7 @@ import { createClaimManagementClient } from '../client';
 
 export function registerListPersonsToolClaimManagement(server: McpServer) {
   server.tool(
-    'claim_management_persons_list',
+    'claim_management_entities_persons_list',
     'List all persons involved in claims (claimants, witnesses, adjusters, experts) across the system for reference.',
     {
       bearerToken: z.string().min(1).describe('JWT bearer token from identifier_login'),
