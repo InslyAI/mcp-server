@@ -28,7 +28,7 @@ export default function MCPEndpoints() {
               </div>
             </div>
             <p className="text-sm text-gray-600 mb-2">
-              <strong>25 tools</strong> for insurance document processing, AI
+              <strong>27 tools</strong> for insurance document processing, AI
               extraction, and form management.
             </p>
             <div className="text-xs text-green-600 font-semibold">
@@ -78,7 +78,7 @@ export default function MCPEndpoints() {
               </div>
             </div>
             <p className="text-sm text-gray-600 mb-2">
-              <strong>162 tools</strong> providing complete insurance business
+              <strong>135 tools</strong> providing complete insurance business
               operations with 100% API coverage.
             </p>
             <div className="text-xs text-green-600 font-semibold">
@@ -102,7 +102,7 @@ export default function MCPEndpoints() {
               </div>
             </div>
             <p className="text-sm text-gray-600 mb-2">
-              <strong>190 tools</strong> from all services in a single
+              <strong>165 tools</strong> from all services in a single
               connection for comprehensive access.
             </p>
             <div className="text-xs text-green-600 font-semibold">

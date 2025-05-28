@@ -8,7 +8,7 @@ export default function LedgerTools() {
           </div>
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-2">
-              Ledger Service Tools (162 Total) - Complete API Coverage
+              Ledger Service Tools (135 Total) - Complete API Coverage
             </h2>
             <p className="text-lg text-gray-600">
               Comprehensive insurance business operations platform with complete API coverage across all domains

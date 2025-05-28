@@ -8,7 +8,7 @@ export default function FormFlowTools() {
           </div>
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-2">
-              FormFlow Service Tools (25 Total)
+              FormFlow Service Tools (27 Total)
             </h2>
             <p className="text-lg text-gray-600">
               Professional document processing and AI-powered form management for insurance operations
