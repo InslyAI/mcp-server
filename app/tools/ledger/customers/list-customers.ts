@@ -12,7 +12,7 @@ export function registerListCustomersTool(server: McpServer) {
     "ledger_customers_list",
     "Get a list of all customers in the system",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
     },
     async ({ bearerToken, tenantId }) => {

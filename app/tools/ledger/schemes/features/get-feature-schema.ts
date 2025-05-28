@@ -10,9 +10,9 @@ import { LedgerClient } from "../../client";
 export function registerGetFeatureSchemaTool(server: McpServer) {
   server.tool(
     "ledger_schemes_features_get",
-    "Get JSON schema for a specific product feature",
+    "Retrieve JSON schema definitions for a specific product feature validation and form configuration",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       featureName: z.string().describe("Name of the feature to get schema for"),
     },

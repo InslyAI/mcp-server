@@ -12,13 +12,13 @@ export function registerIssuePolicyTool(server: McpServer) {
     "ledger_sales_policies_lifecycle_issue",
     "Issue a final policy from a quote or draft, making it active and binding",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to issue"),
+      policyId: z.string().min(1).describe("ID of the policy to issue"),
       issuanceData: z.object({
-        effectiveDate: z.string().describe("Policy effective date (YYYY-MM-DD)"),
+        effectiveDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).describe("Policy effective date (YYYY-MM-DD)"),
         issueDate: z.string().optional().describe("Date of issuance (defaults to current date)"),
-        finalPremium: z.number().optional().describe("Final confirmed premium amount"),
+        finalPremium: z.number().positive().optional().describe("Final confirmed premium amount"),
         paymentTerms: z.string().optional().describe("Payment terms for the policy"),
         policyNumber: z.string().optional().describe("Specific policy number to assign"),
         issuedBy: z.string().optional().describe("User ID of who issued the policy"),

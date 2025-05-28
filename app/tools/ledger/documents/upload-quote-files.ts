@@ -7,7 +7,7 @@ export function registerUploadQuoteFilesTools(server: McpServer) {
     "ledger_documents_upload",
     "Upload one or more files to a quote. Files are attached as supporting documents to the quote record",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       quoteId: z.number().int().positive().describe("Unique identifier of the quote"),
       files: z.array(z.object({

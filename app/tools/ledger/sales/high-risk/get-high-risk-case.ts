@@ -10,11 +10,11 @@ import { LedgerClient } from "../../client";
 export function registerGetHighRiskCaseTool(server: McpServer) {
   server.tool(
     "ledger_sales_high_risk_get",
-    "Get detailed information about a specific high-risk case including risk factors and workflow history",
+    "Retrieve detailed details about a specific high-risk case including risk factors and workflow history",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      caseId: z.string().describe("ID of the high-risk case to retrieve"),
+      caseId: z.string().min(1).describe("ID of the high-risk case to retrieve"),
       includeHistory: z.boolean().optional().describe("Whether to include workflow history"),
       includeDocuments: z.boolean().optional().describe("Whether to include related documents"),
       includeComments: z.boolean().optional().describe("Whether to include case comments"),

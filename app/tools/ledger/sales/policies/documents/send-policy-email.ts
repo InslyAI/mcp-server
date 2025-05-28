@@ -12,9 +12,9 @@ export function registerSendPolicyEmailTool(server: McpServer) {
     "ledger_sales_policies_documents_send",
     "Send email notifications and information requests related to policies",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy for email communication"),
+      policyId: z.string().min(1).describe("ID of the policy for email communication"),
       emailType: z.enum(["request_information", "general_email"]).describe("Type of email to send"),
       emailData: z.object({
         recipient: z.string().optional().describe("Email recipient"),

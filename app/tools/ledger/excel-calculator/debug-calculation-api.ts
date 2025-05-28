@@ -12,7 +12,7 @@ export function registerDebugCalculationApiTool(server: McpServer) {
     "ledger_excel_calculator_debug_calculation_api",
     "Debug calculation API issues and get diagnostic information for troubleshooting",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       debugOptions: z.object({
         calculatorId: z.string().optional().describe("Specific calculator to debug"),

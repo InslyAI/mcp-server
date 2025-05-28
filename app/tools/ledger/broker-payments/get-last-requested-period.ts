@@ -12,7 +12,7 @@ export function registerGetLastRequestedPeriodTool(server: McpServer) {
     "ledger_broker_payments_get",
     "Get information about the last requested payment period for broker payments",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       brokerId: z.string().optional().describe("Optional broker ID to filter by specific broker"),
     },

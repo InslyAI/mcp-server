@@ -7,7 +7,7 @@ export function registerCopyQuoteTools(server: McpServer) {
     "ledger_sales_quotes_copy",
     "Create a copy of an existing quote. Only non-MTA (non-Mid Term Adjustment) quotes can be copied",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       sourceQuoteId: z.number().int().positive().describe("ID of the quote to copy"),
       acceptLanguage: z.string().optional().describe("Accept-Language header (e.g., 'en-US', 'et-EE')"),

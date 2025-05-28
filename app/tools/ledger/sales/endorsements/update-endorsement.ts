@@ -10,11 +10,11 @@ import { LedgerClient } from "../../client";
 export function registerUpdateEndorsementTool(server: McpServer) {
   server.tool(
     "ledger_sales_endorsements_update",
-    "Update an existing policy endorsement with new data or changes",
+    "Update an existing policy endorsement using new data or changes for accurate record management",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      endorsementId: z.string().describe("ID of the endorsement to update"),
+      endorsementId: z.string().min(1).describe("ID of the endorsement to update"),
       updateData: z.object({
         reason: z.string().optional().describe("Updated reason for the endorsement"),
         effectiveDate: z.string().optional().describe("Updated effective date (ISO date)"),

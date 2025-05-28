@@ -10,9 +10,9 @@ import { LedgerClient } from "../../client";
 export function registerGetProductFeaturesTool(server: McpServer) {
   server.tool(
     "ledger_sales_features_get",
-    "Get feature configuration settings for a specific insurance product schema",
+    "Retrieve feature configuration settings for a specific insurance product schema definitions for validation and integration",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       schemaName: z.string().describe("Name of the product schema to get features for"),
       includeDefaults: z.boolean().optional().describe("Include default feature values"),

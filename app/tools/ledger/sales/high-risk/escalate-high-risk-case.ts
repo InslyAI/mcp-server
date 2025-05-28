@@ -12,9 +12,9 @@ export function registerEscalateHighRiskCaseTool(server: McpServer) {
     "ledger_sales_high_risk_escalate",
     "Escalate a high-risk case to higher authority levels for specialized review and decision-making",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      caseId: z.string().describe("ID of the high-risk case to escalate"),
+      caseId: z.string().min(1).describe("ID of the high-risk case to escalate"),
       escalationData: z.object({
         escalateTo: z.enum(['senior', 'executive', 'board', 'external_expert']).describe("Escalation level to escalate to"),
         reason: z.string().describe("Detailed reason for escalation"),

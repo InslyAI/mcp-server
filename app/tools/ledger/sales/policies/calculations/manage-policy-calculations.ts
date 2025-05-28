@@ -12,7 +12,7 @@ export function registerManagePolicyCalculationsTool(server: McpServer) {
     "ledger_sales_policies_calculations_manage",
     "Manage various policy calculation operations including specific and batch calculations",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       calculationType: z.enum(["specific", "batch"]).describe("Type of calculation to perform"),
       policyId: z.string().optional().describe("Policy ID for specific calculations"),

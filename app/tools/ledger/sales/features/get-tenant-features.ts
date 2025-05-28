@@ -12,7 +12,7 @@ export function registerGetTenantFeaturesTool(server: McpServer) {
     "ledger_sales_features_get",
     "Get tenant-wide feature configuration settings and capabilities",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       includePermissions: z.boolean().optional().describe("Include permission settings"),
       includeLimits: z.boolean().optional().describe("Include usage limits and quotas"),

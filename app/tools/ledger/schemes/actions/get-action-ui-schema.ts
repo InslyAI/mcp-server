@@ -12,7 +12,7 @@ export function registerGetActionUiSchemaTool(server: McpServer) {
     "ledger_schemes_actions_get",
     "Get UI schema for rendering action type interfaces",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       actionType: z.string().describe("Type of action to get UI schema for"),
     },

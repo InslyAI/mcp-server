@@ -5,9 +5,9 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 export function registerGenerateQuoteDocumentTools(server: McpServer) {
   server.tool(
     "ledger_documents_generate",
-    "Generate the main quote document or a specific document type for a quote. Returns binary document content",
+    "Generate the main quote document or a specific document type for a quote. Returns binary documents in PDF/Word format for delivery and compliance content",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       quoteId: z.number().int().positive().describe("Unique identifier of the quote"),
       documentType: z.string().optional().describe("Specific document type to generate (e.g., 'wording'). If not provided, generates main document"),

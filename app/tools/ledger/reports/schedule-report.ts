@@ -12,7 +12,7 @@ export function registerScheduleReportTool(server: McpServer) {
     "ledger_reports_schedule",
     "Schedule automatic generation of business reports on a recurring basis with customizable parameters",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       scheduleConfig: z.object({
         name: z.string().describe("Name for the scheduled report"),
@@ -55,7 +55,7 @@ export function registerScheduleReportTool(server: McpServer) {
           timezone: z.string().optional().describe("Timezone for scheduling (default: UTC)")
         }).describe("Schedule configuration"),
         recipients: z.array(z.object({
-          email: z.string().describe("Recipient email address"),
+          email: z.string().email().describe("Recipient email address"),
           role: z.string().optional().describe("Recipient role/title"),
           deliveryMethod: z.enum(['email_attachment', 'email_link', 'portal_notification']).optional().describe("How to deliver the report")
         })).optional().describe("Report recipients"),

@@ -10,9 +10,9 @@ import { LedgerClient } from "../../client";
 export function registerGetPolicyProductsTool(server: McpServer) {
   server.tool(
     "ledger_schemes_policy_get_products",
-    "Get available products for a specific object type in policy schema",
+    "Retrieve available products for a specific object type in policy schema definitions for validation and integration",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       schemaName: z.string().describe("Name of the policy schema"),
       objectType: z.string().describe("Object type to get products for (e.g., building, vehicle)"),

@@ -10,9 +10,9 @@ import { LedgerClient } from "../../client";
 export function registerListEndorsementsTool(server: McpServer) {
   server.tool(
     "ledger_sales_endorsements_list",
-    "Get paginated list of policy endorsements with filtering and search options",
+    "Get paginated list of policy endorsements with advanced filtering, search capabilities, and sorting options",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       policyId: z.string().optional().describe("Filter by specific policy ID"),
       status: z.enum(['draft', 'pending_approval', 'approved', 'rejected', 'issued']).optional().describe("Filter by endorsement status"),
@@ -21,8 +21,8 @@ export function registerListEndorsementsTool(server: McpServer) {
       dateTo: z.string().optional().describe("Filter by effective date to (ISO date)"),
       requestedBy: z.string().optional().describe("Filter by who requested the endorsement"),
       search: z.string().optional().describe("Search term for endorsement reason or description"),
-      page: z.number().optional().describe("Page number for pagination (default: 1)"),
-      limit: z.number().optional().describe("Number of results per page (default: 20, max: 100)"),
+      page: z.number().int().min(1).optional().describe("Page number for pagination (default: 1) (starting from 1)"),
+      limit: z.number().int().min(1).max(1000).optional().describe("Number of results per page (default: 20, max: 100) (1-1000)"),
       sortBy: z.enum(['effectiveDate', 'createdAt', 'updatedAt', 'premiumAdjustment']).optional().describe("Field to sort by"),
       sortOrder: z.enum(['asc', 'desc']).optional().describe("Sort order (default: desc)"),
     },

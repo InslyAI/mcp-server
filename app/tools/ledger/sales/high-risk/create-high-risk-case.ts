@@ -12,11 +12,11 @@ export function registerCreateHighRiskCaseTool(server: McpServer) {
     "ledger_sales_high_risk_create",
     "Create a new high-risk case requiring special underwriting attention and management",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       caseData: z.object({
         relatedEntityType: z.enum(['quote', 'policy', 'endorsement', 'claim', 'e_proposal']).describe("Type of entity this case relates to"),
-        relatedEntityId: z.string().describe("ID of the related quote, policy, endorsement, claim, or e-proposal"),
+        relatedEntityId: z.string().min(1).describe("ID of the related quote, policy, endorsement, claim, or e-proposal"),
         riskLevel: z.enum(['high', 'critical', 'extreme']).describe("Risk level classification"),
         riskCategories: z.array(z.string()).describe("Risk categories (e.g., ['financial', 'operational', 'regulatory', 'fraud'])"),
         riskFactors: z.array(z.object({

@@ -12,7 +12,7 @@ export function registerGetPolicyInsurersTool(server: McpServer) {
     "ledger_schemes_policy_get_insurers",
     "Get available insurers for policy schema configuration",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       schemaName: z.string().describe("Name of the policy schema"),
       objectType: z.string().describe("Object type to get insurers for"),

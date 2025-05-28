@@ -10,11 +10,11 @@ import { LedgerClient } from "../client";
 export function registerGetPaymentDetailTool(server: McpServer) {
   server.tool(
     "ledger_broker_payments_get",
-    "Get detailed information about a specific broker payment including commissions and breakdowns",
+    "Retrieve broker payment details including commission calculations, tax breakdowns, and payment schedules",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      paymentId: z.string().describe("ID of the payment to get details for"),
+      paymentId: z.string().min(1).describe("ID of the payment to get details for"),
     },
     async ({ bearerToken, tenantId, paymentId }) => {
       try {

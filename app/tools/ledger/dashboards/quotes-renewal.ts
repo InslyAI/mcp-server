@@ -7,7 +7,7 @@ export function registerQuotesRenewalTools(server: McpServer) {
     "ledger_dashboards_quotes_renewal",
     "Get dashboard data for renewal quotes that have been created by renewal processes and are not yet issued. Supports filtering by product, status, and broker",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       filterProduct: z.string().optional().describe("Filter by product name (e.g., 'casco', 'liability')"),
       filterStatus: z.string().optional().describe("Filter by renewal quote status"),

@@ -10,9 +10,9 @@ import { LedgerClient } from "../client";
 export function registerListReinsuranceTool(server: McpServer) {
   server.tool(
     "ledger_reinsurance_list",
-    "Get list of reinsurance arrangements and related information",
+    "Retrieve list of reinsurance arrangements and related details",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       filters: z.object({
         reinsurerId: z.string().optional().describe("Filter by reinsurer ID"),

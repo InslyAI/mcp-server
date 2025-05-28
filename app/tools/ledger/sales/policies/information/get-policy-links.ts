@@ -12,9 +12,9 @@ export function registerGetPolicyLinksTool(server: McpServer) {
     "ledger_sales_policies_get_links",
     "Get related links and resources for a policy including actions, documents, and related policies",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to get links for"),
+      policyId: z.string().min(1).describe("ID of the policy to get links for"),
       linkTypes: z.array(z.string()).optional().describe("Specific types of links to retrieve (actions, documents, related_policies, etc.)")
     },
     async ({ bearerToken, tenantId, policyId, linkTypes }) => {

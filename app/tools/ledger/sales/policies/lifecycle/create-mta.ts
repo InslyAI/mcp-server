@@ -12,19 +12,19 @@ export function registerCreateMtaTool(server: McpServer) {
     "ledger_sales_policies_lifecycle_create",
     "Create a Mid-Term Adjustment (MTA) for making changes to an existing policy during the policy term",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       mtaData: z.object({
-        basePolicyId: z.string().describe("ID of the base policy to create MTA for"),
+        basePolicyId: z.string().min(1).describe("ID of the base policy to create MTA for"),
         mtaType: z.string().describe("Type of MTA (coverage_change, risk_change, etc.)"),
-        effectiveDate: z.string().describe("Effective date for the MTA (YYYY-MM-DD)"),
+        effectiveDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).describe("Effective date for the MTA (YYYY-MM-DD)"),
         reason: z.string().describe("Reason for the MTA"),
         changes: z.record(z.any()).describe("Specific changes to be made to the policy"),
         requestedBy: z.string().optional().describe("Who requested the MTA (customer, broker, etc.)"),
         requestDate: z.string().optional().describe("Date when MTA was requested (YYYY-MM-DD)"),
         priority: z.string().optional().describe("Priority level (high, medium, low)"),
         customerImpact: z.string().optional().describe("Description of impact on customer"),
-        premiumAdjustment: z.number().optional().describe("Expected premium adjustment amount")
+        premiumAdjustment: z.number().positive().optional().describe("Expected premium adjustment amount")
       }).describe("MTA data and configuration")
     },
     async ({ bearerToken, tenantId, mtaData }) => {

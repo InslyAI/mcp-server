@@ -10,11 +10,11 @@ import { LedgerClient } from "../../client";
 export function registerUpdateHighRiskCaseTool(server: McpServer) {
   server.tool(
     "ledger_sales_high_risk_update",
-    "Update an existing high-risk case with new information, status changes, or additional risk factors",
+    "Update an existing high-risk case using new information, status changes, or additional risk factors for accurate record management",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      caseId: z.string().describe("ID of the high-risk case to update"),
+      caseId: z.string().min(1).describe("ID of the high-risk case to update"),
       updateData: z.object({
         status: z.enum(['open', 'under_review', 'pending_decision', 'approved', 'declined', 'escalated', 'resolved']).optional().describe("Updated case status"),
         riskLevel: z.enum(['high', 'critical', 'extreme']).optional().describe("Updated risk level classification"),

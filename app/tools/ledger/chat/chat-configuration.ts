@@ -12,7 +12,7 @@ export function registerChatConfigurationTool(server: McpServer) {
     "ledger_chat_chat_configuration",
     "Configure chat settings, notifications, and communication preferences",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       operation: z.enum(["get", "update", "reset", "validate"]).describe("Configuration operation"),
       configData: z.object({

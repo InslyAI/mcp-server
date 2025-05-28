@@ -10,21 +10,21 @@ import { LedgerClient } from "../client";
 export function registerListConsolidatedInvoicesTool(server: McpServer) {
   server.tool(
     "ledger_consolidated_invoices_list",
-    "Get paginated list of consolidated invoices with filtering options",
+    "Get paginated list of consolidated invoices with filtering by status, type, and business criteria",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       filters: z.object({
         brokerId: z.string().optional().describe("Filter by broker ID"),
         status: z.array(z.string()).optional().describe("Filter by invoice status"),
         dateFrom: z.string().optional().describe("Start date filter (YYYY-MM-DD)"),
         dateTo: z.string().optional().describe("End date filter (YYYY-MM-DD)"),
-        minAmount: z.number().optional().describe("Minimum invoice amount"),
-        maxAmount: z.number().optional().describe("Maximum invoice amount")
+        minAmount: z.number().positive().optional().describe("Minimum invoice amount"),
+        maxAmount: z.number().positive().optional().describe("Maximum invoice amount")
       }).optional().describe("Filter parameters"),
       pagination: z.object({
-        page: z.number().optional().describe("Page number (default: 1)"),
-        limit: z.number().optional().describe("Items per page (default: 20)")
+        page: z.number().int().min(1).optional().describe("Page number (default: 1) (starting from 1)"),
+        limit: z.number().int().min(1).max(1000).optional().describe("Items per page (default: 20) (1-1000)")
       }).optional().describe("Pagination parameters")
     },
     async ({ bearerToken, tenantId, filters, pagination }) => {

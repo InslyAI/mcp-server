@@ -12,7 +12,7 @@ export function registerGetSpecificFeatureTool(server: McpServer) {
     "ledger_sales_features_get",
     "Get detailed configuration for a specific tenant feature",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       featureName: z.string().describe("Name of the specific feature to retrieve"),
       includeHistory: z.boolean().optional().describe("Include feature change history"),

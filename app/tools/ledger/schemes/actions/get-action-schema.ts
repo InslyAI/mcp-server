@@ -10,9 +10,9 @@ import { LedgerClient } from "../../client";
 export function registerGetActionSchemaTool(server: McpServer) {
   server.tool(
     "ledger_schemes_actions_get",
-    "Get JSON schema for specific action types in the system",
+    "Retrieve JSON schema definitions for configuring specific action types and validation rules",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       actionType: z.string().describe("Type of action to get schema for"),
     },

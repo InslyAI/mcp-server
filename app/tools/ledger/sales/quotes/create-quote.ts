@@ -7,7 +7,7 @@ export function registerCreateQuoteTools(server: McpServer) {
     "ledger_sales_quotes_create",
     "Create a new insurance quote using a specific product schema with customer and risk data",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       schema: z.string().describe("Product schema name (e.g., 'casco', 'liability', 'property')"),
       quoteData: z.record(z.any()).describe("Quote data according to the product schema structure"),

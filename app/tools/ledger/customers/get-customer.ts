@@ -10,11 +10,11 @@ import { LedgerClient } from "../client";
 export function registerGetCustomerTool(server: McpServer) {
   server.tool(
     "ledger_customers_get",
-    "Get detailed information about a specific customer by ID",
+    "Retrieve detailed details about a specific customer by ID",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      customerId: z.string().describe("ID of the customer to retrieve"),
+      customerId: z.string().min(1).describe("ID of the customer to retrieve"),
     },
     async ({ bearerToken, tenantId, customerId }) => {
       try {

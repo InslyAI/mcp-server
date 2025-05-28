@@ -10,11 +10,11 @@ import { LedgerClient } from "../client";
 export function registerGetConsolidatedInvoiceTool(server: McpServer) {
   server.tool(
     "ledger_consolidated_invoices_get",
-    "Get detailed information about a specific consolidated invoice",
+    "Retrieve detailed details about a specific consolidated invoice",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      invoiceId: z.string().describe("ID of the consolidated invoice to retrieve"),
+      invoiceId: z.string().min(1).describe("ID of the consolidated invoice to retrieve"),
     },
     async ({ bearerToken, tenantId, invoiceId }) => {
       try {

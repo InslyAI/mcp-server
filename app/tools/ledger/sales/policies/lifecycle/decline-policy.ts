@@ -12,9 +12,9 @@ export function registerDeclinePolicyTool(server: McpServer) {
     "ledger_sales_policies_lifecycle_decline",
     "Decline a policy draft with specified reason and optional details",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to decline"),
+      policyId: z.string().min(1).describe("ID of the policy to decline"),
       declineData: z.object({
         reason: z.string().describe("Reason for declining the policy"),
         details: z.string().optional().describe("Detailed explanation for the decline"),

@@ -12,7 +12,7 @@ export function registerManageInvoiceFilesTool(server: McpServer) {
     "ledger_invoices_manage",
     "Manage invoice files including upload, download, and metadata operations",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       invoiceId: z.string().describe("Invoice ID"),
       operation: z.enum(["list", "upload", "download", "delete", "metadata"]).describe("File operation to perform"),
@@ -103,12 +103,12 @@ export function registerInvoiceFileValidationTool(server: McpServer) {
     "ledger_invoices_manage",
     "Validate invoice files for compliance, format, and content requirements",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       fileData: z.object({
         fileName: z.string().describe("Name of the file to validate"),
         fileContent: z.string().optional().describe("Base64 encoded file content"),
-        fileUrl: z.string().optional().describe("URL to the file for validation"),
+        fileUrl: z.string().url().optional().describe("URL to the file for validation"),
         validationType: z.enum(["format", "content", "compliance", "all"]).describe("Type of validation to perform")
       }).describe("File validation data"),
       validationRules: z.object({

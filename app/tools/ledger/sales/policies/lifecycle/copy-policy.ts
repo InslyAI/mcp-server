@@ -12,9 +12,9 @@ export function registerCopyPolicyTool(server: McpServer) {
     "ledger_sales_policies_lifecycle_copy",
     "Create a copy of an existing policy/quote for reuse or modification",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      sourcePolicyId: z.string().describe("ID of the source policy to copy"),
+      sourcePolicyId: z.string().min(1).describe("ID of the source policy to copy"),
       copyOptions: z.object({
         newCustomerId: z.string().optional().describe("Customer ID for the new policy copy"),
         copyName: z.string().optional().describe("Name/reference for the copied policy"),

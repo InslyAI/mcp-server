@@ -12,9 +12,9 @@ export function registerManagePolicyPackagesTool(server: McpServer) {
     "ledger_sales_policies_calculations_manage",
     "Manage policy packages and perform aggregated calculations",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to manage packages for"),
+      policyId: z.string().min(1).describe("ID of the policy to manage packages for"),
       action: z.enum(["get_calculation", "set_packages"]).describe("Action to perform"),
       packageData: z.object({
         packages: z.array(z.record(z.any())).optional().describe("Package data for set action"),

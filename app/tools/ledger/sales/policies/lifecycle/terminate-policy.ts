@@ -19,7 +19,7 @@ export function registerTerminatePolicyTools(server: McpServer) {
     "ledger_sales_policies_lifecycle_terminate",
     "Terminate an existing policy with specified termination type and financial details",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       policyId: z.number().int().positive().describe("Unique identifier of the policy to terminate"),
       terminationData: PolicyTerminationSchema.describe("Termination configuration including type, date, and financial details"),

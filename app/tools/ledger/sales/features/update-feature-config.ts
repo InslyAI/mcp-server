@@ -12,7 +12,7 @@ export function registerUpdateFeatureConfigTool(server: McpServer) {
     "ledger_sales_features_update",
     "Update feature configuration settings for products or tenant",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       configType: z.enum(["product", "tenant"]).describe("Type of configuration to update"),
       targetId: z.string().describe("Schema name for product or feature name for tenant"),

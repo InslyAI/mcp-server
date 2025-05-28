@@ -10,11 +10,11 @@ import { LedgerClient } from "../../../client";
 export function registerUpdatePolicyTool(server: McpServer) {
   server.tool(
     "ledger_sales_policies_information_update",
-    "Update an existing policy/quote with new data - follows JSON schema validation",
+    "Update an existing policy/quote using new data - follows JSON schema validation for accurate record management",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy/quote to update"),
+      policyId: z.string().min(1).describe("ID of the policy/quote to update"),
       policyData: z.object({
         data: z.record(z.any()).describe("Updated policy data conforming to the JSON schema"),
         schema: z.string().optional().describe("Schema path if changed"),
@@ -23,7 +23,7 @@ export function registerUpdatePolicyTool(server: McpServer) {
         effectiveDate: z.string().optional().describe("Policy effective date (YYYY-MM-DD)"),
         expiryDate: z.string().optional().describe("Policy expiry date (YYYY-MM-DD)"),
         currency: z.string().optional().describe("Policy currency code"),
-        premium: z.number().optional().describe("Policy premium amount"),
+        premium: z.number().positive().optional().describe("Policy premium amount"),
         status: z.string().optional().describe("Policy status")
       }).describe("Updated policy/quote data"),
       withNotifications: z.boolean().optional().describe("Include notifications and validation warnings in response"),

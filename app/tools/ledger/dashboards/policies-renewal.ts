@@ -7,7 +7,7 @@ export function registerPoliciesRenewalTools(server: McpServer) {
     "ledger_dashboards_policies_renewal",
     "Get dashboard data for policies that are eligible for renewal and don't have renewed policies issued yet. Filters by expiry timeframe",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       daysBeforeExpiry: z.number().int().positive().describe("Filter by days before expiry date (required - e.g., 30 for policies expiring within 30 days)"),
       filterProduct: z.string().optional().describe("Filter by product name (e.g., 'casco', 'liability')"),

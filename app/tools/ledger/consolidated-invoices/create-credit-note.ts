@@ -12,11 +12,11 @@ export function registerCreateCreditNoteTool(server: McpServer) {
     "ledger_consolidated_invoices_create",
     "Create a credit note for a consolidated invoice to handle refunds or adjustments",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      consolidatedInvoiceId: z.string().describe("ID of the consolidated invoice to credit"),
+      consolidatedInvoiceId: z.string().min(1).describe("ID of the consolidated invoice to credit"),
       creditData: z.object({
-        creditAmount: z.number().describe("Amount to credit"),
+        creditAmount: z.number().positive().describe("Amount to credit"),
         creditReason: z.string().describe("Reason for the credit note"),
         creditType: z.string().optional().describe("Type of credit (refund, adjustment, error, etc.)"),
         affectedInvoices: z.array(z.string()).optional().describe("Specific invoice numbers affected"),

@@ -12,9 +12,9 @@ export function registerManagePolicyFilesTool(server: McpServer) {
     "ledger_sales_policies_documents_manage",
     "Upload and manage files associated with a policy",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to manage files for"),
+      policyId: z.string().min(1).describe("ID of the policy to manage files for"),
       action: z.enum(["list", "upload", "delete"]).describe("Action to perform on policy files"),
       fileData: z.object({
         fileName: z.string().optional().describe("Name of the file"),

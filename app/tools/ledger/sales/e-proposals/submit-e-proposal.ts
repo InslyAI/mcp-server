@@ -12,9 +12,9 @@ export function registerSubmitEProposalTool(server: McpServer) {
     "ledger_sales_e_proposals_submit",
     "Submit an electronic proposal for underwriting review and approval workflow",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      proposalId: z.string().describe("ID of the e-proposal to submit"),
+      proposalId: z.string().min(1).describe("ID of the e-proposal to submit"),
       submissionData: z.object({
         underwriterAssignment: z.string().optional().describe("Specific underwriter to assign (if not auto-assigned)"),
         submissionComments: z.string().optional().describe("Additional comments for underwriter"),

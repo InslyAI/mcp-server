@@ -7,7 +7,7 @@ export function registerCalculateQuoteTools(server: McpServer) {
     "ledger_sales_quotes_calculate",
     "Calculate premiums and pricing for a quote by updating and calculating in one operation",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       schema: z.string().describe("Product schema name (e.g., 'casco', 'liability', 'property')"),
       quoteId: z.number().int().positive().describe("Unique identifier of the quote to calculate"),

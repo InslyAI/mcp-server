@@ -12,9 +12,9 @@ export function registerGetInstallmentsScheduleTool(server: McpServer) {
     "ledger_sales_policies_get_installments",
     "Get payment installment schedule for a specific policy",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to get installment schedule for"),
+      policyId: z.string().min(1).describe("ID of the policy to get installment schedule for"),
       scheduleOptions: z.object({
         includeHistory: z.boolean().optional().describe("Include payment history"),
         includeUpcoming: z.boolean().optional().describe("Include upcoming payments"),

@@ -12,9 +12,9 @@ export function registerCreateEndorsementTool(server: McpServer) {
     "ledger_sales_endorsements_create",
     "Create a new policy endorsement for modifying an existing policy",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to endorse"),
+      policyId: z.string().min(1).describe("ID of the policy to endorse"),
       endorsementData: z.object({
         type: z.string().describe("Type of endorsement (e.g., 'coverage_change', 'term_extension', 'premium_adjustment')"),
         reason: z.string().describe("Reason for the endorsement"),

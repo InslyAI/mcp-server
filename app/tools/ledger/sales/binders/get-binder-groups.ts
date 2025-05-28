@@ -7,7 +7,7 @@ export function registerGetBinderGroupsTools(server: McpServer) {
     "ledger_sales_binders_get",
     "Get list of available binder groups/categories for organizing binders",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
     },
     async ({ bearerToken, tenantId }) => {

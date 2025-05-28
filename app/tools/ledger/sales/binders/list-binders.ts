@@ -7,7 +7,7 @@ export function registerListBindersTools(server: McpServer) {
     "ledger_sales_binders_list",
     "Get paginated list of binders with full details and filtering options",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       pageLimit: z.number().int().positive().optional().describe("Number of items per page (default: 25)"),
       cursor: z.string().optional().describe("Pagination cursor for next/previous page"),

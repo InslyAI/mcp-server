@@ -12,7 +12,7 @@ export function registerListPoliciesTool(server: McpServer) {
     "ledger_sales_policies_information_list",
     "Get a paginated list of policies with comprehensive filtering and search options",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       filters: z.object({
         customerId: z.string().optional().describe("Filter by customer ID"),
@@ -23,14 +23,14 @@ export function registerListPoliciesTool(server: McpServer) {
         effectiveDateTo: z.string().optional().describe("Filter by effective date to (YYYY-MM-DD)"),
         expiryDateFrom: z.string().optional().describe("Filter by expiry date from (YYYY-MM-DD)"),
         expiryDateTo: z.string().optional().describe("Filter by expiry date to (YYYY-MM-DD)"),
-        premiumMin: z.number().optional().describe("Minimum premium amount filter"),
-        premiumMax: z.number().optional().describe("Maximum premium amount filter"),
+        premiumMin: z.number().positive().optional().describe("Minimum premium amount filter"),
+        premiumMax: z.number().positive().optional().describe("Maximum premium amount filter"),
         currency: z.string().optional().describe("Filter by currency code"),
         searchTerm: z.string().optional().describe("Search term for policy number, customer name, etc.")
       }).optional().describe("Filtering options"),
       pagination: z.object({
-        page: z.number().optional().describe("Page number (default: 1)"),
-        limit: z.number().optional().describe("Number of items per page (default: 20)"),
+        page: z.number().int().min(1).optional().describe("Page number (default: 1) (starting from 1)"),
+        limit: z.number().int().min(1).max(1000).optional().describe("Number of items per page (default: 20) (1-1000)"),
         sortBy: z.string().optional().describe("Field to sort by (createdAt, effectiveDate, premium, etc.)"),
         sortOrder: z.enum(["asc", "desc"]).optional().describe("Sort order (default: desc)")
       }).optional().describe("Pagination options")

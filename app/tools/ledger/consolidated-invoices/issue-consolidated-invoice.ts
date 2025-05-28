@@ -12,9 +12,9 @@ export function registerIssueConsolidatedInvoiceTool(server: McpServer) {
     "ledger_consolidated_invoices_issue",
     "Issue a consolidated invoice to make it final and binding for payment",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      consolidatedInvoiceId: z.string().describe("ID of the consolidated invoice to issue"),
+      consolidatedInvoiceId: z.string().min(1).describe("ID of the consolidated invoice to issue"),
       issuanceData: z.object({
         issueDate: z.string().optional().describe("Date of issuance (defaults to current date)"),
         dueDate: z.string().describe("Payment due date for the invoice"),

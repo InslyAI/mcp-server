@@ -12,13 +12,13 @@ export function registerBindPolicyTool(server: McpServer) {
     "ledger_sales_policies_lifecycle_bind",
     "Bind/lock a policy draft to prevent further changes and prepare for issuance",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy draft to bind"),
+      policyId: z.string().min(1).describe("ID of the policy draft to bind"),
       bindingData: z.object({
         bindingDate: z.string().optional().describe("Date when policy is bound (YYYY-MM-DD)"),
         bindingNotes: z.string().optional().describe("Notes for the binding process"),
-        confirmedPremium: z.number().optional().describe("Confirmed premium amount"),
+        confirmedPremium: z.number().positive().optional().describe("Confirmed premium amount"),
         paymentMethod: z.string().optional().describe("Payment method for the policy"),
         paymentTerms: z.string().optional().describe("Payment terms (annual, monthly, etc.)"),
         bindingAuthorization: z.string().optional().describe("Authorization reference for binding")

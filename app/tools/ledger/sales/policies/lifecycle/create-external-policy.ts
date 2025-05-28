@@ -12,15 +12,15 @@ export function registerCreateExternalPolicyTool(server: McpServer) {
     "ledger_sales_policies_lifecycle_create",
     "Create a policy from external product sources and integrations",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      product: z.string().describe("External product identifier"),
+      product: z.string().min(1).describe("External product identifier"),
       policyData: z.object({
         externalReference: z.string().describe("External system reference"),
         customerData: z.record(z.any()).describe("Customer information"),
         policyDetails: z.record(z.any()).describe("Policy details from external system"),
         effectiveDate: z.string().optional().describe("Policy effective date"),
-        premium: z.number().optional().describe("Policy premium amount"),
+        premium: z.number().positive().optional().describe("Policy premium amount"),
         currency: z.string().optional().describe("Policy currency")
       }).describe("External policy data")
     },

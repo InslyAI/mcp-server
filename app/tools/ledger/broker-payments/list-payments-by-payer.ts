@@ -12,16 +12,16 @@ export function registerListPaymentsByPayerTool(server: McpServer) {
     "ledger_broker_payments_list",
     "Get broker payments filtered by a specific payer (broker or insurer)",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      payer: z.string().describe("Payer identifier (broker ID or insurer ID)"),
+      payer: z.string().min(1).describe("Payer identifier (broker ID or insurer ID)"),
       filters: z.object({
         dateFrom: z.string().optional().describe("Start date filter (YYYY-MM-DD)"),
         dateTo: z.string().optional().describe("End date filter (YYYY-MM-DD)"),
         status: z.array(z.string()).optional().describe("Filter by payment status"),
         paymentType: z.string().optional().describe("Type of payment (commission, fee, etc.)"),
-        minAmount: z.number().optional().describe("Minimum payment amount"),
-        maxAmount: z.number().optional().describe("Maximum payment amount"),
+        minAmount: z.number().positive().optional().describe("Minimum payment amount"),
+        maxAmount: z.number().positive().optional().describe("Maximum payment amount"),
         currency: z.string().optional().describe("Filter by currency")
       }).optional().describe("Additional filter parameters")
     },

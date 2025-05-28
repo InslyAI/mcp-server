@@ -12,9 +12,9 @@ export function registerGetAvailableInvoicesTool(server: McpServer) {
     "ledger_consolidated_invoices_get",
     "Get list of invoices that can be added to a consolidated invoice",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      consolidatedInvoiceId: z.string().describe("ID of the consolidated invoice"),
+      consolidatedInvoiceId: z.string().min(1).describe("ID of the consolidated invoice"),
       pagination: z.object({
         cursor: z.string().optional().describe("Cursor for pagination navigation"),
         limit: z.number().optional().describe("Maximum number of invoices to return")

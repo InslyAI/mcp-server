@@ -12,9 +12,9 @@ export function registerApproveEProposalTool(server: McpServer) {
     "ledger_sales_e_proposals_approve",
     "Approve or reject an electronic proposal after underwriting review with decision details",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      proposalId: z.string().describe("ID of the e-proposal to approve/reject"),
+      proposalId: z.string().min(1).describe("ID of the e-proposal to approve/reject"),
       decision: z.object({
         action: z.enum(['approve', 'reject', 'request_more_info', 'conditional_approval']).describe("Underwriting decision"),
         approvalTerms: z.object({

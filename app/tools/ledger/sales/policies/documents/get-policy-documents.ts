@@ -12,9 +12,9 @@ export function registerGetPolicyDocumentsTool(server: McpServer) {
     "ledger_sales_policies_documents_get",
     "Get list of generated documents for a specific policy",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to get documents for"),
+      policyId: z.string().min(1).describe("ID of the policy to get documents for"),
       documentType: z.string().optional().describe("Optional filter by document type"),
     },
     async ({ bearerToken, tenantId, policyId, documentType }) => {

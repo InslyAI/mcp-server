@@ -5,9 +5,9 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 export function registerGetPolicyTools(server: McpServer) {
   server.tool(
     "ledger_sales_policies_get",
-    "Get detailed information about a specific policy by ID",
+    "Retrieve detailed details about a specific policy by ID",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       policyId: z.number().int().positive().describe("Unique identifier of the policy to retrieve"),
       forceCoverageDateFormat: z.boolean().optional().describe("Force coverage date format (default: true)"),

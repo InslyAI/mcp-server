@@ -12,9 +12,9 @@ export function registerCalculateEndorsementTool(server: McpServer) {
     "ledger_sales_endorsements_calculate",
     "Calculate premium adjustments and pricing impact for a policy endorsement",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      endorsementId: z.string().describe("ID of the endorsement to calculate"),
+      endorsementId: z.string().min(1).describe("ID of the endorsement to calculate"),
       calculationOptions: z.object({
         effectiveDate: z.string().optional().describe("Override effective date for calculation (ISO date)"),
         proRata: z.boolean().optional().describe("Whether to apply pro-rata calculation"),

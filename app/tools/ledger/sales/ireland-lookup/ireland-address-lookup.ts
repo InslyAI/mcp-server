@@ -12,7 +12,7 @@ export function registerIrelandAddressLookupTool(server: McpServer) {
     "ledger_sales_lookup_ireland_address_lookup",
     "Look up and validate addresses in Ireland using official postal services",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       query: z.string().describe("Address search query (partial address, postcode, etc.)"),
       options: z.object({
@@ -71,7 +71,7 @@ export function registerIrelandPostcodeLookupTool(server: McpServer) {
     "ledger_sales_lookup_ireland_address_lookup",
     "Look up postcodes and Eircode information for Ireland addresses",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       addressData: z.object({
         addressLine1: z.string().optional(),

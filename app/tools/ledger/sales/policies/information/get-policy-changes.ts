@@ -12,9 +12,9 @@ export function registerGetPolicyChangesTool(server: McpServer) {
     "ledger_sales_policies_get_changes",
     "Get detailed change history and modifications for a specific policy",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to get changes for"),
+      policyId: z.string().min(1).describe("ID of the policy to get changes for"),
       changeFilters: z.object({
         changeType: z.string().optional().describe("Filter by type of change"),
         dateFrom: z.string().optional().describe("Start date for changes (YYYY-MM-DD)"),

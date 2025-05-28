@@ -4,11 +4,11 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 // Schema for insurer object
 const InsurerSchema = z.object({
-  insurer: z.string().describe("Insurer identifier (e.g., 'lloyds')"),
-  isLead: z.boolean().describe("Whether this insurer is the lead insurer"),
-  grossCommPct: z.number().describe("Gross commission percentage"),
-  premiumSharePct: z.number().describe("Premium share percentage"),
-  allowCommSacrifice: z.boolean().describe("Whether commission sacrifice is allowed"),
+  insurer: z.string().min(1).describe("Insurer identifier (e.g., 'lloyds')"),
+  isLead: z.boolean().default(false).describe("Whether this insurer is the lead insurer"),
+  grossCommPct: z.number().min(0).max(100).describe("Gross commission percentage (0-100)"),
+  premiumSharePct: z.number().min(0).max(100).describe("Premium share percentage (0-100)"),
+  allowCommSacrifice: z.boolean().default(false).describe("Whether commission sacrifice is allowed"),
 });
 
 // Schema for share object
@@ -27,7 +27,7 @@ const LimitationSchema = z.object({
 // Schema for document object
 const DocumentSchema = z.object({
   documentType: z.string().describe("Document type (e.g., 'other')"),
-  fileUpload: z.boolean().describe("Whether file upload is enabled"),
+  fileUpload: z.boolean().default(false).describe("Whether file upload is enabled"),
   file: z.string().optional().describe("File identifier or path"),
 });
 
@@ -41,9 +41,9 @@ const CreateBinderSchema = z.object({
     underwriter: z.string().describe("Underwriter name"),
   }),
   contractDetails: z.object({
-    startDate: z.string().describe("Start date (YYYY-MM-DD format)"),
-    endDate: z.string().describe("End date (YYYY-MM-DD format)"),
-    product: z.string().describe("Product identifier (e.g., 'insurer-warranty')"),
+    startDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).describe("Start date (YYYY-MM-DD format)"),
+    endDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).describe("End date (YYYY-MM-DD format)"),
+    product: z.string().min(1).describe("Product identifier (e.g., 'insurer-warranty')"),
     status: z.string().describe("Binder status (e.g., 'active')"),
   }),
   shares: z.array(ShareSchema).describe("Array of risk sharing configurations"),
@@ -58,7 +58,7 @@ export function registerCreateBinderTools(server: McpServer) {
     "ledger_sales_binders_create",
     "Create a new sales binder with comprehensive configuration including summary, contract details, shares, limitations, and documents",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       binderData: CreateBinderSchema.describe("Complete binder configuration object"),
     },

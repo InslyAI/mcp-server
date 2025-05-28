@@ -7,9 +7,9 @@ export function registerIssueQuoteTools(server: McpServer) {
     "ledger_sales_quotes_issue",
     "Issue a quote to convert it into a policy. This is an asynchronous operation that returns a request ID for status tracking",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
-      quoteId: z.string().describe("Unique identifier of the quote to issue"),
+      quoteId: z.string().min(1).describe("Unique identifier of the quote to issue"),
       issueData: z.record(z.any()).optional().describe("Additional data required for issuing (installments, effective date, etc.)"),
     },
     async ({ bearerToken, tenantId, quoteId, issueData }) => {

@@ -7,7 +7,7 @@ export function registerLedgerListBinderNamesTool(server: McpServer) {
     "ledger_sales_binders_list",
     "Get list of binder names and IDs for dropdown/selection purposes. Returns simplified binder data optimized for UI components.",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       filterProduct: z.string().optional().describe("Filter binders by product"),
       filterStatus: z.array(z.string()).optional().describe("Filter by binder status (e.g., ['active'])"),

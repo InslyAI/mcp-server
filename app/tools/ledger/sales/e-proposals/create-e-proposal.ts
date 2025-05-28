@@ -12,15 +12,15 @@ export function registerCreateEProposalTool(server: McpServer) {
     "ledger_sales_e_proposals_create",
     "Create a new electronic proposal for streamlined underwriting and approval workflow",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       proposalData: z.object({
-        productId: z.string().describe("ID of the insurance product"),
-        brokerId: z.string().describe("ID of the broker submitting the proposal"),
+        productId: z.string().min(1).describe("ID of the insurance product"),
+        brokerId: z.string().min(1).describe("ID of the broker submitting the proposal"),
         clientData: z.object({
           name: z.string().describe("Client company or individual name"),
           email: z.string().describe("Primary contact email"),
-          phone: z.string().optional().describe("Contact phone number"),
+          phone: z.string().regex(/^[\+]?[0-9\s\-\(\)]{7,15}$/).optional().describe("Contact phone number (international format)"),
           address: z.object({
             street: z.string(),
             city: z.string(),

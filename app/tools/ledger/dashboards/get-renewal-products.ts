@@ -7,7 +7,7 @@ export function registerGetRenewalProductsTools(server: McpServer) {
     "ledger_dashboards_get_renewal_products",
     "Get list of renewable products that are editable by the current user. These products support renewal quote generation",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
     },
     async ({ bearerToken, tenantId }) => {

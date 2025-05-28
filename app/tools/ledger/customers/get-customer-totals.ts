@@ -12,9 +12,9 @@ export function registerGetCustomerTotalsTool(server: McpServer) {
     "ledger_customers_get",
     "Get financial totals and statistics for a specific customer including premium amounts, policy counts, and overdue payments",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      customerId: z.string().describe("ID of the customer to get totals for"),
+      customerId: z.string().min(1).describe("ID of the customer to get totals for"),
     },
     async ({ bearerToken, tenantId, customerId }) => {
       try {

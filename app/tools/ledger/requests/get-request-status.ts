@@ -12,9 +12,9 @@ export function registerGetRequestStatusTool(server: McpServer) {
     "ledger_requests_get",
     "Get status of asynchronous operations like quote processing, policy issuance, or bulk calculations",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      requestId: z.string().describe("ID of the request to check status for"),
+      requestId: z.string().min(1).describe("ID of the request to check status for"),
       includeDetails: z.boolean().optional().describe("Include detailed progress information"),
       includeLogs: z.boolean().optional().describe("Include execution logs")
     },

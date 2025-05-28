@@ -10,11 +10,11 @@ import { LedgerClient } from "../../client";
 export function registerGetEProposalTool(server: McpServer) {
   server.tool(
     "ledger_sales_e_proposals_get",
-    "Get detailed information about a specific electronic proposal including status and workflow",
+    "Retrieve detailed details about a specific electronic proposal including status and workflow",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      proposalId: z.string().describe("ID of the e-proposal to retrieve"),
+      proposalId: z.string().min(1).describe("ID of the e-proposal to retrieve"),
       includeHistory: z.boolean().optional().describe("Whether to include workflow history"),
       includeAttachments: z.boolean().optional().describe("Whether to include attachment metadata"),
       includeComments: z.boolean().optional().describe("Whether to include underwriter comments"),

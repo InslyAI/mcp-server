@@ -10,11 +10,11 @@ import { LedgerClient } from "../client";
 export function registerGetCustomerProfileTool(server: McpServer) {
   server.tool(
     "ledger_customers_get",
-    "Get comprehensive profile information for a customer including personal details, preferences, and account settings",
+    "Retrieve comprehensive profile details for a customer including personal details, preferences, and account settings",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      customerId: z.string().describe("ID of the customer to get profile for"),
+      customerId: z.string().min(1).describe("ID of the customer to get profile for"),
     },
     async ({ bearerToken, tenantId, customerId }) => {
       try {

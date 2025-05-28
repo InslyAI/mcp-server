@@ -12,7 +12,7 @@ export function registerGetFeatureUiSchemaTool(server: McpServer) {
     "ledger_schemes_features_get",
     "Get UI schema for rendering a specific product feature interface",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       featureName: z.string().describe("Name of the feature to get UI schema for"),
     },

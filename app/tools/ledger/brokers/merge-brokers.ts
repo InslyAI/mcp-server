@@ -12,10 +12,10 @@ export function registerMergeBrokersTool(server: McpServer) {
     "ledger_brokers_merge_brokers",
     "Merge duplicate broker accounts and consolidate their policies, commissions, and data",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       mergeData: z.object({
-        primaryBrokerId: z.string().describe("ID of the broker to keep as primary"),
+        primaryBrokerId: z.string().min(1).describe("ID of the broker to keep as primary"),
         duplicateBrokerIds: z.array(z.string()).describe("IDs of duplicate brokers to merge into primary"),
         mergeOptions: z.object({
           mergePolicies: z.boolean().optional().describe("Merge all policies to primary broker"),

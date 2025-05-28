@@ -12,9 +12,9 @@ export function registerCalculatePolicyTool(server: McpServer) {
     "ledger_sales_policies_calculations_calculate",
     "Calculate premium and pricing for a policy/quote based on current data",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy/quote to calculate"),
+      policyId: z.string().min(1).describe("ID of the policy/quote to calculate"),
       calculationOptions: z.object({
         forceRecalculation: z.boolean().optional().describe("Force recalculation even if cached"),
         includeBreakdown: z.boolean().optional().describe("Include detailed premium breakdown"),

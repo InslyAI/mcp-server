@@ -12,9 +12,9 @@ export function registerUnbindPolicyTool(server: McpServer) {
     "ledger_sales_policies_lifecycle_unbind",
     "Unbind/unlock a policy to allow further changes and modifications",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to unbind"),
+      policyId: z.string().min(1).describe("ID of the policy to unbind"),
       unbindingReason: z.string().optional().describe("Reason for unbinding the policy")
     },
     async ({ bearerToken, tenantId, policyId, unbindingReason }) => {

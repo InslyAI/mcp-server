@@ -12,9 +12,9 @@ export function registerManagePolicyActionsTool(server: McpServer) {
     "ledger_sales_policies_information_manage",
     "Manage policy actions and workflow operations",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      actionId: z.string().describe("ID of the action to manage"),
+      actionId: z.string().min(1).describe("ID of the action to manage"),
       actionData: z.object({
         actionType: z.string().optional().describe("Type of action to perform"),
         parameters: z.record(z.any()).optional().describe("Action parameters"),

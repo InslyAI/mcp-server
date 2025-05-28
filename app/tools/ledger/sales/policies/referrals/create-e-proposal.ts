@@ -12,9 +12,9 @@ export function registerCreateEProposalTool(server: McpServer) {
     "ledger_sales_policies_referrals_create",
     "Create an electronic proposal from a policy/quote for customer review and acceptance",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      quoteId: z.string().describe("ID of the quote to create e-proposal from"),
+      quoteId: z.string().min(1).describe("ID of the quote to create e-proposal from"),
       proposalData: z.object({
         customerEmail: z.string().email().describe("Customer email for proposal delivery"),
         expiryDate: z.string().optional().describe("Proposal expiry date (YYYY-MM-DD)"),

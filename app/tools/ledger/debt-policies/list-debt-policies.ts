@@ -12,11 +12,11 @@ export function registerListDebtPoliciesTool(server: McpServer) {
     "ledger_debt_policies_list",
     "Get list of policies with outstanding debt and payment issues",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       filters: z.object({
-        minDebtAmount: z.number().optional().describe("Minimum debt amount filter"),
-        maxDebtAmount: z.number().optional().describe("Maximum debt amount filter"),
+        minDebtAmount: z.number().positive().optional().describe("Minimum debt amount filter"),
+        maxDebtAmount: z.number().positive().optional().describe("Maximum debt amount filter"),
         daysPastDue: z.number().optional().describe("Filter by days past due"),
         brokerId: z.string().optional().describe("Filter by broker ID"),
         customerId: z.string().optional().describe("Filter by customer ID"),

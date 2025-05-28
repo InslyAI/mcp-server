@@ -12,9 +12,9 @@ export function registerGetBrokerPoliciesCountTool(server: McpServer) {
     "ledger_brokers_get_policies_count",
     "Get policy count for a broker to validate merge operations and assess impact",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      brokerId: z.string().describe("ID of the broker to get policy count for"),
+      brokerId: z.string().min(1).describe("ID of the broker to get policy count for"),
       includeInactive: z.boolean().optional().describe("Include inactive/terminated policies"),
       groupByStatus: z.boolean().optional().describe("Group results by policy status"),
       dateRange: z.object({

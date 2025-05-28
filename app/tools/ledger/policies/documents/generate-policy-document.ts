@@ -5,9 +5,9 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 export function registerGeneratePolicyDocumentTools(server: McpServer) {
   server.tool(
     "ledger_policies_documents_generate",
-    "Generate a policy document of a specific type. The document is generated based on the policy data and returns binary content",
+    "Generate policy documents (certificates, wordings, quotes) in PDF/Word format for customer delivery and compliance",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       policyId: z.number().int().positive().describe("Unique identifier of the policy"),
       documentType: z.string().describe("Type of document to generate (e.g., 'quote', 'wording', 'certificate')"),

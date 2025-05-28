@@ -12,10 +12,10 @@ export function registerCreateBdxReportTool(server: McpServer) {
     "ledger_broker_payments_create",
     "Create a BDX broker payment report for an insurer at a specific time",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      insurer: z.string().describe("Insurer identifier for the report"),
-      reportTime: z.string().describe("Report time in ISO format (YYYY-MM-DDTHH:mm:ssZ)"),
+      insurer: z.string().min(1).describe("Insurer identifier for the report"),
+      reportTime: z.string().datetime().describe("Report time in ISO format (YYYY-MM-DDTHH:mm:ssZ)"),
     },
     async ({ bearerToken, tenantId, insurer, reportTime }) => {
       try {

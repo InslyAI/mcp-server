@@ -12,9 +12,9 @@ export function registerCalculatePolicyDebugTool(server: McpServer) {
     "ledger_sales_policies_calculations_calculate",
     "Perform debug calculation for policy pricing with detailed breakdown and debug information",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to debug calculate"),
+      policyId: z.string().min(1).describe("ID of the policy to debug calculate"),
       debugOptions: z.object({
         includeSteps: z.boolean().optional().describe("Include calculation steps"),
         includeFormulas: z.boolean().optional().describe("Include calculation formulas"),

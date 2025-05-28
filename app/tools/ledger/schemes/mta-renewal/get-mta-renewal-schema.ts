@@ -10,9 +10,9 @@ import { LedgerClient } from "../../client";
 export function registerGetMtaRenewalSchemaTool(server: McpServer) {
   server.tool(
     "ledger_schemes_mta_renewal_get",
-    "Get JSON schema for MTA (Mid-Term Adjustment) renewal processing with specific version",
+    "Retrieve JSON schema definitions for MTA (Mid-Term Adjustment) renewal processing with specific version validation and form configuration",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       schemaType: z.string().describe("Type of schema (policy for main product scheme)"),
       schemaName: z.string().describe("Name of schema (product name for policy type)"),

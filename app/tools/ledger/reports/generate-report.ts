@@ -12,7 +12,7 @@ export function registerGenerateReportTool(server: McpServer) {
     "ledger_reports_generate",
     "Generate comprehensive business reports with various data sources and output formats",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       reportConfig: z.object({
         reportType: z.enum([

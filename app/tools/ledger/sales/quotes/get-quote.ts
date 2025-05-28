@@ -5,11 +5,11 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 export function registerGetQuoteTools(server: McpServer) {
   server.tool(
     "ledger_sales_quotes_get",
-    "Get detailed information about a specific quote by ID including all quote data and metadata",
+    "Retrieve detailed details about a specific quote by ID including all quote data and metadata",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
-      quoteId: z.string().describe("Unique identifier of the quote to retrieve"),
+      quoteId: z.string().min(1).describe("Unique identifier of the quote to retrieve"),
       withNotifications: z.boolean().optional().describe("Include warnings, errors and status notifications (default: true)"),
       acceptLanguage: z.string().optional().describe("Accept-Language header (e.g., 'en-US', 'et-EE')"),
     },

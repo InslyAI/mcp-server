@@ -12,7 +12,7 @@ export function registerMultiSearchTool(server: McpServer) {
     "ledger_search_multi_search",
     "Universal search across all platform entities including policies, customers, quotes, brokers, and more",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       query: z.string().describe("Search query string"),
       searchOptions: z.object({

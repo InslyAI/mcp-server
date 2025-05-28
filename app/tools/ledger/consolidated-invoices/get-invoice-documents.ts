@@ -12,9 +12,9 @@ export function registerGetInvoiceDocumentsTool(server: McpServer) {
     "ledger_consolidated_invoices_get",
     "Get documents associated with a consolidated invoice including PDFs and supporting files",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      consolidatedInvoiceId: z.string().describe("ID of the consolidated invoice"),
+      consolidatedInvoiceId: z.string().min(1).describe("ID of the consolidated invoice"),
       documentFilters: z.object({
         documentType: z.string().optional().describe("Filter by document type (pdf, excel, etc.)"),
         includeAttachments: z.boolean().optional().describe("Include attached documents"),

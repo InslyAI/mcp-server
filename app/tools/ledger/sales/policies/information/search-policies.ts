@@ -7,10 +7,10 @@ export function registerSearchPoliciesTools(server: McpServer) {
     "ledger_sales_policies_information_search",
     "Search for policies using various filters and search terms with pagination support",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       searchTerm: z.string().describe("Search term to find policies (policy number, customer name, etc.)"),
-      date: z.string().describe("Date filter in ISO format (e.g., '2022-02-02T00:00')"),
+      date: z.string().datetime().describe("Date filter in ISO format (e.g., '2022-02-02T00:00')"),
       pageLimit: z.number().int().positive().optional().describe("Number of items per page (default: 25)"),
       cursor: z.string().optional().describe("Pagination cursor for next/previous page"),
     },

@@ -7,7 +7,7 @@ export function registerRenewPolicyTools(server: McpServer) {
     "ledger_sales_policies_lifecycle_renew",
     "Prepare data for policy renewal by creating a renewal quote based on the existing policy",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       policyId: z.number().int().positive().describe("Unique identifier of the policy to renew"),
     },

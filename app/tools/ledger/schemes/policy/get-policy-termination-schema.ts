@@ -10,11 +10,11 @@ import { LedgerClient } from "../../client";
 export function registerGetPolicyTerminationSchemaTool(server: McpServer) {
   server.tool(
     "ledger_schemes_policy_get_termination_schema",
-    "Get JSON schema for policy termination process for a specific policy",
+    "Retrieve JSON schema definitions for policy termination process for a specific policy validation and form configuration",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to get termination schema for"),
+      policyId: z.string().min(1).describe("ID of the policy to get termination schema for"),
     },
     async ({ bearerToken, tenantId, policyId }) => {
       try {

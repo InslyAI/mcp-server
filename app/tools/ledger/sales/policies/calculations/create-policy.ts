@@ -12,7 +12,7 @@ export function registerCreatePolicyTool(server: McpServer) {
     "ledger_sales_policies_calculations_create",
     "Create a new policy/quote using JSON schema validation - get schema from schemes section first",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       policyData: z.object({
         schema: z.string().describe("Schema path (e.g., 'policy/regular/casco/1')"),
@@ -23,7 +23,7 @@ export function registerCreatePolicyTool(server: McpServer) {
         effectiveDate: z.string().optional().describe("Policy effective date (YYYY-MM-DD)"),
         expiryDate: z.string().optional().describe("Policy expiry date (YYYY-MM-DD)"),
         currency: z.string().optional().describe("Policy currency code"),
-        premium: z.number().optional().describe("Policy premium amount")
+        premium: z.number().positive().optional().describe("Policy premium amount")
       }).describe("Policy/quote data to create"),
       withNotifications: z.boolean().optional().describe("Include notifications and validation warnings in response"),
       language: z.string().optional().describe("Language preference for response (Accept-Language header)")

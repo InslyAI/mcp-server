@@ -7,7 +7,7 @@ export function registerQuotesInReferralTools(server: McpServer) {
     "ledger_dashboards_quotes_in_referral",
     "Get dashboard data for quotes currently in referral status awaiting underwriter review. Supports filtering and search capabilities",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       filterProduct: z.string().optional().describe("Filter by product name (e.g., 'casco', 'liability')"),
       filterTransaction: z.string().optional().describe("Filter by transaction type"),

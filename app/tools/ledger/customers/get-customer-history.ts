@@ -12,9 +12,9 @@ export function registerGetCustomerHistoryTool(server: McpServer) {
     "ledger_customers_get",
     "Get historical activity and interaction history for a customer including policy changes, payments, claims, and communications",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      customerId: z.string().describe("ID of the customer to get history for"),
+      customerId: z.string().min(1).describe("ID of the customer to get history for"),
       limit: z.number().optional().describe("Maximum number of history records to return"),
       offset: z.number().optional().describe("Number of records to skip for pagination"),
       activityType: z.string().optional().describe("Filter by specific activity type (policy, payment, claim, communication, etc.)"),

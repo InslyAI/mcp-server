@@ -10,12 +10,12 @@ import { LedgerClient } from "../client";
 export function registerDeleteCustomerNoteTool(server: McpServer) {
   server.tool(
     "ledger_customers_delete",
-    "Delete a specific note associated with a customer by note ID",
+    "Delete a specific note associated with a customer by note ID with proper validation and audit trail",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      customerId: z.string().describe("ID of the customer who owns the note"),
-      noteId: z.string().describe("ID of the note to delete"),
+      customerId: z.string().min(1).describe("ID of the customer who owns the note"),
+      noteId: z.string().min(1).describe("ID of the note to delete"),
       reason: z.string().optional().describe("Reason for deleting the note (for audit purposes)")
     },
     async ({ bearerToken, tenantId, customerId, noteId, reason }) => {

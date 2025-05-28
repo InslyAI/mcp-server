@@ -12,7 +12,7 @@ export function registerListConsolidatedInvoiceBrokersTool(server: McpServer) {
     "ledger_consolidated_invoices_list",
     "Get list of brokers available for consolidated invoicing",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
     },
     async ({ bearerToken, tenantId }) => {

@@ -10,11 +10,11 @@ import { LedgerClient } from "../../client";
 export function registerGetEndorsementTool(server: McpServer) {
   server.tool(
     "ledger_sales_endorsements_get",
-    "Get detailed information about a specific policy endorsement",
+    "Retrieve detailed details about a specific policy endorsement",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      endorsementId: z.string().describe("ID of the endorsement to retrieve"),
+      endorsementId: z.string().min(1).describe("ID of the endorsement to retrieve"),
       includeHistory: z.boolean().optional().describe("Whether to include change history"),
       includeDocuments: z.boolean().optional().describe("Whether to include related documents"),
     },

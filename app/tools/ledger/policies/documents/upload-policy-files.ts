@@ -7,7 +7,7 @@ export function registerUploadPolicyFilesTools(server: McpServer) {
     "ledger_policies_documents_upload",
     "Upload one or more files to a policy. Files are attached as supporting documents to the policy record",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       policyId: z.number().int().positive().describe("Unique identifier of the policy"),
       files: z.array(z.object({

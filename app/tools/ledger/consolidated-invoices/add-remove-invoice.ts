@@ -12,13 +12,13 @@ export function registerAddRemoveInvoiceTool(server: McpServer) {
     "ledger_consolidated_invoices_add_remove_invoice",
     "Add or remove individual invoices from a consolidated invoice",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      consolidatedInvoiceId: z.string().describe("ID of the consolidated invoice"),
+      consolidatedInvoiceId: z.string().min(1).describe("ID of the consolidated invoice"),
       invoiceNumber: z.string().describe("Invoice number to add or remove"),
       action: z.enum(["add", "remove"]).describe("Action to perform"),
       invoiceData: z.object({
-        amount: z.number().optional().describe("Invoice amount"),
+        amount: z.number().positive().optional().describe("Invoice amount"),
         dueDate: z.string().optional().describe("Invoice due date"),
         description: z.string().optional().describe("Invoice description"),
         notes: z.string().optional().describe("Additional notes")

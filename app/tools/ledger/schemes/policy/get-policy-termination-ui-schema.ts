@@ -12,9 +12,9 @@ export function registerGetPolicyTerminationUiSchemaTool(server: McpServer) {
     "ledger_schemes_policy_get_termination_ui_schema",
     "Get UI schema for rendering policy termination interfaces for a specific policy",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to get termination UI schema for"),
+      policyId: z.string().min(1).describe("ID of the policy to get termination UI schema for"),
     },
     async ({ bearerToken, tenantId, policyId }) => {
       try {

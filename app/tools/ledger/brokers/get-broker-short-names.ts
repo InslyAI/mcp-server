@@ -12,7 +12,7 @@ export function registerGetBrokerShortNamesTool(server: McpServer) {
     "ledger_brokers_get_short_names",
     "Get quick reference list of broker short names and identifiers for lookups and integrations",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       filters: z.object({
         activeOnly: z.boolean().optional().describe("Include only active brokers"),

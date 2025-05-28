@@ -4,11 +4,11 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 // Reuse the same schemas from create-binder.ts
 const InsurerSchema = z.object({
-  insurer: z.string().describe("Insurer identifier (e.g., 'lloyds')"),
-  isLead: z.boolean().describe("Whether this insurer is the lead insurer"),
-  grossCommPct: z.number().describe("Gross commission percentage"),
-  premiumSharePct: z.number().describe("Premium share percentage"),
-  allowCommSacrifice: z.boolean().describe("Whether commission sacrifice is allowed"),
+  insurer: z.string().min(1).describe("Insurer identifier (e.g., 'lloyds')"),
+  isLead: z.boolean().default(false).describe("Whether this insurer is the lead insurer"),
+  grossCommPct: z.number().min(0).max(100).describe("Gross commission percentage (0-100)"),
+  premiumSharePct: z.number().min(0).max(100).describe("Premium share percentage (0-100)"),
+  allowCommSacrifice: z.boolean().default(false).describe("Whether commission sacrifice is allowed"),
 });
 
 const ShareSchema = z.object({
@@ -24,7 +24,7 @@ const LimitationSchema = z.object({
 
 const DocumentSchema = z.object({
   documentType: z.string().describe("Document type (e.g., 'other')"),
-  fileUpload: z.boolean().describe("Whether file upload is enabled"),
+  fileUpload: z.boolean().default(false).describe("Whether file upload is enabled"),
   file: z.string().optional().describe("File identifier or path"),
 });
 
@@ -53,9 +53,9 @@ const UpdateBinderSchema = z.object({
 export function registerUpdateBinderTools(server: McpServer) {
   server.tool(
     "ledger_sales_binders_update",
-    "Update an existing binder with new configuration. Only provided fields will be updated (partial update supported)",
+    "Update an existing binder using new configuration. Only provided fields will be updated (partial update supported) for accurate record management",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       binderId: z.number().int().positive().describe("Unique identifier of the binder to update"),
       binderData: UpdateBinderSchema.describe("Binder fields to update (partial updates supported)"),

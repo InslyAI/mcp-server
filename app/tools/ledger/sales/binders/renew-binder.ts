@@ -7,7 +7,7 @@ export function registerRenewBinderTools(server: McpServer) {
     "ledger_sales_binders_renew",
     "Renew an existing binder for the next period. Creates a renewal binder based on the original binder configuration",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       binderId: z.number().int().positive().describe("Unique identifier of the binder to renew"),
     },

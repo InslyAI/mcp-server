@@ -12,7 +12,7 @@ export function registerUploadExcelCalculatorTool(server: McpServer) {
     "ledger_excel_calculator_upload",
     "Upload and configure Excel-based calculation tools for insurance pricing and underwriting",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       calculatorData: z.object({
         name: z.string().describe("Name of the calculator"),

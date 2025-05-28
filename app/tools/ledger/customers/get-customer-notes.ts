@@ -12,9 +12,9 @@ export function registerGetCustomerNotesTool(server: McpServer) {
     "ledger_customers_get",
     "Get all notes and comments associated with a customer, including internal notes and customer communications",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      customerId: z.string().describe("ID of the customer to get notes for"),
+      customerId: z.string().min(1).describe("ID of the customer to get notes for"),
       limit: z.number().optional().describe("Maximum number of notes to return"),
       offset: z.number().optional().describe("Number of notes to skip for pagination"),
       noteType: z.string().optional().describe("Filter by note type (internal, customer_communication, system, etc.)"),

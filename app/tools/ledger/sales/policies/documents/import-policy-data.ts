@@ -12,9 +12,9 @@ export function registerImportPolicyDataTool(server: McpServer) {
     "ledger_sales_policies_documents_import",
     "Import data into an existing policy from external sources or bulk data",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to import data into"),
+      policyId: z.string().min(1).describe("ID of the policy to import data into"),
       importData: z.object({
         dataSource: z.string().describe("Source of the imported data"),
         dataType: z.string().describe("Type of data being imported"),

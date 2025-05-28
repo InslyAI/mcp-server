@@ -10,9 +10,9 @@ import { LedgerClient } from "../client";
 export function registerListUsersTool(server: McpServer) {
   server.tool(
     "ledger_users_list",
-    "Get simple list of system users with filtering and search options",
+    "List system users with role-based filtering, search capabilities, and broker associations",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       broker: z.string().optional().describe("Get users which have this broker"),
       userSub: z.string().optional().describe("User with this sub will be added to response"),

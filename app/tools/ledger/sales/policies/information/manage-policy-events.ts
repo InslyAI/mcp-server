@@ -12,9 +12,9 @@ export function registerManagePolicyEventsTool(server: McpServer) {
     "ledger_sales_policies_information_manage",
     "Manage policy events including listing, creating, and retrieving specific events",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to manage events for"),
+      policyId: z.string().min(1).describe("ID of the policy to manage events for"),
       action: z.enum(["list", "get", "create"]).describe("Action to perform on policy events"),
       eventId: z.string().optional().describe("Event ID for get action"),
       eventData: z.object({

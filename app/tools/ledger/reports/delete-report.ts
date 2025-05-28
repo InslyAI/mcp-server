@@ -10,12 +10,12 @@ import { LedgerClient } from "../client";
 export function registerDeleteReportTool(server: McpServer) {
   server.tool(
     "ledger_reports_delete",
-    "Delete a generated report file or cancel/delete a scheduled report configuration",
+    "Delete a generated report file or cancel/delete a scheduled report configuration with proper validation and audit trail",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       targetType: z.enum(['generated_report', 'scheduled_report']).describe("Type of deletion: generated report file or scheduled report"),
-      targetId: z.string().describe("ID of the generated report or scheduled report to delete"),
+      targetId: z.string().min(1).describe("ID of the generated report or scheduled report to delete"),
       deleteOptions: z.object({
         reason: z.string().optional().describe("Reason for deletion"),
         confirmDeletion: z.boolean().describe("Confirmation that deletion is intended"),

@@ -12,9 +12,9 @@ export function registerManagePolicyReferralsTool(server: McpServer) {
     "ledger_sales_policies_referrals_manage",
     "Manage policy referrals including listing, accepting, and declining referrals",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      policyId: z.string().describe("ID of the policy to manage referrals for"),
+      policyId: z.string().min(1).describe("ID of the policy to manage referrals for"),
       action: z.enum(["list", "accept", "decline"]).describe("Action to perform on policy referrals"),
       referralData: z.object({
         reason: z.string().optional().describe("Reason for acceptance or decline"),

@@ -12,11 +12,11 @@ export function registerListPaymentsPaginatedTool(server: McpServer) {
     "ledger_broker_payments_list",
     "Get paginated list of broker payments with cursor-based navigation",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       pagination: z.object({
         cursor: z.string().optional().describe("Cursor for pagination navigation"),
-        limit: z.number().optional().describe("Number of records per page (default: 20)"),
+        limit: z.number().int().min(1).max(1000).optional().describe("Number of records per page (default: 20) (1-1000)"),
         direction: z.enum(["forward", "backward"]).optional().describe("Pagination direction")
       }).optional().describe("Pagination parameters"),
       filters: z.object({
@@ -25,8 +25,8 @@ export function registerListPaymentsPaginatedTool(server: McpServer) {
         status: z.array(z.string()).optional().describe("Filter by payment status"),
         dateFrom: z.string().optional().describe("Start date filter (YYYY-MM-DD)"),
         dateTo: z.string().optional().describe("End date filter (YYYY-MM-DD)"),
-        minAmount: z.number().optional().describe("Minimum payment amount"),
-        maxAmount: z.number().optional().describe("Maximum payment amount")
+        minAmount: z.number().positive().optional().describe("Minimum payment amount"),
+        maxAmount: z.number().positive().optional().describe("Maximum payment amount")
       }).optional().describe("Filter parameters")
     },
     async ({ bearerToken, tenantId, pagination, filters }) => {

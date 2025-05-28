@@ -10,11 +10,11 @@ import { LedgerClient } from "../client";
 export function registerGetReportTool(server: McpServer) {
   server.tool(
     "ledger_reports_get",
-    "Get detailed information about a specific business report including metadata and download access",
+    "Retrieve detailed details about a specific business report including metadata and download access",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
-      reportId: z.string().describe("ID of the report to retrieve"),
+      reportId: z.string().min(1).describe("ID of the report to retrieve"),
       includeConfig: z.boolean().optional().describe("Whether to include original generation configuration"),
       includePreview: z.boolean().optional().describe("Whether to include data preview (first few rows)"),
       generateNewDownloadUrl: z.boolean().optional().describe("Whether to generate a new download URL"),

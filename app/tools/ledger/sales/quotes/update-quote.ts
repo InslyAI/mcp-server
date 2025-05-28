@@ -5,9 +5,9 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 export function registerUpdateQuoteTools(server: McpServer) {
   server.tool(
     "ledger_sales_quotes_update",
-    "Update an existing quote with new data according to the product schema",
+    "Update an existing quote using new data according to the product schema for accurate record management",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       schema: z.string().describe("Product schema name (e.g., 'casco', 'liability', 'property')"),
       quoteId: z.number().int().positive().describe("Unique identifier of the quote to update"),

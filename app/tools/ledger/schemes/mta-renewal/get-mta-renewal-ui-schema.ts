@@ -12,7 +12,7 @@ export function registerGetMtaRenewalUiSchemaTool(server: McpServer) {
     "ledger_schemes_mta_renewal_get",
     "Get UI schema for rendering MTA (Mid-Term Adjustment) renewal interfaces with specific version",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header"),
       schemaType: z.string().describe("Type of schema (policy for main product scheme)"),
       schemaName: z.string().describe("Name of schema (product name for policy type)"),

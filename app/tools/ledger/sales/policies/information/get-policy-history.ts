@@ -7,7 +7,7 @@ export function registerGetPolicyHistoryTools(server: McpServer) {
     "ledger_sales_policies_get_history",
     "Get the complete change history for a specific sales policy including all modifications, endorsements, and status changes",
     {
-      bearerToken: z.string().describe("JWT bearer token from identifier_login"),
+      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
       policyId: z.number().int().positive().describe("Unique identifier of the policy"),
       pageLimit: z.number().int().positive().optional().describe("Number of history items per page (default: 25)"),
