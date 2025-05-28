@@ -1,22 +1,26 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { registerAccessManagementTools } from './access-management/index';
-import { registerBasicClaimsTools } from './claims/basic/index';
+import { registerClaimsTools } from './claims/index';
 import { registerDashboardTools } from './dashboard/index';
 import { registerEntitiesTools } from './entities/index';
 
 /**
  * Register all Claim Management MCP tools
- * Phase 1 implementation: Foundation tools (11 tools)
+ * Phase 2 implementation: Document & Communication tools (26 tools total)
  * 
  * Includes:
  * - Access Management (1 tool)
- * - Basic Claims Operations (6 tools)
+ * - Claims Operations (21 tools):
+ *   * Basic Operations (6 tools)
+ *   * Documents (8 tools) 
+ *   * Comments (4 tools)
+ *   * Alarms (3 tools)
  * - Dashboard Views (3 tools)
  * - Entity Lists (2 tools)
  */
 export function registerClaimManagementTools(server: McpServer) {
   registerAccessManagementTools(server);
-  registerBasicClaimsTools(server);
+  registerClaimsTools(server);
   registerDashboardTools(server);  
   registerEntitiesTools(server);
 }

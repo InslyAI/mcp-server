@@ -14,3 +14,13 @@ export function registerBasicClaimsTools(server: McpServer) {
   registerGetAmountsToolClaimManagement(server);
   registerGetEventsHistoryToolClaimManagement(server);
 }
+
+// Export individual tools for selective imports
+export {
+  registerListClaimsToolClaimManagement,
+  registerCreateClaimToolClaimManagement,
+  registerGetClaimToolClaimManagement,
+  registerUpdateClaimToolClaimManagement,
+  registerGetAmountsToolClaimManagement,
+  registerGetEventsHistoryToolClaimManagement,
+};
