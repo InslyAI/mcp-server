@@ -9,7 +9,7 @@ export function registerStoreClaimToolClaimManagement(server: McpServer) {
     {
       bearerToken: z.string().min(1).describe('JWT bearer token from identifier_login'),
       tenantId: z.string().describe('Tenant identifier for the organization'),
-      data: z.record(z.any()).describe('FNOL data with dotted field names (e.g., "claim.data.policyNo", "objects.0.data.name", "persons.0.data.name")')
+      data: z.record(z.any()).describe('FNOL data object with dotted field names. Example: {"claim.data.policyNo": "POLICY_10001", "claim.data.policyStartDate": "2022-01-01", "objects.0.data.name": "Audi A6", "persons.0.data.name": "Joe Doe", "persons.1.data.name": "Jane Doe"}')
     },
     async ({ bearerToken, tenantId, ...claimData }: any) => {
       try {
