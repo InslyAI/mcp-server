@@ -27,11 +27,11 @@ import { registerConsolidatedInvoiceTools } from "./consolidated-invoices";
 import { registerDebtPolicyTools } from "./debt-policies";
 import { registerReinsuranceTools } from "./reinsurance";
 import { registerSearchTools } from "./search";
-import { registerRequestTrackingTools } from "./request-tracking";
-import { registerBrokerManagementTools } from "./broker-management";
+import { registerRequestTrackingTools } from "./requests";
+import { registerBrokerManagementTools } from "./brokers";
 import { registerExcelCalculatorTools } from "./excel-calculator";
 import { registerInvoiceFilesTools } from "./invoice-files";
-import { registerChatSettingsTools } from "./chat-settings";
+import { registerChatSettingsTools } from "./chat";
 
 /**
  * Register all Ledger MCP tools
