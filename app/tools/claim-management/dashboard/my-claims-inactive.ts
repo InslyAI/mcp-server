@@ -20,7 +20,7 @@ export function registerMyClaimsInactiveToolClaimManagement(server: any) {
     }]
   }));
 
-  server.setRequestHandler('tools/call', async (request) => {
+  server.setRequestHandler('tools/call', async (request: any) => {
     if (request.params.name === 'claim_management_dashboard_my_claims_inactive') {
       try {
         const { bearerToken, tenantId, page, limit, inactiveDays, sortBy, sortOrder } = MyClaimsInactiveSchema.parse(request.params.arguments);

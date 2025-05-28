@@ -19,7 +19,7 @@ export function registerMyClaimsAlarmedToolClaimManagement(server: any) {
     }]
   }));
 
-  server.setRequestHandler('tools/call', async (request) => {
+  server.setRequestHandler('tools/call', async (request: any) => {
     if (request.params.name === 'claim_management_dashboard_my_claims_alarmed') {
       try {
         const { bearerToken, tenantId, page, limit, alarmType, priority } = MyClaimsAlarmedSchema.parse(request.params.arguments);

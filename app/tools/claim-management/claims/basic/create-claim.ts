@@ -32,7 +32,7 @@ export function registerCreateClaimToolClaimManagement(server: any) {
     }]
   }));
 
-  server.setRequestHandler('tools/call', async (request) => {
+  server.setRequestHandler('tools/call', async (request: any) => {
     if (request.params.name === 'claim_management_claims_create') {
       try {
         const { bearerToken, tenantId, ...claimData } = CreateClaimSchema.parse(request.params.arguments);

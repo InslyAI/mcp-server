@@ -19,7 +19,7 @@ export function registerListPersonsToolClaimManagement(server: any) {
     }]
   }));
 
-  server.setRequestHandler('tools/call', async (request) => {
+  server.setRequestHandler('tools/call', async (request: any) => {
     if (request.params.name === 'claim_management_persons_list') {
       try {
         const { bearerToken, tenantId, page, limit, personType, search } = ListPersonsSchema.parse(request.params.arguments);

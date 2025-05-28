@@ -21,7 +21,7 @@ export function registerGetEventsHistoryToolClaimManagement(server: any) {
     }]
   }));
 
-  server.setRequestHandler('tools/call', async (request) => {
+  server.setRequestHandler('tools/call', async (request: any) => {
     if (request.params.name === 'claim_management_claims_events_history_get') {
       try {
         const { bearerToken, tenantId, claim, page, limit, eventType, dateFrom, dateTo } = GetEventsHistorySchema.parse(request.params.arguments);

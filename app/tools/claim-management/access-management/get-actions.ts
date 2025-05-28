@@ -15,7 +15,7 @@ export function registerGetActionsToolClaimManagement(server: any) {
     }]
   }));
 
-  server.setRequestHandler('tools/call', async (request) => {
+  server.setRequestHandler('tools/call', async (request: any) => {
     if (request.params.name === 'claim_management_access_management_actions_get') {
       try {
         const { bearerToken, tenantId } = GetActionsSchema.parse(request.params.arguments);

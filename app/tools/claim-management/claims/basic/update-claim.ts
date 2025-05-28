@@ -28,7 +28,7 @@ export function registerUpdateClaimToolClaimManagement(server: any) {
     }]
   }));
 
-  server.setRequestHandler('tools/call', async (request) => {
+  server.setRequestHandler('tools/call', async (request: any) => {
     if (request.params.name === 'claim_management_claims_update') {
       try {
         const { bearerToken, tenantId, claim, ...updateData } = UpdateClaimSchema.parse(request.params.arguments);

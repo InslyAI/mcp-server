@@ -19,7 +19,7 @@ export function registerListObjectsToolClaimManagement(server: any) {
     }]
   }));
 
-  server.setRequestHandler('tools/call', async (request) => {
+  server.setRequestHandler('tools/call', async (request: any) => {
     if (request.params.name === 'claim_management_objects_list') {
       try {
         const { bearerToken, tenantId, page, limit, objectType, search } = ListObjectsSchema.parse(request.params.arguments);
