@@ -9,9 +9,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **FormFlow integration** (27 tools) - Document processing, AI extraction, form management
 - **Identifier service** (3 tools) - Authentication with Insly platform  
 - **Ledger service** (135 tools) - **COMPLETE API COVERAGE** - All insurance business operations
-- **Claim Management service** (46 tools) - **PHASE 3 COMPLETE** - Financial operations, decisions, and payments
+- **Claim Management service** (66 tools) - **PHASE 4 COMPLETE** - FNOL, tasks, objects, persons, and financial operations
 
-**IMPLEMENTATION STATUS**: Production-ready with **211 total tools** across four specialized services providing comprehensive insurance operations.
+**IMPLEMENTATION STATUS**: Production-ready with **231 total tools** across four specialized services providing comprehensive insurance operations.
 
 ## Commands
 
@@ -46,9 +46,11 @@ This is a Next.js application that implements an MCP server using the `@vercel/m
     - Authentication: client credentials, login, refresh token
   - `app/tools/ledger/` - Ledger business operations tools (**135 tools total - COMPLETE API COVERAGE**)
     - **25+ categories**: binders (7), claims (6), consolidated-invoices (10), dashboards (5), documents (5), e-proposals (6), endorsements (6), high-risk (5), policies (33), quotes (6), reports (5), schemas (5), users (1), workflows (4), search (1), feature-config (4), request-tracking (1), broker-management (3), excel-calculator (2), high-risk-data (1), lookup-services (2), invoice-files (2), chat-settings (1), and more
-  - `app/tools/claim-management/` - Claim management operations tools (**46 tools total - PHASE 3 COMPLETE**)
-    - **4 categories**: access-management (1), claims (41), dashboard (3), entities (2)
+  - `app/tools/claim-management/` - Claim management operations tools (**66 tools total - PHASE 4 COMPLETE**)
+    - **9 categories**: access-management (1), claims (41), fnol (3), external-fnol (2), tasks (6), objects (5), persons (4), dashboard (3), entities (2)
     - **Claims Operations** (41 tools): basic (6), documents (8), comments (4), alarms (3), reserves (9), decisions (6), payment-decisions (5)
+    - **FNOL Operations** (5 tools): generate link, get data, store claim, create external, store document
+    - **Entity Management** (15 tools): tasks (6), objects (5), persons (4)
 - **`app/lib/formflow-client.ts`** - FormFlow API client with dual authentication support (credentials + bearer tokens)
 - **MCP Adapter Configuration** - Uses `createMcpHandler` with Redis support for SSE transport and configurable options like `maxDuration` and `verboseLogs`.
 
