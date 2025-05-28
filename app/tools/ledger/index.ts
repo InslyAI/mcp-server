@@ -21,10 +21,6 @@ import { registerDocumentTools } from "./documents";
 import { registerDashboardTools } from "./dashboards";
 import { registerReportTools } from "./reports";
 import { registerUserTools } from "./users";
-import { registerClaimsTools } from "./claims";
-import { registerAuditTools } from "./audit";
-import { registerNotificationTools } from "./notifications";
-import { registerWorkflowTools } from "./workflows";
 import { registerCustomerTools } from "./customers";
 import { registerBrokerPaymentTools } from "./broker-payments";
 import { registerConsolidatedInvoiceTools } from "./consolidated-invoices";
@@ -34,7 +30,6 @@ import { registerSearchTools } from "./search";
 import { registerRequestTrackingTools } from "./request-tracking";
 import { registerBrokerManagementTools } from "./broker-management";
 import { registerExcelCalculatorTools } from "./excel-calculator";
-import { registerHighRiskDataTools } from "./high-risk-data";
 import { registerInvoiceFilesTools } from "./invoice-files";
 import { registerChatSettingsTools } from "./chat-settings";
 
@@ -60,17 +55,12 @@ export function registerLedgerTools(server: McpServer) {
   registerConsolidatedInvoiceTools(server);    // Invoice consolidation (9 tools)
   registerDashboardTools(server);              // Business intelligence (5 tools)
   registerBrokerPaymentTools(server);          // Payment processing (7 tools)
-  registerClaimsTools(server);                 // Claims management (6 tools)
   registerReportTools(server);                 // Business reporting (5 tools)
-  registerAuditTools(server);                  // Audit and compliance (4 tools)
-  registerNotificationTools(server);           // Notifications (4 tools)
-  registerWorkflowTools(server);               // Workflow automation (4 tools)
   registerBrokerManagementTools(server);       // Broker administration (3 tools)
   registerReinsuranceTools(server);            // Reinsurance management (2 tools)
   registerDocumentTools(server);               // Document generation (remaining tools)
   registerExcelCalculatorTools(server);        // Calculator management (2 tools)
   registerInvoiceFilesTools(server);           // Invoice file operations (2 tools)
-  registerHighRiskDataTools(server);           // High-risk data management (1 tool)
   registerSearchTools(server);                 // Universal search (1 tool)
   registerRequestTrackingTools(server);        // Request status tracking (1 tool)
   registerDebtPolicyTools(server);             // Debt policies (1 tool)
