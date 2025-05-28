@@ -12,21 +12,14 @@ export default function Footer() {
               />
             </div>
             <p className="text-gray-400 mb-4">Model Context Protocol (MCP) server for Insly's AI-powered insurance platform</p>
-            <div className="flex flex-wrap gap-4">
-              <span className="text-sm text-gray-400">257 Total Tools</span>
-              <span className="text-sm text-gray-400">•</span>
-              <span className="text-sm text-gray-400">100% API Coverage</span>
-              <span className="text-sm text-gray-400">•</span>
-              <span className="text-sm text-gray-400">Production Ready</span>
-            </div>
           </div>
           <div>
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="/formflow" className="insly-footer-link">FormFlow (27 tools)</a></li>
-              <li><a href="/identifier" className="insly-footer-link">Identifier (3 tools)</a></li>
-              <li><a href="/ledger" className="insly-footer-link">Ledger (135 tools)</a></li>
-              <li><a href="/claim-management" className="insly-footer-link">Claim Management (92 tools)</a></li>
+              <li><a href="/formflow" className="insly-footer-link">FormFlow</a></li>
+              <li><a href="/identifier" className="insly-footer-link">Identifier</a></li>
+              <li><a href="/ledger" className="insly-footer-link">Ledger</a></li>
+              <li><a href="/claim-management" className="insly-footer-link">Claim Management</a></li>
             </ul>
           </div>
           <div>
@@ -34,7 +27,6 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-400">
               <li><a href="/" className="insly-footer-link">Home</a></li>
               <li><a href="https://insly.com" className="insly-footer-link" target="_blank" rel="noopener noreferrer">Insly Platform</a></li>
-              <li><a href="https://docs.anthropic.com/en/docs/claude-code" className="insly-footer-link" target="_blank" rel="noopener noreferrer">Claude Code Docs</a></li>
               <li><a href="https://spec.modelcontextprotocol.io" className="insly-footer-link" target="_blank" rel="noopener noreferrer">MCP Specification</a></li>
             </ul>
           </div>
