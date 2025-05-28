@@ -8,10 +8,15 @@ import { registerExternalFnolTools } from './external-fnol/index';
 import { registerTasksTools } from './tasks/index';
 import { registerObjectsTools } from './objects/index';
 import { registerPersonsTools } from './persons/index';
+import { registerMajorEventsTools } from './major-events/index';
+import { registerPartnersTools } from './partners/index';
+import { registerSearchTools } from './search/index';
+import { registerImportsTools } from './imports/index';
+import { registerUsersTools } from './users/index';
 
 /**
  * Register all Claim Management MCP tools
- * Phase 4 COMPLETE: Core Claim Operations (66 tools total)
+ * Phase 5 ACTIVE: Completing Full API Coverage (72+ tools total)
  * 
  * Includes:
  * - Access Management (1 tool)
@@ -40,6 +45,11 @@ export function registerClaimManagementTools(server: McpServer) {
   registerTasksTools(server);
   registerObjectsTools(server);
   registerPersonsTools(server);
+  registerMajorEventsTools(server);
+  registerPartnersTools(server);
+  registerSearchTools(server);
+  registerImportsTools(server);
+  registerUsersTools(server);
   registerDashboardTools(server);  
   registerEntitiesTools(server);
 }

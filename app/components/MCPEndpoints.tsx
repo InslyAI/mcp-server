@@ -102,7 +102,7 @@ export default function MCPEndpoints() {
               </div>
             </div>
             <p className="text-sm text-gray-600 mb-2">
-              <strong>66 tools</strong> for complete claim lifecycle management 
+              <strong>92 tools</strong> for complete claim lifecycle management 
               including FNOL, tasks, objects, persons, and financial operations (Phase 4).
             </p>
             <div className="text-xs text-green-600 font-semibold">
@@ -126,7 +126,7 @@ export default function MCPEndpoints() {
               </div>
             </div>
             <p className="text-sm text-gray-600 mb-2">
-              <strong>231 tools</strong> from all services in a single
+              <strong>257 tools</strong> from all services in a single
               connection for comprehensive access.
             </p>
             <div className="text-xs text-green-600 font-semibold">
