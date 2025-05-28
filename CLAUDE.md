@@ -8,9 +8,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - **FormFlow integration** (25 tools) - Document processing, AI extraction, form management
 - **Identifier service** (3 tools) - Authentication with Insly platform  
-- **Ledger service** (158 tools) - **COMPLETE API COVERAGE** - All insurance business operations
+- **Ledger service** (157 tools) - **COMPLETE API COVERAGE** - All insurance business operations
 
-**IMPLEMENTATION STATUS**: Production-ready with **186 total tools** across three specialized services providing **complete 100% Ledger API coverage**.
+**IMPLEMENTATION STATUS**: Production-ready with **185 total tools** across three specialized services providing **complete 100% Ledger API coverage**.
 
 ## Commands
 
@@ -43,7 +43,7 @@ This is a Next.js application that implements an MCP server using the `@vercel/m
     - Authentication, submission management, template management, file operations, webhooks, AI features
   - `app/tools/identifier/` - Identifier service tools (3 tools total)
     - Authentication: client credentials, login, refresh token
-  - `app/tools/ledger/` - Ledger business operations tools (**158 tools total - COMPLETE API COVERAGE**)
+  - `app/tools/ledger/` - Ledger business operations tools (**157 tools total - COMPLETE API COVERAGE**)
     - **25+ categories**: audit (4), binders (7), claims (6), consolidated-invoices (10), dashboards (5), documents (5), e-proposals (6), endorsements (6), high-risk (5), policies (33), quotes (6), reports (5), schemas (5), users (1), workflows (4), search (1), feature-config (4), request-tracking (1), broker-management (3), excel-calculator (2), high-risk-data (1), lookup-services (2), invoice-files (2), chat-settings (1), and more
 - **`app/lib/formflow-client.ts`** - FormFlow API client with dual authentication support (credentials + bearer tokens)
 - **MCP Adapter Configuration** - Uses `createMcpHandler` with Redis support for SSE transport and configurable options like `maxDuration` and `verboseLogs`.
@@ -75,8 +75,8 @@ The server supports multiple transport methods and **separate service endpoints*
 **Service Endpoints:**
 - **`/formflow/[transport]`** - FormFlow-only tools (25 tools, production ready)
 - **`/identifier/[transport]`** - Identifier-only tools (3 tools, production ready)
-- **`/ledger/[transport]`** - Ledger-only tools (**158 tools - COMPLETE API COVERAGE**, production ready)
-- **`/[transport]`** - Unified endpoint with all tools (**186 total tools**)
+- **`/ledger/[transport]`** - Ledger-only tools (**157 tools - COMPLETE API COVERAGE**, production ready)
+- **`/[transport]`** - Unified endpoint with all tools (**185 total tools**)
 
 **Architecture Benefits:**
 - Complete service isolation - no shared authentication or code
@@ -148,9 +148,9 @@ app/
 ### Identifier Tool Categories (3 Total)
 - **Authentication**: Client credentials, user login, token refresh
 
-### Ledger Tool Categories (158 Total - COMPLETE API COVERAGE)
+### Ledger Tool Categories (157 Total - COMPLETE API COVERAGE)
 
-**🎯 COMPLETE COVERAGE ACHIEVED: All 158 Ledger API endpoints implemented!**
+**🎯 COMPLETE COVERAGE ACHIEVED: All 157 Ledger API endpoints implemented!**
 
 **Core Business Operations:**
 - **Policies** (33): Complete policy lifecycle, documents, files, calculations, actions, notifications

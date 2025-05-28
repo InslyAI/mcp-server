@@ -6,19 +6,23 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 // Import existing registration functions from moved tools
-import { registerBinderTools } from "./binders/index.js";
-
-// TODO: Add other sales tools after fixing import issues
-// import { registerQuoteTools } from "./quotes/index.js";
-// import { registerEndorsementTools } from "./endorsements/index.js";
-// import { registerEProposalTools } from "./e-proposals/index.js";
-// import { registerFeatureConfigTools } from "./features/index.js";
-// import { registerHighRiskTools } from "./high-risk/index.js";
-// import { registerLookupServicesTools } from "./ireland-lookup/index.js";
+import { registerBinderTools } from "./binders/index";
+import { registerQuoteTools } from "./quotes/index";
+import { registerEndorsementTools } from "./endorsements/index";
+import { registerEProposalTools } from "./e-proposals/index";
+import { registerFeatureConfigTools } from "./features/index";
+import { registerHighRiskTools } from "./high-risk/index";
+import { registerLookupServicesTools } from "./ireland-lookup/index";
+import { registerSalesPoliciesTools } from "./policies/index";
 
 export function registerSalesTools(server: McpServer) {
-  // Register sales tools (starting with binders)
+  // Register all sales tools
   registerBinderTools(server);
-  
-  // TODO: Add other sales tools after fixing import issues
+  registerQuoteTools(server);
+  registerEndorsementTools(server);
+  registerEProposalTools(server);
+  registerFeatureConfigTools(server);
+  registerHighRiskTools(server);
+  registerLookupServicesTools(server);
+  registerSalesPoliciesTools(server);
 }

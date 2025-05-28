@@ -4,21 +4,21 @@
  */
 
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { registerGetFeatureSchemaTool } from './get-feature-schema';
-import { registerGetFeatureUiSchemaTool } from './get-feature-ui-schema';
-import { registerGetRegularSchemaTool } from './get-regular-schema';
-import { registerGetRenewalSchemaTool } from './get-renewal-schema';
-import { registerGetRenewalUiSchemaTool } from './get-renewal-ui-schema';
-import { registerGetMtaRenewalSchemaTool } from './get-mta-renewal-schema';
-import { registerGetMtaRenewalUiSchemaTool } from './get-mta-renewal-ui-schema';
-import { registerGetActionSchemaTool } from './get-action-schema';
-import { registerGetActionUiSchemaTool } from './get-action-ui-schema';
-import { registerGetSchemaProductsTool } from './get-schema-products';
-import { registerGetPolicyObjectTypesTool } from './get-policy-object-types';
-import { registerGetPolicyProductsTool } from './get-policy-products';
-import { registerGetPolicyInsurersTool } from './get-policy-insurers';
-import { registerGetPolicyTerminationSchemaTool } from './get-policy-termination-schema';
-import { registerGetPolicyTerminationUiSchemaTool } from './get-policy-termination-ui-schema';
+import { registerGetFeatureSchemaTool } from './features/get-feature-schema';
+import { registerGetFeatureUiSchemaTool } from './features/get-feature-ui-schema';
+import { registerGetRegularSchemaTool } from './regular/get-regular-schema';
+import { registerGetRenewalSchemaTool } from './regular/get-renewal-schema';
+import { registerGetRenewalUiSchemaTool } from './regular/get-renewal-ui-schema';
+import { registerGetMtaRenewalSchemaTool } from './mta-renewal/get-mta-renewal-schema';
+import { registerGetMtaRenewalUiSchemaTool } from './mta-renewal/get-mta-renewal-ui-schema';
+import { registerGetActionSchemaTool } from './actions/get-action-schema';
+import { registerGetActionUiSchemaTool } from './actions/get-action-ui-schema';
+import { registerGetSchemaProductsTool } from './regular/get-schema-products';
+import { registerGetPolicyObjectTypesTool } from './policy/get-policy-object-types';
+import { registerGetPolicyProductsTool } from './policy/get-policy-products';
+import { registerGetPolicyInsurersTool } from './policy/get-policy-insurers';
+import { registerGetPolicyTerminationSchemaTool } from './policy/get-policy-termination-schema';
+import { registerGetPolicyTerminationUiSchemaTool } from './policy/get-policy-termination-ui-schema';
 
 /**
  * Register all Scheme Management MCP tools

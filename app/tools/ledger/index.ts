@@ -47,16 +47,13 @@ import { registerChatSettingsTools } from "./chat-settings";
  */
 export function registerLedgerTools(server: McpServer) {
   // Sales API tools (/api/v1/ledger/sales/* - 60+ tools) 
-  // TODO: Fix import issues and re-enable
-  // registerSalesTools(server);
+  registerSalesTools(server);
   
   // Direct Policies API tools (/api/v1/ledger/policies/* - 19 tools)
-  // TODO: Implement after reorganization 
-  // registerPolicyTools(server);
+  registerPolicyTools(server);
   
   // Schemes API tools (/api/v1/ledger/schemes/* - 17 tools)
-  // TODO: Fix import issues and re-enable
-  // registerSchemeTools(server);
+  registerSchemeTools(server);
   
   // Remaining API categories (flat structure)
   registerCustomerTools(server);               // Customer management (11 tools)

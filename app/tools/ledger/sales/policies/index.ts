@@ -6,12 +6,16 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 // Import all sales policies subdirectory registration functions
-export * from "./documents/index.js";
-export * from "./calculations/index.js";
-export * from "./lifecycle/index.js";
-export * from "./information/index.js";
-export * from "./referrals/index.js";
+import { registerSalesPoliciesDocumentsTools } from "./documents/index";
+import { registerSalesPoliciesCalculationsTools } from "./calculations/index";
+import { registerSalesPoliciesLifecycleTools } from "./lifecycle/index";
+import { registerSalesPoliciesInformationTools } from "./information/index";
+import { registerSalesPoliciesReferralsTools } from "./referrals/index";
 
 export function registerSalesPoliciesTools(server: McpServer) {
-  // Registration will be implemented after organizing all tools
+  registerSalesPoliciesDocumentsTools(server);
+  registerSalesPoliciesCalculationsTools(server);
+  registerSalesPoliciesLifecycleTools(server);
+  registerSalesPoliciesInformationTools(server);
+  registerSalesPoliciesReferralsTools(server);
 }

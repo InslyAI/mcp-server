@@ -6,13 +6,13 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 // Import individual registration functions
-import { registerCreateBinderTools } from "./create-binder.js";
-import { registerGetBinderTools } from "./get-binder.js";
-import { registerGetBinderGroupsTools } from "./get-binder-groups.js";
-import { registerLedgerListBinderNamesTool } from "./list-binder-names.js";
-import { registerListBindersTools } from "./list-binders.js";
-import { registerRenewBinderTools } from "./renew-binder.js";
-import { registerUpdateBinderTools } from "./update-binder.js";
+import { registerCreateBinderTools } from "./create-binder";
+import { registerGetBinderTools } from "./get-binder";
+import { registerGetBinderGroupsTools } from "./get-binder-groups";
+import { registerLedgerListBinderNamesTool } from "./list-binder-names";
+import { registerListBindersTools } from "./list-binders";
+import { registerRenewBinderTools } from "./renew-binder";
+import { registerUpdateBinderTools } from "./update-binder";
 
 /**
  * Register all binder management tools

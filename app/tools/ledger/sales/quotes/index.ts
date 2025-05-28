@@ -6,12 +6,12 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 // Import individual registration functions
-import { registerCalculateQuoteTools } from "./calculate-quote.js";
-import { registerCopyQuoteTools } from "./copy-quote.js";
-import { registerCreateQuoteTools } from "./create-quote.js";
-import { registerGetQuoteTools } from "./get-quote.js";
-import { registerIssueQuoteTools } from "./issue-quote.js";
-import { registerUpdateQuoteTools } from "./update-quote.js";
+import { registerCalculateQuoteTools } from "./calculate-quote";
+import { registerCopyQuoteTools } from "./copy-quote";
+import { registerCreateQuoteTools } from "./create-quote";
+import { registerGetQuoteTools } from "./get-quote";
+import { registerIssueQuoteTools } from "./issue-quote";
+import { registerUpdateQuoteTools } from "./update-quote";
 
 /**
  * Register all quote management tools
