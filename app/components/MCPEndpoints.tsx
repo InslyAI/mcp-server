@@ -2,7 +2,6 @@ export default function MCPEndpoints() {
   return (
     <section id="endpoints" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
           <a
             href="/formflow"
@@ -14,7 +13,7 @@ export default function MCPEndpoints() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">
-                  FormFlow Service
+                  FormFlow
                 </h3>
                 <code className="text-xs text-gray-600">
                   /formflow/[sse|mcp]
@@ -40,7 +39,7 @@ export default function MCPEndpoints() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">
-                  Identifier Service
+                  Identifier
                 </h3>
                 <code className="text-xs text-gray-600">
                   /identifier/[sse|mcp]
@@ -65,9 +64,7 @@ export default function MCPEndpoints() {
                 <span className="text-emerald-600 font-bold text-xs">LG</span>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">
-                  Ledger Service
-                </h3>
+                <h3 className="text-lg font-semibold text-gray-900">Ledger</h3>
                 <code className="text-xs text-gray-600">/ledger/[sse|mcp]</code>
               </div>
             </div>
@@ -89,15 +86,16 @@ export default function MCPEndpoints() {
                 <span className="text-purple-600 font-bold text-xs">CM</span>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">
-                  Claim Management
-                </h3>
-                <code className="text-xs text-gray-600">/claim-management/[sse|mcp]</code>
+                <h3 className="text-lg font-semibold text-gray-900">Claims</h3>
+                <code className="text-xs text-gray-600">
+                  /claim-management/[sse|mcp]
+                </code>
               </div>
             </div>
             <p className="text-sm text-gray-600 mb-2">
-              <strong>92 tools</strong> for complete claim lifecycle management 
-              including FNOL, tasks, objects, persons, and financial operations (Phase 4).
+              <strong>92 tools</strong> for complete claim lifecycle management
+              including FNOL, tasks, objects, persons, and financial operations
+              (Phase 4).
             </p>
             <div className="text-xs text-green-600 font-semibold">
               ✅ Production Ready
