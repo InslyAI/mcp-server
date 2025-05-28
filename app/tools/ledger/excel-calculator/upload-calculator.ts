@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerUploadExcelCalculatorTool(server: McpServer) {
   server.tool(
-    "ledger_upload_excel_calculator",
+    "ledger_excel_calculator_upload",
     "Upload and configure Excel-based calculation tools for insurance pricing and underwriting",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

@@ -9,7 +9,7 @@ import { LedgerClient } from "../../../client";
 
 export function registerUpdatePolicyTool(server: McpServer) {
   server.tool(
-    "ledger_update_policy",
+    "ledger_sales_policies_information_update",
     "Update an existing policy/quote with new data - follows JSON schema validation",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

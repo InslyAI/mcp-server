@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerCreateCustomerTool(server: McpServer) {
   server.tool(
-    "ledger_create_customer",
+    "ledger_customers_create",
     "Create a new customer with the provided information",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

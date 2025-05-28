@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerDebugCalculationApiTool(server: McpServer) {
   server.tool(
-    "ledger_debug_calculation_api",
+    "ledger_excel_calculator_debug_calculation_api",
     "Debug calculation API issues and get diagnostic information for troubleshooting",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

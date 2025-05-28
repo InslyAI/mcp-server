@@ -4,7 +4,7 @@ import { createLedgerClient } from "../../client";
 
 export function registerLedgerListBinderNamesTool(server: McpServer) {
   server.tool(
-    "ledger_list_binder_names",
+    "ledger_sales_binders_list",
     "Get list of binder names and IDs for dropdown/selection purposes. Returns simplified binder data optimized for UI components.",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),
@@ -77,7 +77,7 @@ export function registerLedgerListBinderNamesTool(server: McpServer) {
                 },
                 testCredentials: {
                   getToken: "identifier_login({ username: 'rasim.mehtijev@insly.com', password: '[password]', tenantTag: 'accelerate' })",
-                  usageExample: "ledger_list_binder_names({ bearerToken: '[from_login]', tenantId: 'accelerate' })"
+                  usageExample: "ledger_sales_binders_list"
                 }
               }, null, 2)
             }

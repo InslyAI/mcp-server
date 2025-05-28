@@ -48,14 +48,80 @@ This is a Next.js application that implements an MCP server using the `@vercel/m
 - **`app/lib/formflow-client.ts`** - FormFlow API client with dual authentication support (credentials + bearer tokens)
 - **MCP Adapter Configuration** - Uses `createMcpHandler` with Redis support for SSE transport and configurable options like `maxDuration` and `verboseLogs`.
 
+### Ledger Directory Structure & Naming Convention
+
+The ledger tools follow a **strict API path-based organization** for perfect alignment with the Insly Ledger API specification:
+
+#### **Directory Organization**
+```
+/app/tools/ledger/
+├── sales/              # /api/v1/ledger/sales/* endpoints (60+ tools)
+│   ├── binders/        # Sales binder management (7 tools)
+│   ├── e-proposals/    # Electronic proposals (6 tools)
+│   ├── endorsements/   # Policy endorsements (6 tools)
+│   ├── features/       # Product feature configuration (4 tools)
+│   ├── high-risk/      # High-risk case management (5 tools)
+│   ├── ireland-lookup/ # Ireland address lookup services (2 tools)
+│   ├── policies/       # Sales policy operations (28 tools)
+│   │   ├── calculations/   # Premium calculations & packages (5 tools)
+│   │   ├── documents/      # Policy document management (4 tools)
+│   │   ├── information/    # Policy data & search (13 tools)
+│   │   ├── lifecycle/      # Policy lifecycle operations (9 tools)
+│   │   └── referrals/      # Policy referrals & e-proposals (2 tools)
+│   └── quotes/         # Quote operations (6 tools)
+├── schemes/            # /api/v1/ledger/schemes/* endpoints (17 tools)
+│   ├── actions/        # Action schema tools (2 tools)
+│   ├── features/       # Feature schema tools (2 tools)
+│   ├── mta-renewal/    # MTA renewal schemas (2 tools)
+│   ├── policy/         # Policy schema configuration (5 tools)
+│   └── regular/        # Regular schema operations (4 tools)
+├── policies/           # /api/v1/ledger/policies/* endpoints (2 tools)
+│   └── documents/      # Direct policy document operations (2 tools)
+└── [other-categories]  # Direct ledger endpoints (58 tools)
+    ├── brokers/        # Broker management (3 tools)
+    ├── customers/      # Customer operations (9 tools)
+    ├── dashboards/     # Business intelligence (5 tools)
+    ├── reports/        # Reporting & analytics (5 tools)
+    └── [15 more categories...]
+```
+
+#### **MCP Tool Naming Convention**
+All tools follow **API path-based naming**: `ledger_{api_path_segments}_{action}`
+
+**Examples:**
+- `/api/v1/ledger/sales/binders` → `ledger_sales_binders_create`
+- `/api/v1/ledger/schemes/features/{name}` → `ledger_schemes_features_get`
+- `/api/v1/ledger/policies/{id}/documents` → `ledger_policies_documents_generate`
+- `/api/v1/ledger/customers` → `ledger_customers_list`
+
+**Benefits:**
+- ✅ **Perfect API alignment** - Tool names exactly match API structure
+- ✅ **Predictable discovery** - Users can guess tool names from API docs
+- ✅ **Clear categorization** - All sales tools start with `ledger_sales_`
+- ✅ **Hierarchical organization** - Reflects the actual API path hierarchy
+- ✅ **No naming conflicts** - Path-based prefixes prevent duplicates
+
+#### **Schema Validation Standards**
+All tools implement comprehensive Zod schemas with:
+- **Required parameters** - `bearerToken`, `tenantId` (from identifier_login)
+- **Detailed descriptions** - Every parameter has clear documentation
+- **Type validation** - Strict typing for IDs, dates, enums, objects
+- **Optional parameters** - Clearly marked with `.optional()` and descriptions
+- **Nested schemas** - Complex objects use dedicated schema definitions
+- **Examples in descriptions** - Common values and formats provided
+
 ### Tool Development
 
 When adding new MCP tools:
 
-1. Create new tool file in `app/tools/[toolname].ts`
-2. Export a `register[ToolName]Tool(server)` function
-3. Add tool registration to `app/tools/index.ts`
-4. Update capabilities object in `app/[transport]/route.ts`
+1. **Follow naming convention**: `ledger_{api_path}_{action}` 
+2. **Match directory structure**: Place in folder matching API path
+3. **Create tool file**: `app/tools/ledger/{path}/{action-name}.ts`
+4. **Export registration function**: `register{ActionName}Tool(server)`
+5. **Add to category index**: Import and call in `{category}/index.ts`
+6. **Implement full Zod schema**: Required params, descriptions, validation
+7. **Add error handling**: Try/catch with detailed error responses
+8. **Include usage examples**: In descriptions and response metadata
 
 ### Key Dependencies
 

@@ -9,7 +9,7 @@ import { LedgerClient } from "../../../client";
 
 export function registerUnbindPolicyTool(server: McpServer) {
   server.tool(
-    "ledger_unbind_policy",
+    "ledger_sales_policies_lifecycle_unbind",
     "Unbind/unlock a policy to allow further changes and modifications",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

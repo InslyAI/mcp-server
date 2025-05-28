@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerListDebtPoliciesTool(server: McpServer) {
   server.tool(
-    "ledger_list_debt_policies",
+    "ledger_debt_policies_list",
     "Get list of policies with outstanding debt and payment issues",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

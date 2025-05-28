@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerUploadQuoteFilesTools(server: McpServer) {
   server.tool(
-    "ledger_upload_quote_files",
+    "ledger_documents_upload",
     "Upload one or more files to a quote. Files are attached as supporting documents to the quote record",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerCalculateQuoteTools(server: McpServer) {
   server.tool(
-    "ledger_calculate_quote",
+    "ledger_sales_quotes_calculate",
     "Calculate premiums and pricing for a quote by updating and calculating in one operation",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerCopyQuoteTools(server: McpServer) {
   server.tool(
-    "ledger_copy_quote",
+    "ledger_sales_quotes_copy",
     "Create a copy of an existing quote. Only non-MTA (non-Mid Term Adjustment) quotes can be copied",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

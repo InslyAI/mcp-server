@@ -9,7 +9,7 @@ import { LedgerClient } from "../../client";
 
 export function registerGetEndorsementTool(server: McpServer) {
   server.tool(
-    "ledger_get_endorsement",
+    "ledger_sales_endorsements_get",
     "Get detailed information about a specific policy endorsement",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

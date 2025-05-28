@@ -9,7 +9,7 @@ import { LedgerClient } from "../../client";
 
 export function registerGetPolicyProductsTool(server: McpServer) {
   server.tool(
-    "ledger_get_policy_products",
+    "ledger_schemes_policy_get_products",
     "Get available products for a specific object type in policy schema",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

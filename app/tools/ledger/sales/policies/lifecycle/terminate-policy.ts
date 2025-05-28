@@ -16,7 +16,7 @@ const PolicyTerminationSchema = z.object({
 
 export function registerTerminatePolicyTools(server: McpServer) {
   server.tool(
-    "ledger_terminate_policy",
+    "ledger_sales_policies_lifecycle_terminate",
     "Terminate an existing policy with specified termination type and financial details",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

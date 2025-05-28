@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerRenewBinderTools(server: McpServer) {
   server.tool(
-    "ledger_renew_binder",
+    "ledger_sales_binders_renew",
     "Renew an existing binder for the next period. Creates a renewal binder based on the original binder configuration",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

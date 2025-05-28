@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerGenerateQuoteDocumentTools(server: McpServer) {
   server.tool(
-    "ledger_generate_quote_document",
+    "ledger_documents_generate",
     "Generate the main quote document or a specific document type for a quote. Returns binary document content",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

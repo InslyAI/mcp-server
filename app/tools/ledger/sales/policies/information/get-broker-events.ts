@@ -4,8 +4,8 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerGetBrokerEventsTools(server: McpServer) {
   server.tool(
-    "ledger_get_policy_broker_events",
-    "Get list of policy events for a specific broker within a date range",
+    "ledger_sales_policies_get_broker_events",
+    "Get list of sales policy events for a specific broker within a date range",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),

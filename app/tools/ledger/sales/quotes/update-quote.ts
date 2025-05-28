@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerUpdateQuoteTools(server: McpServer) {
   server.tool(
-    "ledger_update_quote",
+    "ledger_sales_quotes_update",
     "Update an existing quote with new data according to the product schema",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

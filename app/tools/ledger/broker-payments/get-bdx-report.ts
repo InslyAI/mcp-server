@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerGetBdxReportTool(server: McpServer) {
   server.tool(
-    "ledger_get_bdx_report",
+    "ledger_broker_payments_get",
     "Get the generated BDX broker payment report data using the event ID",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

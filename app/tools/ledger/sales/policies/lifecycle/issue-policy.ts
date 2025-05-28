@@ -9,7 +9,7 @@ import { LedgerClient } from "../../../client";
 
 export function registerIssuePolicyTool(server: McpServer) {
   server.tool(
-    "ledger_issue_policy",
+    "ledger_sales_policies_lifecycle_issue",
     "Issue a final policy from a quote or draft, making it active and binding",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

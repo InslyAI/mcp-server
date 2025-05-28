@@ -9,7 +9,7 @@ import { LedgerClient } from "../../../client";
 
 export function registerCopyPolicyTool(server: McpServer) {
   server.tool(
-    "ledger_copy_policy",
+    "ledger_sales_policies_lifecycle_copy",
     "Create a copy of an existing policy/quote for reuse or modification",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

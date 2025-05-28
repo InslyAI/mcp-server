@@ -9,7 +9,7 @@ import { LedgerClient } from "../../client";
 
 export function registerIrelandAddressLookupTool(server: McpServer) {
   server.tool(
-    "ledger_ireland_address_lookup",
+    "ledger_sales_lookup_ireland_address_lookup",
     "Look up and validate addresses in Ireland using official postal services",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),
@@ -68,7 +68,7 @@ export function registerIrelandAddressLookupTool(server: McpServer) {
 
 export function registerIrelandPostcodeLookupTool(server: McpServer) {
   server.tool(
-    "ledger_ireland_postcode_lookup",
+    "ledger_sales_lookup_ireland_address_lookup",
     "Look up postcodes and Eircode information for Ireland addresses",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

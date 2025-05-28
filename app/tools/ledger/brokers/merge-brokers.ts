@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerMergeBrokersTool(server: McpServer) {
   server.tool(
-    "ledger_merge_brokers",
+    "ledger_brokers_merge_brokers",
     "Merge duplicate broker accounts and consolidate their policies, commissions, and data",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerGetBrokerPoliciesCountTool(server: McpServer) {
   server.tool(
-    "ledger_get_broker_policies_count",
+    "ledger_brokers_get_policies_count",
     "Get policy count for a broker to validate merge operations and assess impact",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

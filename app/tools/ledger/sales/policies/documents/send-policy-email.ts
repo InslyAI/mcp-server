@@ -9,7 +9,7 @@ import { LedgerClient } from "../../../client";
 
 export function registerSendPolicyEmailTool(server: McpServer) {
   server.tool(
-    "ledger_send_policy_email",
+    "ledger_sales_policies_documents_send",
     "Send email notifications and information requests related to policies",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

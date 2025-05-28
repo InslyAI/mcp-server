@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerListConsolidatedInvoiceBrokersTool(server: McpServer) {
   server.tool(
-    "ledger_list_consolidated_invoice_brokers",
+    "ledger_consolidated_invoices_list",
     "Get list of brokers available for consolidated invoicing",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

@@ -9,7 +9,7 @@ import { LedgerClient } from "../../../client";
 
 export function registerListPoliciesTool(server: McpServer) {
   server.tool(
-    "ledger_list_policies",
+    "ledger_sales_policies_information_list",
     "Get a paginated list of policies with comprehensive filtering and search options",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

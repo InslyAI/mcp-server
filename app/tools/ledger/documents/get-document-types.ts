@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerGetDocumentTypesTools(server: McpServer) {
   server.tool(
-    "ledger_get_document_types",
+    "ledger_documents_get_types",
     "Get list of available document types that can be generated for a specific policy based on its configuration and current state",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

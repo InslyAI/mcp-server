@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerGetQuoteTools(server: McpServer) {
   server.tool(
-    "ledger_get_quote",
+    "ledger_sales_quotes_get",
     "Get detailed information about a specific quote by ID including all quote data and metadata",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

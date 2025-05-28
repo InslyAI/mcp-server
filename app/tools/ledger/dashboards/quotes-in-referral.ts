@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerQuotesInReferralTools(server: McpServer) {
   server.tool(
-    "ledger_get_quotes_in_referral",
+    "ledger_dashboards_quotes_in_referral",
     "Get dashboard data for quotes currently in referral status awaiting underwriter review. Supports filtering and search capabilities",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

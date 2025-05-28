@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerListReinsuranceTool(server: McpServer) {
   server.tool(
-    "ledger_list_reinsurance",
+    "ledger_reinsurance_list",
     "Get list of reinsurance arrangements and related information",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

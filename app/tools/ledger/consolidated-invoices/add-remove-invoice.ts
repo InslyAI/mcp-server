@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerAddRemoveInvoiceTool(server: McpServer) {
   server.tool(
-    "ledger_add_remove_invoice",
+    "ledger_consolidated_invoices_add_remove_invoice",
     "Add or remove individual invoices from a consolidated invoice",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

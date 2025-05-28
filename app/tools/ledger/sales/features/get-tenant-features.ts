@@ -9,7 +9,7 @@ import { LedgerClient } from "../../client";
 
 export function registerGetTenantFeaturesTool(server: McpServer) {
   server.tool(
-    "ledger_get_tenant_features",
+    "ledger_sales_features_get",
     "Get tenant-wide feature configuration settings and capabilities",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

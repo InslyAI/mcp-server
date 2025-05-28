@@ -9,7 +9,7 @@ import { LedgerClient } from "../../client";
 
 export function registerGetMtaRenewalSchemaTool(server: McpServer) {
   server.tool(
-    "ledger_get_mta_renewal_schema",
+    "ledger_schemes_mta_renewal_get",
     "Get JSON schema for MTA (Mid-Term Adjustment) renewal processing with specific version",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

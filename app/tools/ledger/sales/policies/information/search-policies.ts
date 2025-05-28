@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerSearchPoliciesTools(server: McpServer) {
   server.tool(
-    "ledger_search_policies",
+    "ledger_sales_policies_information_search",
     "Search for policies using various filters and search terms with pagination support",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

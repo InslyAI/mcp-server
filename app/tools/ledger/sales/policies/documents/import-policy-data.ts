@@ -9,7 +9,7 @@ import { LedgerClient } from "../../../client";
 
 export function registerImportPolicyDataTool(server: McpServer) {
   server.tool(
-    "ledger_import_policy_data",
+    "ledger_sales_policies_documents_import",
     "Import data into an existing policy from external sources or bulk data",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

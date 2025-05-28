@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerDeleteCustomerNoteTool(server: McpServer) {
   server.tool(
-    "ledger_delete_customer_note",
+    "ledger_customers_delete",
     "Delete a specific note associated with a customer by note ID",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

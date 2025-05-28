@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerListPaymentsPaginatedTool(server: McpServer) {
   server.tool(
-    "ledger_list_payments_paginated",
+    "ledger_broker_payments_list",
     "Get paginated list of broker payments with cursor-based navigation",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

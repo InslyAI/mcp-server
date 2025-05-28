@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerGetReportTool(server: McpServer) {
   server.tool(
-    "ledger_get_report",
+    "ledger_reports_get",
     "Get detailed information about a specific business report including metadata and download access",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

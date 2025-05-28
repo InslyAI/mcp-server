@@ -4,8 +4,8 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerGetBinderTools(server: McpServer) {
   server.tool(
-    "ledger_get_binder",
-    "Get detailed information about a specific binder by ID",
+    "ledger_sales_binders_get",
+    "Get detailed information about a specific sales binder by ID",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),

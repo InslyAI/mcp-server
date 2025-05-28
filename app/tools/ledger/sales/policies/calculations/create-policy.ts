@@ -9,7 +9,7 @@ import { LedgerClient } from "../../../client";
 
 export function registerCreatePolicyTool(server: McpServer) {
   server.tool(
-    "ledger_create_policy",
+    "ledger_sales_policies_calculations_create",
     "Create a new policy/quote using JSON schema validation - get schema from schemes section first",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

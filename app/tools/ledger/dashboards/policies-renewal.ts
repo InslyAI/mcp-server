@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerPoliciesRenewalTools(server: McpServer) {
   server.tool(
-    "ledger_get_policies_renewal",
+    "ledger_dashboards_policies_renewal",
     "Get dashboard data for policies that are eligible for renewal and don't have renewed policies issued yet. Filters by expiry timeframe",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerGetCustomerHistoryTool(server: McpServer) {
   server.tool(
-    "ledger_get_customer_history",
+    "ledger_customers_get",
     "Get historical activity and interaction history for a customer including policy changes, payments, claims, and communications",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

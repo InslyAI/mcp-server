@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerGetRequestStatusTool(server: McpServer) {
   server.tool(
-    "ledger_get_request_status",
+    "ledger_requests_get",
     "Get status of asynchronous operations like quote processing, policy issuance, or bulk calculations",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

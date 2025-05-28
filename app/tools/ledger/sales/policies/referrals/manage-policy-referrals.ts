@@ -9,7 +9,7 @@ import { LedgerClient } from "../../../client";
 
 export function registerManagePolicyReferralsTool(server: McpServer) {
   server.tool(
-    "ledger_manage_policy_referrals",
+    "ledger_sales_policies_referrals_manage",
     "Manage policy referrals including listing, accepting, and declining referrals",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

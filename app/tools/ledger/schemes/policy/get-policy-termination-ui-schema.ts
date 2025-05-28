@@ -9,7 +9,7 @@ import { LedgerClient } from "../../client";
 
 export function registerGetPolicyTerminationUiSchemaTool(server: McpServer) {
   server.tool(
-    "ledger_get_policy_termination_ui_schema",
+    "ledger_schemes_policy_get_termination_ui_schema",
     "Get UI schema for rendering policy termination interfaces for a specific policy",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

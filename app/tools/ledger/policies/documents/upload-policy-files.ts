@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerUploadPolicyFilesTools(server: McpServer) {
   server.tool(
-    "ledger_upload_policy_files",
+    "ledger_policies_documents_upload",
     "Upload one or more files to a policy. Files are attached as supporting documents to the policy record",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

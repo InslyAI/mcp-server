@@ -52,7 +52,7 @@ const UpdateBinderSchema = z.object({
 
 export function registerUpdateBinderTools(server: McpServer) {
   server.tool(
-    "ledger_update_binder",
+    "ledger_sales_binders_update",
     "Update an existing binder with new configuration. Only provided fields will be updated (partial update supported)",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

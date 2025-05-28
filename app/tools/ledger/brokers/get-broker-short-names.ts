@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerGetBrokerShortNamesTool(server: McpServer) {
   server.tool(
-    "ledger_get_broker_short_names",
+    "ledger_brokers_get_short_names",
     "Get quick reference list of broker short names and identifiers for lookups and integrations",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

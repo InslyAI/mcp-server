@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerListBindersTools(server: McpServer) {
   server.tool(
-    "ledger_list_binders",
+    "ledger_sales_binders_list",
     "Get paginated list of binders with full details and filtering options",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

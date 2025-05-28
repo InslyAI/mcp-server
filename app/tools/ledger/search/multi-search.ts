@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerMultiSearchTool(server: McpServer) {
   server.tool(
-    "ledger_multi_search",
+    "ledger_search_multi_search",
     "Universal search across all platform entities including policies, customers, quotes, brokers, and more",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

@@ -9,7 +9,7 @@ import { LedgerClient } from "../../client";
 
 export function registerGetEProposalTool(server: McpServer) {
   server.tool(
-    "ledger_get_e_proposal",
+    "ledger_sales_e_proposals_get",
     "Get detailed information about a specific electronic proposal including status and workflow",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

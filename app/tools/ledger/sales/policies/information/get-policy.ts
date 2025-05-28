@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerGetPolicyTools(server: McpServer) {
   server.tool(
-    "ledger_get_policy",
+    "ledger_sales_policies_get",
     "Get detailed information about a specific policy by ID",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

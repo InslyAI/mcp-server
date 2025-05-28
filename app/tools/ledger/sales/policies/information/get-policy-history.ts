@@ -4,8 +4,8 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerGetPolicyHistoryTools(server: McpServer) {
   server.tool(
-    "ledger_get_policy_history",
-    "Get the complete change history for a specific policy including all modifications, endorsements, and status changes",
+    "ledger_sales_policies_get_history",
+    "Get the complete change history for a specific sales policy including all modifications, endorsements, and status changes",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),

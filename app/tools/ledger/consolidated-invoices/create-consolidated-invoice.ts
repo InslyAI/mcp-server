@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerCreateConsolidatedInvoiceTool(server: McpServer) {
   server.tool(
-    "ledger_create_consolidated_invoice",
+    "ledger_consolidated_invoices_create",
     "Create a new consolidated invoice for multiple individual invoices",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

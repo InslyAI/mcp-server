@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerGetPaymentDetailTool(server: McpServer) {
   server.tool(
-    "ledger_get_payment_detail",
+    "ledger_broker_payments_get",
     "Get detailed information about a specific broker payment including commissions and breakdowns",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

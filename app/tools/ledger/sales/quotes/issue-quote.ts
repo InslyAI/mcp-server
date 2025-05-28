@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerIssueQuoteTools(server: McpServer) {
   server.tool(
-    "ledger_issue_quote",
+    "ledger_sales_quotes_issue",
     "Issue a quote to convert it into a policy. This is an asynchronous operation that returns a request ID for status tracking",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

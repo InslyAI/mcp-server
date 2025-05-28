@@ -9,7 +9,7 @@ import { LedgerClient } from "../../client";
 
 export function registerGetPolicyInsurersTool(server: McpServer) {
   server.tool(
-    "ledger_get_policy_insurers",
+    "ledger_schemes_policy_get_insurers",
     "Get available insurers for policy schema configuration",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

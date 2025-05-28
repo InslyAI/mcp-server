@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerChatConfigurationTool(server: McpServer) {
   server.tool(
-    "ledger_chat_configuration",
+    "ledger_chat_chat_configuration",
     "Configure chat settings, notifications, and communication preferences",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

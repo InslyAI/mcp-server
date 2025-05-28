@@ -9,7 +9,7 @@ import { LedgerClient } from "../../../client";
 
 export function registerGetPolicyChangesTool(server: McpServer) {
   server.tool(
-    "ledger_get_policy_changes",
+    "ledger_sales_policies_get_changes",
     "Get detailed change history and modifications for a specific policy",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

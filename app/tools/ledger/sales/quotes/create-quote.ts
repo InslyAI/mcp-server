@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerCreateQuoteTools(server: McpServer) {
   server.tool(
-    "ledger_create_quote",
+    "ledger_sales_quotes_create",
     "Create a new insurance quote using a specific product schema with customer and risk data",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

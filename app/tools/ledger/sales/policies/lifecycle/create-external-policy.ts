@@ -9,7 +9,7 @@ import { LedgerClient } from "../../../client";
 
 export function registerCreateExternalPolicyTool(server: McpServer) {
   server.tool(
-    "ledger_create_external_policy",
+    "ledger_sales_policies_lifecycle_create",
     "Create a policy from external product sources and integrations",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

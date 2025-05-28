@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerManageInvoiceFilesTool(server: McpServer) {
   server.tool(
-    "ledger_manage_invoice_files",
+    "ledger_invoices_manage",
     "Manage invoice files including upload, download, and metadata operations",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),
@@ -100,7 +100,7 @@ export function registerManageInvoiceFilesTool(server: McpServer) {
 
 export function registerInvoiceFileValidationTool(server: McpServer) {
   server.tool(
-    "ledger_invoice_file_validation",
+    "ledger_invoices_manage",
     "Validate invoice files for compliance, format, and content requirements",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

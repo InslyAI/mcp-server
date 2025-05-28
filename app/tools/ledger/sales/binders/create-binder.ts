@@ -55,8 +55,8 @@ const CreateBinderSchema = z.object({
 
 export function registerCreateBinderTools(server: McpServer) {
   server.tool(
-    "ledger_create_binder",
-    "Create a new binder with comprehensive configuration including summary, contract details, shares, limitations, and documents",
+    "ledger_sales_binders_create",
+    "Create a new sales binder with comprehensive configuration including summary, contract details, shares, limitations, and documents",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),
       tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),

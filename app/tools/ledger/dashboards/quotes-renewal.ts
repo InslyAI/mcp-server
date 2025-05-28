@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export function registerQuotesRenewalTools(server: McpServer) {
   server.tool(
-    "ledger_get_quotes_renewal",
+    "ledger_dashboards_quotes_renewal",
     "Get dashboard data for renewal quotes that have been created by renewal processes and are not yet issued. Supports filtering by product, status, and broker",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

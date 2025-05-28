@@ -9,7 +9,7 @@ import { LedgerClient } from "../../../client";
 
 export function registerGetInstallmentsScheduleTool(server: McpServer) {
   server.tool(
-    "ledger_get_installments_schedule",
+    "ledger_sales_policies_get_installments",
     "Get payment installment schedule for a specific policy",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

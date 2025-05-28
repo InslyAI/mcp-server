@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerGetCustomerTool(server: McpServer) {
   server.tool(
-    "ledger_get_customer",
+    "ledger_customers_get",
     "Get detailed information about a specific customer by ID",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

@@ -9,7 +9,7 @@ import { LedgerClient } from "../../client";
 
 export function registerEscalateHighRiskCaseTool(server: McpServer) {
   server.tool(
-    "ledger_escalate_high_risk_case",
+    "ledger_sales_high_risk_escalate",
     "Escalate a high-risk case to higher authority levels for specialized review and decision-making",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

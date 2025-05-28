@@ -9,7 +9,7 @@ import { LedgerClient } from "../../client";
 
 export function registerGetRegularSchemaTool(server: McpServer) {
   server.tool(
-    "ledger_get_regular_schema",
+    "ledger_schemes_regular_get",
     "Get JSON schema for regular policy products - use with React JSON Schema Form to create quote payloads",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

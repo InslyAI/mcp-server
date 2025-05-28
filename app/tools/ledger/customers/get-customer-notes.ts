@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerGetCustomerNotesTool(server: McpServer) {
   server.tool(
-    "ledger_get_customer_notes",
+    "ledger_customers_get",
     "Get all notes and comments associated with a customer, including internal notes and customer communications",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerDeleteReportTool(server: McpServer) {
   server.tool(
-    "ledger_delete_report",
+    "ledger_reports_delete",
     "Delete a generated report file or cancel/delete a scheduled report configuration",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

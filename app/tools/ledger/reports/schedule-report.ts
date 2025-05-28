@@ -9,7 +9,7 @@ import { LedgerClient } from "../client";
 
 export function registerScheduleReportTool(server: McpServer) {
   server.tool(
-    "ledger_schedule_report",
+    "ledger_reports_schedule",
     "Schedule automatic generation of business reports on a recurring basis with customizable parameters",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),

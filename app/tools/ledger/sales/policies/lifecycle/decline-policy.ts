@@ -9,7 +9,7 @@ import { LedgerClient } from "../../../client";
 
 export function registerDeclinePolicyTool(server: McpServer) {
   server.tool(
-    "ledger_decline_policy",
+    "ledger_sales_policies_lifecycle_decline",
     "Decline a policy draft with specified reason and optional details",
     {
       bearerToken: z.string().describe("JWT bearer token from identifier_login"),
