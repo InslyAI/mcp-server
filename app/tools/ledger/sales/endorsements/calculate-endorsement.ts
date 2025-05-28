@@ -5,7 +5,7 @@
 
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { LedgerClient } from "../../client";
+import { createLedgerClient } from "../../client";
 
 export function registerCalculateEndorsementTool(server: McpServer) {
   server.tool(
@@ -24,7 +24,7 @@ export function registerCalculateEndorsementTool(server: McpServer) {
     },
     async ({ bearerToken, tenantId, endorsementId, calculationOptions }) => {
       try {
-        const client = new LedgerClient(bearerToken, tenantId);
+        const client = createLedgerClient(bearerToken, tenantId);
         
         const payload = {
           ...(calculationOptions && calculationOptions)

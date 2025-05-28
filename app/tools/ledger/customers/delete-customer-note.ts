@@ -5,7 +5,7 @@
 
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { LedgerClient } from "../client";
+import { createLedgerClient } from "../client";
 
 export function registerDeleteCustomerNoteTool(server: McpServer) {
   server.tool(
@@ -20,7 +20,7 @@ export function registerDeleteCustomerNoteTool(server: McpServer) {
     },
     async ({ bearerToken, tenantId, customerId, noteId, reason }) => {
       try {
-        const client = new LedgerClient(bearerToken, tenantId);
+        const client = createLedgerClient(bearerToken, tenantId);
         
         const deleteData = reason ? { reason } : undefined;
         

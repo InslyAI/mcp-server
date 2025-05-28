@@ -5,7 +5,7 @@
 
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { LedgerClient } from "../client";
+import { createLedgerClient } from "../client";
 
 export function registerManageConsolidatedInvoiceItemsTool(server: McpServer) {
   server.tool(
@@ -20,7 +20,7 @@ export function registerManageConsolidatedInvoiceItemsTool(server: McpServer) {
     },
     async ({ bearerToken, tenantId, consolidatedInvoiceId, action, invoiceNumbers }) => {
       try {
-        const client = new LedgerClient(bearerToken, tenantId);
+        const client = createLedgerClient(bearerToken, tenantId);
         
         let response;
         let endpoint = `/api/v1/ledger/consolidated-invoices/${consolidatedInvoiceId}/invoices`;

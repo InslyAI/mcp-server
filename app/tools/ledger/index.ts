@@ -41,7 +41,7 @@ import { registerChatSettingsTools } from "./chat";
  * TOTAL IMPLEMENTATION: 158+ Ledger tools (Complete API Coverage!)
  */
 export function registerLedgerTools(server: McpServer) {
-  // Sales API tools (/api/v1/ledger/sales/* - 60+ tools) 
+  // Re-enabling sales tools to test
   registerSalesTools(server);
   
   // Direct Policies API tools (/api/v1/ledger/policies/* - 19 tools)

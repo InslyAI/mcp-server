@@ -5,7 +5,7 @@
 
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { LedgerClient } from "../../../client";
+import { createLedgerClient } from "../../../client";
 
 export function registerGetPolicyDocumentsTool(server: McpServer) {
   server.tool(
@@ -19,7 +19,7 @@ export function registerGetPolicyDocumentsTool(server: McpServer) {
     },
     async ({ bearerToken, tenantId, policyId, documentType }) => {
       try {
-        const client = new LedgerClient(bearerToken, tenantId);
+        const client = createLedgerClient(bearerToken, tenantId);
         
         let endpoint = `/api/v1/ledger/sales/policies/${policyId}/generated-documents`;
         if (documentType) {

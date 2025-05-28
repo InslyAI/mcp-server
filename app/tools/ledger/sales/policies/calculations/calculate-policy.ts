@@ -5,7 +5,7 @@
 
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { LedgerClient } from "../../../client";
+import { createLedgerClient } from "../../../client";
 
 export function registerCalculatePolicyTool(server: McpServer) {
   server.tool(
@@ -26,7 +26,7 @@ export function registerCalculatePolicyTool(server: McpServer) {
     },
     async ({ bearerToken, tenantId, policyId, calculationOptions, language }) => {
       try {
-        const client = new LedgerClient(bearerToken, tenantId);
+        const client = createLedgerClient(bearerToken, tenantId);
         
         const headers: Record<string, string> = {};
         if (language) headers['Accept-Language'] = language;

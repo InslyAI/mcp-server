@@ -5,7 +5,7 @@
 
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { LedgerClient } from "../../client";
+import { createLedgerClient } from "../../client";
 
 export function registerEscalateHighRiskCaseTool(server: McpServer) {
   server.tool(
@@ -38,7 +38,7 @@ export function registerEscalateHighRiskCaseTool(server: McpServer) {
     },
     async ({ bearerToken, tenantId, caseId, escalationData }) => {
       try {
-        const client = new LedgerClient(bearerToken, tenantId);
+        const client = createLedgerClient(bearerToken, tenantId);
         
         const response = await client.post(
           `/high-risk-cases/${caseId}/escalate`,

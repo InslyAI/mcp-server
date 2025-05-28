@@ -5,7 +5,7 @@
 
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { LedgerClient } from "../../client";
+import { createLedgerClient } from "../../client";
 
 export function registerGetEProposalTool(server: McpServer) {
   server.tool(
@@ -21,7 +21,7 @@ export function registerGetEProposalTool(server: McpServer) {
     },
     async ({ bearerToken, tenantId, proposalId, includeHistory, includeAttachments, includeComments }) => {
       try {
-        const client = new LedgerClient(bearerToken, tenantId);
+        const client = createLedgerClient(bearerToken, tenantId);
         
         const queryParams = new URLSearchParams();
         if (includeHistory) queryParams.append('include_history', 'true');

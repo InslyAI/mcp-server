@@ -5,7 +5,7 @@
 
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { LedgerClient } from "../../client";
+import { createLedgerClient } from "../../client";
 
 export function registerListEndorsementsTool(server: McpServer) {
   server.tool(
@@ -42,7 +42,7 @@ export function registerListEndorsementsTool(server: McpServer) {
       sortOrder 
     }) => {
       try {
-        const client = new LedgerClient(bearerToken, tenantId);
+        const client = createLedgerClient(bearerToken, tenantId);
         
         const queryParams = new URLSearchParams();
         if (policyId) queryParams.append('policy_id', policyId);

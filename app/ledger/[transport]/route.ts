@@ -6,9 +6,7 @@ const handler = createMcpHandler(
     registerLedgerTools(server);
   },
   {
-    capabilities: {
-      tools: {},
-    },
+    // Remove hardcoded capabilities - let MCP adapter auto-discover registered tools
   },
   {
     redisUrl: process.env.REDIS_URL,

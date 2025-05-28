@@ -5,7 +5,7 @@
 
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { LedgerClient } from "../../../client";
+import { createLedgerClient } from "../../../client";
 
 export function registerManagePolicyEventsTool(server: McpServer) {
   server.tool(
@@ -28,7 +28,7 @@ export function registerManagePolicyEventsTool(server: McpServer) {
     },
     async ({ bearerToken, tenantId, policyId, action, eventId, eventData }) => {
       try {
-        const client = new LedgerClient(bearerToken, tenantId);
+        const client = createLedgerClient(bearerToken, tenantId);
         
         let endpoint;
         let response;

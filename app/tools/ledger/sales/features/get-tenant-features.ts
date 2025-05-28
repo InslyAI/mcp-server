@@ -5,7 +5,7 @@
 
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { LedgerClient } from "../../client";
+import { createLedgerClient } from "../../client";
 
 export function registerGetTenantFeaturesTool(server: McpServer) {
   server.tool(
@@ -20,7 +20,7 @@ export function registerGetTenantFeaturesTool(server: McpServer) {
     },
     async ({ bearerToken, tenantId, includePermissions, includeLimits, category }) => {
       try {
-        const client = new LedgerClient(bearerToken, tenantId);
+        const client = createLedgerClient(bearerToken, tenantId);
         
         const queryParams = new URLSearchParams();
         if (includePermissions) queryParams.append('includePermissions', includePermissions.toString());

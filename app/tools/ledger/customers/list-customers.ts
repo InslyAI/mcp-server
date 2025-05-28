@@ -5,7 +5,7 @@
 
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { LedgerClient } from "../client";
+import { createLedgerClient } from "../client";
 
 export function registerListCustomersTool(server: McpServer) {
   server.tool(
@@ -17,7 +17,7 @@ export function registerListCustomersTool(server: McpServer) {
     },
     async ({ bearerToken, tenantId }) => {
       try {
-        const client = new LedgerClient(bearerToken, tenantId);
+        const client = createLedgerClient(bearerToken, tenantId);
         
         const response = await client.get("/api/v1/ledger/customers");
 

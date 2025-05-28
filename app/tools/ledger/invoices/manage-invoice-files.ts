@@ -5,7 +5,7 @@
 
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { LedgerClient } from "../client";
+import { createLedgerClient } from "../client";
 
 export function registerManageInvoiceFilesTool(server: McpServer) {
   server.tool(
@@ -26,7 +26,7 @@ export function registerManageInvoiceFilesTool(server: McpServer) {
     },
     async ({ bearerToken, tenantId, invoiceId, operation, fileData = {} }) => {
       try {
-        const client = new LedgerClient(bearerToken, tenantId);
+        const client = createLedgerClient(bearerToken, tenantId);
         
         let endpoint;
         let response;
@@ -120,7 +120,7 @@ export function registerInvoiceFileValidationTool(server: McpServer) {
     },
     async ({ bearerToken, tenantId, fileData, validationRules = {} }) => {
       try {
-        const client = new LedgerClient(bearerToken, tenantId);
+        const client = createLedgerClient(bearerToken, tenantId);
         
         const endpoint = `/api/v1/ledger/invoices/files/validate`;
         const requestData = {

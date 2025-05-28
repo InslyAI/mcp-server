@@ -5,7 +5,7 @@
 
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { LedgerClient } from "../../client";
+import { createLedgerClient } from "../../client";
 
 export function registerGetRenewalUiSchemaTool(server: McpServer) {
   server.tool(
@@ -20,7 +20,7 @@ export function registerGetRenewalUiSchemaTool(server: McpServer) {
     },
     async ({ bearerToken, tenantId, schemaType, schemaName, version }) => {
       try {
-        const client = new LedgerClient(bearerToken, tenantId);
+        const client = createLedgerClient(bearerToken, tenantId);
         
         const response = await client.get(`/api/v1/ledger/schemes/${schemaType}/regular-renewal/${schemaName}/${version}/ui`);
 
