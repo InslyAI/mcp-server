@@ -68,7 +68,7 @@ export function registerIrelandAddressLookupTool(server: McpServer) {
 
 export function registerIrelandPostcodeLookupTool(server: McpServer) {
   server.tool(
-    "ledger_sales_lookup_ireland_address_lookup",
+    "ledger_sales_lookup_ireland_postcode_lookup",
     "Look up postcodes and Eircode information for Ireland addresses",
     {
       bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),

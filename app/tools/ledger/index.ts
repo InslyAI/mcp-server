@@ -41,31 +41,27 @@ import { registerChatSettingsTools } from "./chat";
  * TOTAL IMPLEMENTATION: 158+ Ledger tools (Complete API Coverage!)
  */
 export function registerLedgerTools(server: McpServer) {
-  // Re-enabling sales tools to test
-  registerSalesTools(server);
-  
-  // Direct Policies API tools (/api/v1/ledger/policies/* - 19 tools)
-  registerPolicyTools(server);
-  
-  // Schemes API tools (/api/v1/ledger/schemes/* - 17 tools)
-  registerSchemeTools(server);
-  
-  // Remaining API categories (flat structure)
+  // Testing with minimal tools first
   registerCustomerTools(server);               // Customer management (11 tools)
-  registerConsolidatedInvoiceTools(server);    // Invoice consolidation (9 tools)
-  registerDashboardTools(server);              // Business intelligence (5 tools)
-  registerBrokerPaymentTools(server);          // Payment processing (7 tools)
-  registerReportTools(server);                 // Business reporting (5 tools)
-  registerBrokerManagementTools(server);       // Broker administration (3 tools)
-  registerReinsuranceTools(server);            // Reinsurance management (2 tools)
-  registerDocumentTools(server);               // Document generation (remaining tools)
-  registerExcelCalculatorTools(server);        // Calculator management (2 tools)
-  registerInvoiceFilesTools(server);           // Invoice file operations (2 tools)
-  registerSearchTools(server);                 // Universal search (1 tool)
-  registerRequestTrackingTools(server);        // Request status tracking (1 tool)
-  registerDebtPolicyTools(server);             // Debt policies (1 tool)
   registerUserTools(server);                   // User management (1 tool)
-  registerChatSettingsTools(server);           // Chat configuration (1 tool)
+  registerSearchTools(server);                 // Universal search (1 tool)
+  
+  // Temporarily disabled for testing
+  // registerSalesTools(server);
+  // registerPolicyTools(server);
+  // registerSchemeTools(server);
+  // registerConsolidatedInvoiceTools(server);
+  // registerDashboardTools(server);
+  // registerBrokerPaymentTools(server);
+  // registerReportTools(server);
+  // registerBrokerManagementTools(server);
+  // registerReinsuranceTools(server);
+  // registerDocumentTools(server);
+  // registerExcelCalculatorTools(server);
+  // registerInvoiceFilesTools(server);
+  // registerRequestTrackingTools(server);
+  // registerDebtPolicyTools(server);
+  // registerChatSettingsTools(server);
   
   // 🎯 COMPLETE COVERAGE: 158+ Ledger tools implemented!
   // ✅ 100% LEDGER API COVERAGE ACHIEVED

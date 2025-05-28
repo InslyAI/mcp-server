@@ -9,7 +9,7 @@ import { createLedgerClient } from "../client";
 
 export function registerGetCustomerTotalsTool(server: McpServer) {
   server.tool(
-    "ledger_customers_get",
+    "ledger_customers_totals_get",
     "Get financial totals and statistics for a specific customer including premium amounts, policy counts, and overdue payments",
     {
       bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),

@@ -100,7 +100,7 @@ export function registerManageInvoiceFilesTool(server: McpServer) {
 
 export function registerInvoiceFileValidationTool(server: McpServer) {
   server.tool(
-    "ledger_invoices_manage",
+    "ledger_invoices_validate",
     "Validate invoice files for compliance, format, and content requirements",
     {
       bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
