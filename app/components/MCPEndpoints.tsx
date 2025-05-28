@@ -11,7 +11,7 @@ export default function MCPEndpoints() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
           <a
-            href="#formflow-tools"
+            href="/formflow"
             className="insly-card hover:shadow-lg transition-shadow cursor-pointer"
           >
             <div className="flex items-center mb-4">
@@ -37,7 +37,7 @@ export default function MCPEndpoints() {
           </a>
 
           <a
-            href="#identifier-tools"
+            href="/identifier"
             className="insly-card hover:shadow-lg transition-shadow cursor-pointer"
           >
             <div className="flex items-center mb-4">
@@ -63,7 +63,7 @@ export default function MCPEndpoints() {
           </a>
 
           <a
-            href="#ledger-tools"
+            href="/ledger"
             className="insly-card hover:shadow-lg transition-shadow cursor-pointer"
           >
             <div className="flex items-center mb-4">
@@ -87,7 +87,7 @@ export default function MCPEndpoints() {
           </a>
 
           <a
-            href="#claim-management-tools"
+            href="/claim-management"
             className="insly-card hover:shadow-lg transition-shadow cursor-pointer"
           >
             <div className="flex items-center mb-4">
@@ -111,7 +111,7 @@ export default function MCPEndpoints() {
           </a>
 
           <a
-            href="#tools"
+            href="/"
             className="insly-card hover:shadow-lg transition-shadow cursor-pointer"
           >
             <div className="flex items-center mb-4">
