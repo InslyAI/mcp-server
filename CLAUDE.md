@@ -6,11 +6,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **insly.ai MCP Server** - Main MCP (Model Context Protocol) server for insly.ai, the AI assistant for insly.com insurance platform. This server provides AI-powered tools and capabilities for insurance operations, featuring:
 
-- **FormFlow integration** (25 tools) - Document processing, AI extraction, form management
+- **FormFlow integration** (27 tools) - Document processing, AI extraction, form management
 - **Identifier service** (3 tools) - Authentication with Insly platform  
-- **Ledger service** (137 tools) - **COMPLETE API COVERAGE** - All insurance business operations
+- **Ledger service** (135 tools) - **COMPLETE API COVERAGE** - All insurance business operations
+- **Claim Management service** (92 tools) - **PLANNED** - Complete claim lifecycle management
 
-**IMPLEMENTATION STATUS**: Production-ready with **165 total tools** across three specialized services providing **complete 100% Ledger API coverage**.
+**IMPLEMENTATION STATUS**: Production-ready with **165 total tools** across three specialized services. **CLAIM MANAGEMENT EXPANSION PLANNED**: Adding 92 additional tools for **257 total tools** across four comprehensive insurance services.
 
 ## Commands
 
@@ -39,12 +40,14 @@ This is a Next.js application that implements an MCP server using the `@vercel/m
   - `LedgerTools.tsx` - Comprehensive Ledger service tools overview
 - **`app/tools/`** - Modular tool directory where each MCP tool is implemented in separate files
   - `app/tools/index.ts` - Central tool registration
-  - `app/tools/formflow/` - FormFlow integration tools (25 tools total)
+  - `app/tools/formflow/` - FormFlow integration tools (27 tools total)
     - Authentication, submission management, template management, file operations, webhooks, AI features
   - `app/tools/identifier/` - Identifier service tools (3 tools total)
     - Authentication: client credentials, login, refresh token
-  - `app/tools/ledger/` - Ledger business operations tools (**137 tools total - COMPLETE API COVERAGE**)
+  - `app/tools/ledger/` - Ledger business operations tools (**135 tools total - COMPLETE API COVERAGE**)
     - **25+ categories**: binders (7), claims (6), consolidated-invoices (10), dashboards (5), documents (5), e-proposals (6), endorsements (6), high-risk (5), policies (33), quotes (6), reports (5), schemas (5), users (1), workflows (4), search (1), feature-config (4), request-tracking (1), broker-management (3), excel-calculator (2), high-risk-data (1), lookup-services (2), invoice-files (2), chat-settings (1), and more
+  - `app/tools/claim-management/` - Claim management operations tools (**92 tools total - PLANNED**)
+    - **17 categories**: access-management (1), alarms (3), claims (57), dashboard (7), entities (7), external-fnol (2), fnol (3), imports (4), major-events (5), partners (5), search (2), tasks (1)
 - **`app/lib/formflow-client.ts`** - FormFlow API client with dual authentication support (credentials + bearer tokens)
 - **MCP Adapter Configuration** - Uses `createMcpHandler` with Redis support for SSE transport and configurable options like `maxDuration` and `verboseLogs`.
 
@@ -52,7 +55,39 @@ This is a Next.js application that implements an MCP server using the `@vercel/m
 
 The ledger tools follow a **strict API path-based organization** for perfect alignment with the Insly Ledger API specification:
 
-#### **Directory Organization**
+### Claim Management Directory Structure & Naming Convention (PLANNED)
+
+The claim management tools will follow the **same API path-based organization** pattern as ledger tools for consistency and perfect alignment with the Claim Management API specification:
+
+#### **Claim Management Directory Organization (PLANNED)**
+```
+/app/tools/claim-management/
+├── access-management/     # /api/v1/claim-management/access-management/* endpoints (1 tool)
+├── alarms/               # /api/v1/claim-management/claims/{claim}/alarms/* endpoints (3 tools)  
+├── claims/               # /api/v1/claim-management/claims/* endpoints (57 tools - largest category)
+│   ├── basic/            # Core CRUD operations (6 tools)
+│   ├── comments/         # Comment management (4 tools)
+│   ├── documents/        # Document operations (8 tools)
+│   ├── objects/          # Claim objects (vehicles, property) (6 tools)
+│   ├── persons/          # Person management (4 tools)
+│   ├── reserves/         # Reserve operations (9 tools)
+│   ├── decisions/        # Indemnity decisions (6 tools)
+│   ├── payment-decisions/ # Payment decisions (5 tools)
+│   ├── tasks/            # Claim tasks (4 tools)
+│   ├── alarms/           # Claim-specific alarms (3 tools)
+│   └── fnol/             # First Notice of Loss (1 tool)
+├── dashboard/            # /api/v1/claim-management/dashboard/* endpoints (7 tools)
+├── entities/             # /api/v1/claim-management/{entity} list endpoints (7 tools)
+├── external-fnol/        # /api/v1/claim-management/fnol-external/* endpoints (2 tools)
+├── fnol/                 # /api/v1/claim-management/fnol/* endpoints (3 tools)
+├── imports/              # /api/v1/claim-management/imports/* endpoints (4 tools)
+├── major-events/         # /api/v1/claim-management/major-events/* endpoints (5 tools)
+├── partners/             # /api/v1/claim-management/partners/* endpoints (5 tools)
+├── search/               # /api/v1/claim-management/*search* endpoints (2 tools)
+└── tasks/                # /api/v1/claim-management/tasks/* endpoints (1 tool)
+```
+
+#### **Ledger Directory Organization**
 ```
 /app/tools/ledger/
 ├── sales/              # /api/v1/ledger/sales/* endpoints (60+ tools)
@@ -86,13 +121,19 @@ The ledger tools follow a **strict API path-based organization** for perfect ali
 ```
 
 #### **MCP Tool Naming Convention**
-All tools follow **API path-based naming**: `ledger_{api_path_segments}_{action}`
+All tools follow **API path-based naming**: `{service}_{api_path_segments}_{action}`
 
-**Examples:**
+**Ledger Examples:**
 - `/api/v1/ledger/sales/binders` → `ledger_sales_binders_create`
 - `/api/v1/ledger/schemes/features/{name}` → `ledger_schemes_features_get`
 - `/api/v1/ledger/policies/{id}/documents` → `ledger_policies_documents_generate`
 - `/api/v1/ledger/customers` → `ledger_customers_list`
+
+**Claim Management Examples (PLANNED):**
+- `/api/v1/claim-management/claims` → `claim_management_claims_list`
+- `/api/v1/claim-management/claims/{claim}/reserves` → `claim_management_claims_reserves_create`
+- `/api/v1/claim-management/dashboard/my-claims/open` → `claim_management_dashboard_my_claims_open`
+- `/api/v1/claim-management/partners` → `claim_management_partners_list`
 
 **Benefits:**
 - ✅ **Perfect API alignment** - Tool names exactly match API structure
@@ -114,14 +155,46 @@ All tools implement comprehensive Zod schemas with:
 
 When adding new MCP tools:
 
-1. **Follow naming convention**: `ledger_{api_path}_{action}` 
+1. **Follow naming convention**: `{service}_{api_path}_{action}` (e.g., `ledger_*`, `claim_management_*`)
 2. **Match directory structure**: Place in folder matching API path
-3. **Create tool file**: `app/tools/ledger/{path}/{action-name}.ts`
+3. **Create tool file**: `app/tools/{service}/{path}/{action-name}.ts`
 4. **Export registration function**: `register{ActionName}Tool(server)`
 5. **Add to category index**: Import and call in `{category}/index.ts`
 6. **Implement full Zod schema**: Required params, descriptions, validation
 7. **Add error handling**: Try/catch with detailed error responses
 8. **Include usage examples**: In descriptions and response metadata
+
+### Claim Management Implementation Plan (PLANNED)
+
+**Phase 1 - Foundation (20 tools)**:
+- Core claims CRUD operations (6 tools)
+- Access management (1 tool)
+- Basic dashboard views (7 tools)
+- Entity lists (6 tools)
+
+**Phase 2 - Document & Communication (15 tools)**:
+- Document management (8 tools)
+- Comments system (4 tools)
+- Alarms and notifications (3 tools)
+
+**Phase 3 - Financial Operations (20 tools)**:
+- Reserves management (9 tools)
+- Indemnity decisions (6 tools)
+- Payment decisions (5 tools)
+
+**Phase 4 - Advanced Features (37 tools)**:
+- FNOL processing (6 tools)
+- Partners and major events (10 tools)
+- Claim objects and persons (10 tools)
+- Tasks and workflow (5 tools)
+- Import operations (4 tools)
+- Search capabilities (2 tools)
+
+**Authentication & Compatibility**:
+- Uses same bearer token as ledger service ✅
+- Same tenant ID header requirement ✅
+- Consistent error handling patterns ✅
+- Follows identical tool architecture ✅
 
 ### Key Dependencies
 
@@ -139,10 +212,11 @@ The server supports multiple transport methods and **separate service endpoints*
 - HTTP - standard request/response
 
 **Service Endpoints:**
-- **`/formflow/[transport]`** - FormFlow-only tools (25 tools, production ready)
+- **`/formflow/[transport]`** - FormFlow-only tools (27 tools, production ready)
 - **`/identifier/[transport]`** - Identifier-only tools (3 tools, production ready)
-- **`/ledger/[transport]`** - Ledger-only tools (**137 tools - COMPLETE API COVERAGE**, production ready)
-- **`/[transport]`** - Unified endpoint with all tools (**165 total tools**)
+- **`/ledger/[transport]`** - Ledger-only tools (**135 tools - COMPLETE API COVERAGE**, production ready)
+- **`/claim-management/[transport]`** - Claim Management-only tools (**92 tools - PLANNED**, full claim lifecycle)
+- **`/[transport]`** - Unified endpoint with all tools (**165 total tools**, expanding to **257 with claim management**)
 
 **Architecture Benefits:**
 - Complete service isolation - no shared authentication or code
@@ -203,7 +277,7 @@ app/
 - **Rate Limiting**: 60 requests/minute awareness
 - **Consistent Implementation**: Every FormFlow tool follows the same authentication pattern
 
-### FormFlow Tool Categories (25 Total)
+### FormFlow Tool Categories (27 Total)
 - **Authentication**: Token exchange
 - **Submissions**: CRUD operations, references, events, file uploads
 - **Templates**: Full lifecycle management
@@ -214,9 +288,37 @@ app/
 ### Identifier Tool Categories (3 Total)
 - **Authentication**: Client credentials, user login, token refresh
 
-### Ledger Tool Categories (137 Total - COMPLETE API COVERAGE)
+### Ledger Tool Categories (135 Total - COMPLETE API COVERAGE)
 
-**🎯 COMPLETE COVERAGE ACHIEVED: All 137 Ledger API endpoints implemented!**
+**🎯 COMPLETE COVERAGE ACHIEVED: All 135 Ledger API endpoints implemented!**
+
+### Claim Management Tool Categories (92 Total - PLANNED)
+
+**🎯 COMPREHENSIVE CLAIM LIFECYCLE: Complete claim management system from FNOL to settlement!**
+
+**Core Claim Operations:**
+- **Claims** (57): Complete claim lifecycle management including basic CRUD (6), comments (4), documents (8), objects (6), persons (4), reserves (9), decisions (6), payment decisions (5), tasks (4), alarms (3), and FNOL (1)
+- **Dashboard** (7): Business intelligence for claim management including my claims (open, alarmed, inactive, recent), unassigned claims, and task management
+- **Alarms** (3): Claim alarm and notification management
+- **Documents** (8): Claim document generation, rendering, upload, and management
+
+**FNOL (First Notice of Loss):**
+- **External FNOL** (2): External claim reporting and document submission
+- **FNOL** (3): Standard first notice of loss processing and link generation
+
+**Business Intelligence & Management:**
+- **Search** (2): Universal claim search and customer autocomplete
+- **Dashboard** (7): Comprehensive claim analytics and task management
+- **Imports** (4): Bulk claim data import operations
+- **Tasks** (1): General task management and workflow
+
+**Partner & Event Management:**
+- **Partners** (5): External partner and service provider management
+- **Major Events** (5): Catastrophe and major event claim processing
+- **Entities** (7): Entity listing for objects, persons, reserves, decisions, payments, events, and users
+
+**Access & Configuration:**
+- **Access Management** (1): Permission and action management for claims
 
 **Core Business Operations:**
 - **Policies** (33): Complete policy lifecycle, documents, files, calculations, actions, notifications
@@ -265,8 +367,10 @@ app/
 ### Deployment Notes
 
 - **Production Ready**: Deployed for insly.ai with professional branding and **complete 100% Ledger API coverage**
+- **Claim Management Expansion**: Ready for implementation of 92 additional tools for complete insurance platform coverage
 - **Component Architecture**: Refactored to modular React components following best practices
 - **SSE Transport**: Requires `REDIS_URL` environment variable
 - **Performance**: Optimized with `maxDuration` set to 800 seconds and modular component loading
 - **Maintainability**: Main page reduced from ~1700 lines to 44 lines with component extraction
 - **SEO Optimized**: Comprehensive metadata and Open Graph tags
+- **Scalable Architecture**: Service isolation enables independent tool development and deployment
