@@ -6,16 +6,6 @@ export default function Header() {
           <div className="flex items-center space-x-3">
             <img src="/insly-logo-2.png" alt="Insly" className="h-10 w-auto" />
           </div>
-          <nav className="hidden md:flex space-x-8">
-            <a
-              href="https://insly.com"
-              className="insly-nav-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Main Platform
-            </a>
-          </nav>
         </div>
       </div>
     </header>
