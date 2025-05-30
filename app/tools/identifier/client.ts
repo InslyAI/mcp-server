@@ -3,37 +3,34 @@
  * Handles authentication with Insly Identifier service
  */
 
-import type { 
+import type {
   IdentifierCredentials,
-  ClientCredentials, 
+  ClientCredentials,
   LoginRequest,
   LoginResult,
   ClientCredentialsResult,
   RefreshTokenRequest,
   RefreshTokenResult,
-  ErrorResponse
-} from './types';
+  ErrorResponse,
+} from "./types";
 
 export class IdentifierClient {
   private baseUrl: string;
 
-  constructor(tenant: string) {
+  constructor(tenant: string, env: "beta" | "devbox" = "beta") {
     // URL pattern: https://{{tenant}}.app.beta.insly.training/api/v1/identifier
-    this.baseUrl = `https://${tenant}.app.beta.insly.training/api/v1/identifier`;
+    this.baseUrl = `https://${tenant}.app.${env}.insly.training/api/v1/identifier`;
   }
 
   /**
    * Make authenticated API request to Identifier service
    */
-  private async makeRequest(
-    endpoint: string, 
-    options: RequestInit = {}
-  ): Promise<Response> {
+  private async makeRequest(endpoint: string, options: RequestInit = {}): Promise<Response> {
     const url = `${this.baseUrl}${endpoint}`;
-    
+
     const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
+      Accept: "application/json",
+      "Content-Type": "application/json",
       ...options.headers,
     };
 
@@ -51,22 +48,24 @@ export class IdentifierClient {
    */
   async login(credentials: IdentifierCredentials): Promise<LoginResult> {
     const { username, password, tenantTag } = credentials;
-    
+
     const loginRequest: LoginRequest = {
       username,
-      password
+      password,
     };
 
     const response = await this.makeRequest(`/login/${tenantTag}`, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(loginRequest),
     });
 
     if (!response.ok) {
       const errorData: ErrorResponse = await response.json().catch(() => ({
-        errors: [{ message: `HTTP ${response.status}: ${response.statusText}` }]
+        errors: [{ message: `HTTP ${response.status}: ${response.statusText}` }],
       }));
-      throw new Error(`Identifier login failed: ${errorData.errors?.[0]?.message || response.statusText}`);
+      throw new Error(
+        `Identifier login failed: ${errorData.errors?.[0]?.message || response.statusText}`
+      );
     }
 
     return response.json();
@@ -78,23 +77,25 @@ export class IdentifierClient {
    */
   async clientCredentials(credentials: ClientCredentials): Promise<ClientCredentialsResult> {
     const { clientId, clientSecret, tenantTag, scope } = credentials;
-    
+
     const requestBody = {
       client_id: clientId,
       client_secret: clientSecret,
-      ...(scope && { scope })
+      ...(scope && { scope }),
     };
 
     const response = await this.makeRequest(`/token/client/${tenantTag}`, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(requestBody),
     });
 
     if (!response.ok) {
       const errorData: ErrorResponse = await response.json().catch(() => ({
-        errors: [{ message: `HTTP ${response.status}: ${response.statusText}` }]
+        errors: [{ message: `HTTP ${response.status}: ${response.statusText}` }],
       }));
-      throw new Error(`Identifier client credentials failed: ${errorData.errors?.[0]?.message || response.statusText}`);
+      throw new Error(
+        `Identifier client credentials failed: ${errorData.errors?.[0]?.message || response.statusText}`
+      );
     }
 
     return response.json();
@@ -104,24 +105,28 @@ export class IdentifierClient {
    * Refresh access token
    * POST /token/refresh/{tenant_tag}
    */
-  async refreshToken(request: RefreshTokenRequest & { tenantTag: string }): Promise<RefreshTokenResult> {
+  async refreshToken(
+    request: RefreshTokenRequest & { tenantTag: string }
+  ): Promise<RefreshTokenResult> {
     const { refresh_token, username, tenantTag } = request;
-    
+
     const requestBody: RefreshTokenRequest = {
       refresh_token,
-      username
+      username,
     };
 
     const response = await this.makeRequest(`/token/refresh/${tenantTag}`, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(requestBody),
     });
 
     if (!response.ok) {
       const errorData: ErrorResponse = await response.json().catch(() => ({
-        errors: [{ message: `HTTP ${response.status}: ${response.statusText}` }]
+        errors: [{ message: `HTTP ${response.status}: ${response.statusText}` }],
       }));
-      throw new Error(`Identifier token refresh failed: ${errorData.errors?.[0]?.message || response.statusText}`);
+      throw new Error(
+        `Identifier token refresh failed: ${errorData.errors?.[0]?.message || response.statusText}`
+      );
     }
 
     return response.json();
@@ -132,18 +137,20 @@ export class IdentifierClient {
    * GET /logout
    */
   async logout(bearerToken: string): Promise<string> {
-    const response = await this.makeRequest('/logout', {
-      method: 'GET',
+    const response = await this.makeRequest("/logout", {
+      method: "GET",
       headers: {
-        'Authorization': `Bearer ${bearerToken}`
-      }
+        Authorization: `Bearer ${bearerToken}`,
+      },
     });
 
     if (!response.ok) {
       const errorData: ErrorResponse = await response.json().catch(() => ({
-        errors: [{ message: `HTTP ${response.status}: ${response.statusText}` }]
+        errors: [{ message: `HTTP ${response.status}: ${response.statusText}` }],
       }));
-      throw new Error(`Identifier logout failed: ${errorData.errors?.[0]?.message || response.statusText}`);
+      throw new Error(
+        `Identifier logout failed: ${errorData.errors?.[0]?.message || response.statusText}`
+      );
     }
 
     return response.text();
