@@ -14,22 +14,25 @@ export class LedgerClient {
   constructor(bearerToken: string, tenantId: string, baseUrl?: string) {
     this.bearerToken = bearerToken;
     this.tenantId = tenantId;
-    // URL pattern based on tenant: https://{{tenant}}.app.beta.insly.training
-    this.baseUrl = baseUrl || `https://${tenantId}.app.beta.insly.training`;
+    // URL pattern based on tenant: https://{{tenant}}.app.devbox.insly.training
+    this.baseUrl = baseUrl || `https://${tenantId}.app.devbox.insly.training`;
   }
 
   /**
    * Make authenticated API request to Ledger service
    * Includes both Authorization header and X-Tenant-ID header
    */
-  private async makeRequest(endpoint: string, options: RequestInit = {}): Promise<Response> {
+  private async makeRequest(
+    endpoint: string,
+    options: RequestInit = {},
+  ): Promise<Response> {
     const url = `${this.baseUrl}${endpoint}`;
-    
+
     const headers = {
-      'Authorization': `Bearer ${this.bearerToken}`,
-      'X-Tenant-ID': this.tenantId,  // CRITICAL: Required for all Ledger API calls
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.bearerToken}`,
+      "X-Tenant-ID": this.tenantId, // CRITICAL: Required for all Ledger API calls
+      Accept: "application/json",
+      "Content-Type": "application/json",
       ...options.headers,
     };
 
@@ -43,7 +46,11 @@ export class LedgerClient {
       let errorMessage = `Ledger API Error: ${response.status} ${response.statusText}`;
       try {
         const errorData = await response.json();
-        if (errorData.errors && Array.isArray(errorData.errors) && errorData.errors.length > 0) {
+        if (
+          errorData.errors &&
+          Array.isArray(errorData.errors) &&
+          errorData.errors.length > 0
+        ) {
           errorMessage = errorData.errors[0].message || errorMessage;
         }
       } catch {
@@ -59,16 +66,20 @@ export class LedgerClient {
    * GET request to Ledger API
    */
   async get(endpoint: string): Promise<any> {
-    const response = await this.makeRequest(endpoint, { method: 'GET' });
+    const response = await this.makeRequest(endpoint, { method: "GET" });
     return response.json();
   }
 
   /**
    * POST request to Ledger API
    */
-  async post(endpoint: string, data: any, headers?: Record<string, string>): Promise<any> {
+  async post(
+    endpoint: string,
+    data: any,
+    headers?: Record<string, string>,
+  ): Promise<any> {
     const response = await this.makeRequest(endpoint, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(data),
       headers,
     });
@@ -78,9 +89,13 @@ export class LedgerClient {
   /**
    * PUT request to Ledger API
    */
-  async put(endpoint: string, data: any, headers?: Record<string, string>): Promise<any> {
+  async put(
+    endpoint: string,
+    data: any,
+    headers?: Record<string, string>,
+  ): Promise<any> {
     const response = await this.makeRequest(endpoint, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(data),
       headers,
     });
@@ -92,7 +107,7 @@ export class LedgerClient {
    */
   async patch(endpoint: string, data: any): Promise<any> {
     const response = await this.makeRequest(endpoint, {
-      method: 'PATCH',
+      method: "PATCH",
       body: JSON.stringify(data),
     });
     return response.json();
@@ -102,9 +117,9 @@ export class LedgerClient {
    * DELETE request to Ledger API
    */
   async delete(endpoint: string, data?: any): Promise<any> {
-    const response = await this.makeRequest(endpoint, { 
-      method: 'DELETE',
-      ...(data && { body: JSON.stringify(data) })
+    const response = await this.makeRequest(endpoint, {
+      method: "DELETE",
+      ...(data && { body: JSON.stringify(data) }),
     });
     return response.json();
   }
@@ -113,6 +128,9 @@ export class LedgerClient {
 /**
  * Create Ledger client with bearer token and tenant ID
  */
-export function createLedgerClient(bearerToken: string, tenantId: string): LedgerClient {
+export function createLedgerClient(
+  bearerToken: string,
+  tenantId: string,
+): LedgerClient {
   return new LedgerClient(bearerToken, tenantId);
 }

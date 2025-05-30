@@ -7,86 +7,114 @@ export function registerGeneratePolicyDocumentTools(server: McpServer) {
     "ledger_policies_documents_generate",
     "Generate policy documents (certificates, wordings, quotes) in PDF/Word format for customer delivery and compliance",
     {
-      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
-      tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
-      policyId: z.number().int().positive().describe("Unique identifier of the policy"),
-      documentType: z.string().describe("Type of document to generate (e.g., 'quote', 'wording', 'certificate')"),
+      bearerToken: z
+        .string()
+        .min(1)
+        .describe("JWT bearer token from identifier_login"),
+      tenantId: z
+        .string()
+        .describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
+      policyId: z
+        .number()
+        .int()
+        .positive()
+        .describe("Unique identifier of the policy"),
+      documentType: z
+        .string()
+        .describe(
+          "Type of document to generate (e.g., 'quote', 'wording', 'certificate')",
+        ),
     },
     async ({ bearerToken, tenantId, policyId, documentType }) => {
       try {
         // For document generation, we need to handle binary responses differently
-        const url = `https://${tenantId}.app.beta.insly.training/api/v1/ledger/policies/${policyId}/generate-document/${documentType}`;
-        
+        const url = `https://${tenantId}.app.devbox.insly.training/api/v1/ledger/policies/${policyId}/generate-document/${documentType}`;
+
         const response = await fetch(url, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Authorization': `Bearer ${bearerToken}`,
-            'X-Tenant-ID': tenantId,
-            'Accept': 'application/json', // We might get binary or JSON response
+            Authorization: `Bearer ${bearerToken}`,
+            "X-Tenant-ID": tenantId,
+            Accept: "application/json", // We might get binary or JSON response
           },
         });
 
         if (!response.ok) {
-          throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+          throw new Error(
+            `API request failed: ${response.status} ${response.statusText}`,
+          );
         }
 
         // Check if response is binary (PDF, Word, etc.) or JSON
-        const contentType = response.headers.get('content-type') || '';
-        
-        if (contentType.includes('application/json')) {
+        const contentType = response.headers.get("content-type") || "";
+
+        if (contentType.includes("application/json")) {
           // JSON response - might be error or metadata
           const data = await response.json();
           return {
             content: [
               {
                 type: "text",
-                text: JSON.stringify({
-                  success: true,
-                  document: data,
-                  policyId,
-                  documentType,
-                  contentType,
-                  meta: {
+                text: JSON.stringify(
+                  {
+                    success: true,
+                    document: data,
                     policyId,
                     documentType,
-                    generatedAt: new Date().toISOString(),
                     contentType,
-                  }
-                }, null, 2)
-              }
-            ]
+                    meta: {
+                      policyId,
+                      documentType,
+                      generatedAt: new Date().toISOString(),
+                      contentType,
+                    },
+                  },
+                  null,
+                  2,
+                ),
+              },
+            ],
           };
         } else {
           // Binary response - convert to base64 for transfer
           const arrayBuffer = await response.arrayBuffer();
-          const base64 = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
-          
+          const base64 = btoa(
+            String.fromCharCode(...new Uint8Array(arrayBuffer)),
+          );
+
           return {
             content: [
               {
                 type: "text",
-                text: JSON.stringify({
-                  success: true,
-                  documentBase64: base64,
-                  policyId,
-                  documentType,
-                  contentType,
-                  size: arrayBuffer.byteLength,
-                  meta: {
+                text: JSON.stringify(
+                  {
+                    success: true,
+                    documentBase64: base64,
                     policyId,
                     documentType,
-                    generatedAt: new Date().toISOString(),
                     contentType,
-                    sizeBytes: arrayBuffer.byteLength,
+                    size: arrayBuffer.byteLength,
+                    meta: {
+                      policyId,
+                      documentType,
+                      generatedAt: new Date().toISOString(),
+                      contentType,
+                      sizeBytes: arrayBuffer.byteLength,
+                    },
+                    usage:
+                      "Document generated successfully. The documentBase64 field contains the binary document encoded in base64. Decode this to get the actual document file.",
+                    relatedTools: {
+                      types:
+                        "Use ledger_get_document_types to see all available document types",
+                      upload:
+                        "Use ledger_upload_policy_files to add additional documents",
+                    },
                   },
-                  usage: "Document generated successfully. The documentBase64 field contains the binary document encoded in base64. Decode this to get the actual document file.",
-                  relatedTools: {
-                    types: "Use ledger_get_document_types to see all available document types",
-                    upload: "Use ledger_upload_policy_files to add additional documents"
-                  }
-                }, null, 2)
-              }
-            ]
+                  null,
+                  2,
+                ),
+              },
+            ],
           };
         }
       } catch (error) {
@@ -94,16 +122,23 @@ export function registerGeneratePolicyDocumentTools(server: McpServer) {
           content: [
             {
               type: "text",
-              text: JSON.stringify({
-                success: false,
-                error: error instanceof Error ? error.message : 'Unknown error occurred',
-                policyId,
-                documentType,
-              }, null, 2)
-            }
-          ]
+              text: JSON.stringify(
+                {
+                  success: false,
+                  error:
+                    error instanceof Error
+                      ? error.message
+                      : "Unknown error occurred",
+                  policyId,
+                  documentType,
+                },
+                null,
+                2,
+              ),
+            },
+          ],
         };
       }
-    }
+    },
   );
 }

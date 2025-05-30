@@ -7,22 +7,42 @@ export function registerUploadPolicyFilesTools(server: McpServer) {
     "ledger_policies_documents_upload",
     "Upload one or more files to a policy. Files are attached as supporting documents to the policy record",
     {
-      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
-      tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
-      policyId: z.number().int().positive().describe("Unique identifier of the policy"),
-      files: z.array(z.object({
-        content: z.string().describe("Base64 encoded file content"),
-        fileName: z.string().describe("Name of the file including extension"),
-        mimeType: z.string().optional().describe("MIME type of the file (auto-detected if not provided)")
-      })).describe("Array of files to upload"),
+      bearerToken: z
+        .string()
+        .min(1)
+        .describe("JWT bearer token from identifier_login"),
+      tenantId: z
+        .string()
+        .describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
+      policyId: z
+        .number()
+        .int()
+        .positive()
+        .describe("Unique identifier of the policy"),
+      files: z
+        .array(
+          z.object({
+            content: z.string().describe("Base64 encoded file content"),
+            fileName: z
+              .string()
+              .describe("Name of the file including extension"),
+            mimeType: z
+              .string()
+              .optional()
+              .describe(
+                "MIME type of the file (auto-detected if not provided)",
+              ),
+          }),
+        )
+        .describe("Array of files to upload"),
     },
     async ({ bearerToken, tenantId, policyId, files }) => {
       try {
-        const url = `https://${tenantId}.app.beta.insly.training/api/v1/ledger/policies/${policyId}/files`;
-        
+        const url = `https://${tenantId}.app.devbox.insly.training/api/v1/ledger/policies/${policyId}/files`;
+
         // Create FormData for multipart upload
         const formData = new FormData();
-        
+
         for (const file of files) {
           // Convert base64 to blob
           const binaryData = atob(file.content);
@@ -30,27 +50,30 @@ export function registerUploadPolicyFilesTools(server: McpServer) {
           for (let i = 0; i < binaryData.length; i++) {
             bytes[i] = binaryData.charCodeAt(i);
           }
-          
+
           // Detect MIME type if not provided
-          const mimeType = file.mimeType || getMimeTypeFromFileName(file.fileName);
+          const mimeType =
+            file.mimeType || getMimeTypeFromFileName(file.fileName);
           const blob = new Blob([bytes], { type: mimeType });
-          
+
           // Add file to form data (API expects file[] array)
-          formData.append('file[]', blob, file.fileName);
+          formData.append("file[]", blob, file.fileName);
         }
-        
+
         const response = await fetch(url, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Authorization': `Bearer ${bearerToken}`,
-            'X-Tenant-ID': tenantId,
+            Authorization: `Bearer ${bearerToken}`,
+            "X-Tenant-ID": tenantId,
             // Don't set Content-Type for FormData, let browser set it with boundary
           },
           body: formData,
         });
 
         if (!response.ok) {
-          throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+          throw new Error(
+            `API request failed: ${response.status} ${response.statusText}`,
+          );
         }
 
         const data = await response.json();
@@ -58,61 +81,74 @@ export function registerUploadPolicyFilesTools(server: McpServer) {
           content: [
             {
               type: "text",
-              text: JSON.stringify({
-                success: true,
-                uploadedDocuments: data,
-                policyId,
-                filesCount: files.length,
-                meta: {
+              text: JSON.stringify(
+                {
+                  success: true,
+                  uploadedDocuments: data,
                   policyId,
-                  filesUploaded: files.length,
-                  fileNames: files.map(f => f.fileName),
-                  uploadedAt: new Date().toISOString(),
+                  filesCount: files.length,
+                  meta: {
+                    policyId,
+                    filesUploaded: files.length,
+                    fileNames: files.map((f) => f.fileName),
+                    uploadedAt: new Date().toISOString(),
+                  },
+                  message: `Successfully uploaded ${files.length} file(s) to policy ${policyId}`,
+                  relatedTools: {
+                    generate:
+                      "Use ledger_generate_policy_document to create policy documents",
+                    types:
+                      "Use ledger_get_document_types to see available document types",
+                  },
                 },
-                message: `Successfully uploaded ${files.length} file(s) to policy ${policyId}`,
-                relatedTools: {
-                  generate: "Use ledger_generate_policy_document to create policy documents",
-                  types: "Use ledger_get_document_types to see available document types"
-                }
-              }, null, 2)
-            }
-          ]
+                null,
+                2,
+              ),
+            },
+          ],
         };
       } catch (error) {
         return {
           content: [
             {
               type: "text",
-              text: JSON.stringify({
-                success: false,
-                error: error instanceof Error ? error.message : 'Unknown error occurred',
-                policyId,
-                filesCount: files.length,
-              }, null, 2)
-            }
-          ]
+              text: JSON.stringify(
+                {
+                  success: false,
+                  error:
+                    error instanceof Error
+                      ? error.message
+                      : "Unknown error occurred",
+                  policyId,
+                  filesCount: files.length,
+                },
+                null,
+                2,
+              ),
+            },
+          ],
         };
       }
-    }
+    },
   );
 }
 
 // Helper function to detect MIME type from file extension
 function getMimeTypeFromFileName(fileName: string): string {
-  const extension = fileName.toLowerCase().split('.').pop();
+  const extension = fileName.toLowerCase().split(".").pop();
   const mimeTypes: Record<string, string> = {
-    'pdf': 'application/pdf',
-    'doc': 'application/msword',
-    'docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    'xls': 'application/vnd.ms-excel',
-    'xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    'jpg': 'image/jpeg',
-    'jpeg': 'image/jpeg',
-    'png': 'image/png',
-    'gif': 'image/gif',
-    'txt': 'text/plain',
-    'csv': 'text/csv',
-    'zip': 'application/zip',
+    pdf: "application/pdf",
+    doc: "application/msword",
+    docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    xls: "application/vnd.ms-excel",
+    xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    jpg: "image/jpeg",
+    jpeg: "image/jpeg",
+    png: "image/png",
+    gif: "image/gif",
+    txt: "text/plain",
+    csv: "text/csv",
+    zip: "application/zip",
   };
-  return mimeTypes[extension || ''] || 'application/octet-stream';
+  return mimeTypes[extension || ""] || "application/octet-stream";
 }

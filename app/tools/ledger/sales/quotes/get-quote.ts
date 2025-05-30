@@ -7,40 +7,69 @@ export function registerGetQuoteTools(server: McpServer) {
     "ledger_sales_quotes_get",
     "Retrieve detailed details about a specific quote by ID including all quote data and metadata",
     {
-      bearerToken: z.string().min(1).describe("JWT bearer token from identifier_login"),
-      tenantId: z.string().describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
-      quoteId: z.string().min(1).describe("Unique identifier of the quote to retrieve"),
-      withNotifications: z.boolean().optional().describe("Include warnings, errors and status notifications (default: true)"),
-      acceptLanguage: z.string().optional().describe("Accept-Language header (e.g., 'en-US', 'et-EE')"),
+      bearerToken: z
+        .string()
+        .min(1)
+        .describe("JWT bearer token from identifier_login"),
+      tenantId: z
+        .string()
+        .describe("Tenant ID for X-Tenant-ID header (e.g., 'accelerate')"),
+      quoteId: z
+        .string()
+        .min(1)
+        .describe("Unique identifier of the quote to retrieve"),
+      withNotifications: z
+        .boolean()
+        .optional()
+        .describe(
+          "Include warnings, errors and status notifications (default: true)",
+        ),
+      acceptLanguage: z
+        .string()
+        .optional()
+        .describe("Accept-Language header (e.g., 'en-US', 'et-EE')"),
     },
-    async ({ bearerToken, tenantId, quoteId, withNotifications, acceptLanguage }) => {
+    async ({
+      bearerToken,
+      tenantId,
+      quoteId,
+      withNotifications,
+      acceptLanguage,
+    }) => {
       try {
         const client = createLedgerClient(bearerToken, tenantId);
-        
+
         const params = new URLSearchParams();
         if (withNotifications !== undefined) {
-          params.set('withNotifications', withNotifications.toString());
+          params.set("withNotifications", withNotifications.toString());
         } else {
-          params.set('withNotifications', 'true'); // Default to true as per API docs
+          params.set("withNotifications", "true"); // Default to true as per API docs
         }
-        
+
         const queryString = params.toString();
-        const endpoint = `/api/v1/ledger/sales/policies/${quoteId}${queryString ? `?${queryString}` : ''}`;
-        
+        const endpoint = `/api/v1/ledger/sales/policies/${quoteId}${queryString ? `?${queryString}` : ""}`;
+
         // Add Accept-Language header if provided
-        const headers = acceptLanguage ? { 'Accept-Language': acceptLanguage } : undefined;
-        const response = await fetch(`https://${tenantId}.app.beta.insly.training${endpoint}`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${bearerToken}`,
-            'X-Tenant-ID': tenantId,
-            'Accept': 'application/json',
-            ...headers,
-          }
-        });
+        const headers = acceptLanguage
+          ? { "Accept-Language": acceptLanguage }
+          : undefined;
+        const response = await fetch(
+          `https://${tenantId}.app.devbox.insly.training${endpoint}`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${bearerToken}`,
+              "X-Tenant-ID": tenantId,
+              Accept: "application/json",
+              ...headers,
+            },
+          },
+        );
 
         if (!response.ok) {
-          throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+          throw new Error(
+            `API request failed: ${response.status} ${response.statusText}`,
+          );
         }
 
         const data = await response.json();
@@ -48,39 +77,51 @@ export function registerGetQuoteTools(server: McpServer) {
           content: [
             {
               type: "text",
-              text: JSON.stringify({
-                success: true,
-                quote: data,
-                meta: {
-                  quoteId,
-                  retrievedAt: new Date().toISOString(),
-                  withNotifications: withNotifications ?? true,
-                  schemaPath: data.meta?.schemaPath,
+              text: JSON.stringify(
+                {
+                  success: true,
+                  quote: data,
+                  meta: {
+                    quoteId,
+                    retrievedAt: new Date().toISOString(),
+                    withNotifications: withNotifications ?? true,
+                    schemaPath: data.meta?.schemaPath,
+                  },
+                  relatedTools: {
+                    update: "Use ledger_update_quote to modify this quote",
+                    calculate:
+                      "Use ledger_calculate_quote to calculate premiums",
+                    issue: "Use ledger_issue_quote to convert to policy",
+                    copy: "Use ledger_copy_quote to create a copy",
+                  },
                 },
-                relatedTools: {
-                  update: "Use ledger_update_quote to modify this quote",
-                  calculate: "Use ledger_calculate_quote to calculate premiums",
-                  issue: "Use ledger_issue_quote to convert to policy",
-                  copy: "Use ledger_copy_quote to create a copy"
-                }
-              }, null, 2)
-            }
-          ]
+                null,
+                2,
+              ),
+            },
+          ],
         };
       } catch (error) {
         return {
           content: [
             {
               type: "text",
-              text: JSON.stringify({
-                success: false,
-                error: error instanceof Error ? error.message : 'Unknown error occurred',
-                quoteId,
-              }, null, 2)
-            }
-          ]
+              text: JSON.stringify(
+                {
+                  success: false,
+                  error:
+                    error instanceof Error
+                      ? error.message
+                      : "Unknown error occurred",
+                  quoteId,
+                },
+                null,
+                2,
+              ),
+            },
+          ],
         };
       }
-    }
+    },
   );
 }

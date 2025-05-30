@@ -49,13 +49,14 @@ export function registerIdentifierClientCredentialsTool(server: McpServer) {
                   },
                 },
                 null,
-                2
+                2,
               ),
             },
           ],
         };
       } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+        const errorMessage =
+          error instanceof Error ? error.message : "Unknown error occurred";
 
         return {
           content: [
@@ -68,19 +69,22 @@ export function registerIdentifierClientCredentialsTool(server: McpServer) {
                   troubleshooting: {
                     credentials: "Verify clientId and clientSecret are valid",
                     tenant: "Check tenant identifier (should be 'accelerate')",
-                    network: "Ensure access to https://accelerate.app.beta.insly.training",
+                    network:
+                      "Ensure access to https://accelerate.app.devbox.insly.training",
                     service: "Verify Identifier service is operational",
-                    scope: "Check if specified scope is allowed for this client",
-                    clientSetup: "Ensure client credentials are properly configured in Insly",
+                    scope:
+                      "Check if specified scope is allowed for this client",
+                    clientSetup:
+                      "Ensure client credentials are properly configured in Insly",
                   },
                 },
                 null,
-                2
+                2,
               ),
             },
           ],
         };
       }
-    }
+    },
   );
 }

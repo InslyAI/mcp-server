@@ -2359,7 +2359,7 @@
                   ],
                   "meta": [],
                   "links": {
-                    "quote:changes": "https://app.beta.insly.training/api/v1/ledger/sales/policies/1/changes"
+                    "quote:changes": "https://app.devbox.insly.training/api/v1/ledger/sales/policies/1/changes"
                   }
                 }
               }
@@ -10001,7 +10001,7 @@
         "properties": {
           "quote:changes": {
             "type": "string",
-            "example": "https://app.beta.insly.training/api/v1/ledger/sales/policies/1/changes"
+            "example": "https://app.devbox.insly.training/api/v1/ledger/sales/policies/1/changes"
           }
         },
         "type": "object"
